@@ -1,0 +1,43 @@
+/* ========= WarehouseProLite theme ========= */
+:root{
+  --blue:#1e6fa1;
+  --blue-dark:#15527a;
+  --cream:#f4f7fa;
+  --gray:#e2e8f0;
+  --text:#222;
+  --text-light:#fff;
+  --radius:6px;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--text);line-height:1.4;}
+/* Top bar */
+.topbar{background:var(--blue);color:var(--text-light);padding:.8rem 1.2rem;display:flex;flex-wrap:wrap;align-items:center;}
+.topbar .logo{font-size:1.25rem;margin:0;flex:1 0 auto;}
+.topbar nav a{color:var(--text-light);text-decoration:none;margin-left:1rem;padding:.4rem .6rem;border-radius:var(--radius);}
+.topbar nav a:hover,.topbar nav a.active{background:var(--blue-dark);}
+.topbar nav a.right{margin-left:auto;}
+/* Layout wrapper */
+.container{max-width:960px;margin:2rem auto;padding:0 1rem;}
+/* Tables */
+table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;}
+th,td{padding:.6rem .5rem;border-bottom:1px solid var(--gray);text-align:left;}
+th{background:var(--gray);font-weight:600;}
+tr:nth-child(even){background:#f9fbfc;}
+/* Forms */
+label{display:block;margin:.65rem 0 .25rem;font-weight:600;}
+input[type=text],input[type=password],input[type=number],select,textarea{width:100%;padding:.45rem;border:1px solid #ccc;border-radius:var(--radius);}
+input[type=submit],button{background:var(--blue);color:var(--text-light);border:none;padding:.5rem 1rem;border-radius:var(--radius);font-weight:600;cursor:pointer;}
+input[type=submit]:hover,button:hover{background:var(--blue-dark);}
+.btn{background:var(--blue);color:var(--text-light);padding:.4rem .8rem;border-radius:var(--radius);text-decoration:none;}
+.btn:hover{background:var(--blue-dark);}
+/* KPI cards */
+.cards{display:flex;gap:.8rem;overflow-x:auto;}
+.card{background:#fff;border:1px solid var(--gray);border-radius:var(--radius);padding:1rem 1.2rem;min-width:150px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.06);}
+.card .big{display:block;font-size:1.6rem;font-weight:600;margin-bottom:.15rem;}
+/* Footer */
+footer{background:var(--gray);text-align:center;padding:1rem;font-size:.85rem;}
+/* Login */
+body.login-page{display:flex;align-items:center;justify-content:center;height:100vh;}
+.login-card{width:320px;padding:2rem 2.4rem;border:1px solid var(--gray);border-radius:var(--radius);background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.08);text-align:center;}
+.login-card h1{font-size:1.45rem;margin:0 0 1.2rem;}
+.login-card label{text-align:left;}
