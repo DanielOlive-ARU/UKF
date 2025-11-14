@@ -76,7 +76,7 @@ $prefillRefId = isset($_GET['ref_id']) ? (int)$_GET['ref_id'] : 0;
 
     <p>
         <input type="submit" value="Save">
-        <a href="adjustments.php">Cancel</a>
+        <a href="stocktake_view.php?id=<?php echo $prefillRefId; ?>">Cancel</a>
     </p>
 </form>
 
