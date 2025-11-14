@@ -22,12 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         INSERT INTO adjustments (product_id, qty_delta, reason, approved_by, created_at, ref_id)
         VALUES ($pid, $delta, '$reason', $uid, NOW(), $refId)
     ");
-
-     if ($refId) {
-        header('Location: stocktake_view.php?id=' . $refId);
-    } else {
-        header('Location: adjustments.php?msg=added');
-    }
+    
+        // apply the adjustment to the product stock so the variance seen on
+        // the originating stock-take will reflect the posted adjustment
+        if ($delta != 0) {
+            mysql_query("UPDATE products SET stock = stock + ($delta) WHERE id = $pid");
+        }
+    
+        if ($refId) {
+            header('Location: stocktake_view.php?id=' . $refId);
+        } else {
+            header('Location: adjustments.php?msg=added');
+        }
     exit();
 }
 
