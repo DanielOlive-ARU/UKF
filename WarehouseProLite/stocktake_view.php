@@ -47,7 +47,7 @@ while ($r = mysql_fetch_assoc($lines)):
     <td><?php echo $r['variance']; ?></td>
     <td>
       <?php if ($r['variance'] != 0): ?>
-        <a href="adjustment_add.php?pid=<?php echo $r['pid']; ?>&delta=<?php echo $r['variance']; ?>">
+        <a href="adjustment_add.php?pid=<?php echo $r['pid']; ?>&delta=<?php echo $r['variance']; ?>&ref_id=<?php echo $takeId; ?>">
           Post Adjustment
         </a>
       <?php else: ?>
