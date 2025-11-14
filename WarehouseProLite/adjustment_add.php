@@ -15,13 +15,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     /* approved_by could be the logged-in user’s ID; using 0 for legacy demo */
     $uid   = isset($_SESSION['wh_user_id']) ? (int)$_SESSION['wh_user_id'] : 'NULL';
 
+    /* optional ref back to a stock-take id */
+    $refId = isset($_POST['ref_id']) ? (int)$_POST['ref_id'] : 0;
+
     mysql_query("
-        INSERT INTO adjustments (product_id, qty_delta, reason, approved_by, created_at)
-        VALUES ($pid, $delta, '$reason', $uid, NOW())
+        INSERT INTO adjustments (product_id, qty_delta, reason, approved_by, created_at, ref_id)
+        VALUES ($pid, $delta, '$reason', $uid, NOW(), $refId)
     ");
-
-
-    header('Location: adjustments.php?msg=added');
+    
+        // apply the adjustment to the product stock so the variance seen on
+        // the originating stock-take will reflect the posted adjustment
+        if ($delta != 0) {
+            mysql_query("UPDATE products SET stock = stock + ($delta) WHERE id = $pid");
+        }
+    
+        if ($refId) {
+            header('Location: stocktake_view.php?id=' . $refId);
+        } else {
+            header('Location: adjustments.php?msg=added');
+        }
     exit();
 }
 
@@ -31,6 +43,7 @@ $prods = mysql_query("SELECT id, sku, name FROM products ORDER BY name");
 /* Pre-fill fields if called from stock-take variance link */
 $prefillPid   = isset($_GET['pid'])   ? (int)$_GET['pid']   : '';
 $prefillDelta = isset($_GET['delta']) ? (int)$_GET['delta'] : '';
+$prefillRefId = isset($_GET['ref_id']) ? (int)$_GET['ref_id'] : 0;
 ?>
 <h2>Add Adjustment</h2>
 
@@ -62,9 +75,14 @@ $prefillDelta = isset($_GET['delta']) ? (int)$_GET['delta'] : '';
     </label>
 
 
+ <!-- pass the ref_id through the form so POST handler can redirect back -->
+    <?php if ($prefillRefId): ?>
+      <input type="hidden" name="ref_id" value="<?php echo $prefillRefId; ?>">
+    <?php endif; ?>
+
     <p>
         <input type="submit" value="Save">
-        <a href="adjustments.php">Cancel</a>
+        <a href="stocktake_view.php?id=<?php echo $prefillRefId; ?>">Cancel</a>
     </p>
 </form>
 
