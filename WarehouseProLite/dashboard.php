@@ -1,24 +1,34 @@
 <?php
 /* dashboard.php – WarehouseProLite overview */
 include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
-/* ------- KPI queries (all legacy mysql_* calls) ------- */
-$totalDeliveries = mysql_result(
-    mysql_query("SELECT COUNT(*) FROM deliveries"), 0);
+function kpiCount($sql, $params = array())
+{
+  $row = Database::fetchOne($sql, $params);
+  if (!$row) {
+    return 0;
+  }
+  $value = reset($row);
+  return (int)$value;
+}
 
-$todayDeliveries = mysql_result(
-    mysql_query("SELECT COUNT(*) FROM deliveries
-                 WHERE DATE(received_at) = CURDATE()"), 0);
+$totalDeliveries = kpiCount('SELECT COUNT(*) AS total FROM deliveries');
 
-$recentAdjust = mysql_result(
-    mysql_query("SELECT COUNT(*) FROM adjustments
-                 WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)"), 0);
+$todayDeliveries = kpiCount(
+  'SELECT COUNT(*) AS total FROM deliveries WHERE DATE(received_at) = CURDATE()'
+);
 
-$recentQAFails = mysql_result(
-    mysql_query("SELECT COUNT(*) FROM qa_samples
-                 WHERE passed = 'no'
-                 AND sample_time >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)"), 0);
+$recentAdjust = kpiCount(
+  'SELECT COUNT(*) AS total FROM adjustments WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)'
+);
+
+$recentQAFails = kpiCount(
+  "SELECT COUNT(*) AS total FROM qa_samples
+   WHERE passed = 'no'
+     AND sample_time >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)"
+);
 ?>
 <h2>Dashboard</h2>
 

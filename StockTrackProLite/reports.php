@@ -1,44 +1,45 @@
 <?php
 /* reports.php – reporting hub (very legacy visual) */
 include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
 /* 1. Monthly sales (last 12 months) */
-$monthly = mysql_query("
-    SELECT DATE_FORMAT(order_date,'%Y-%m') AS ym,
-           COUNT(*)  AS orders,
-           SUM(total) AS revenue
-    FROM orders
-    WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
-    GROUP BY ym
-    ORDER BY ym
-");
+$monthly = Database::query(
+    "SELECT DATE_FORMAT(order_date,'%Y-%m') AS ym,
+            COUNT(*)  AS orders,
+            SUM(total) AS revenue
+     FROM orders
+     WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+     GROUP BY ym
+     ORDER BY ym"
+)->fetchAll();
 
 /* 2. Top 5 customers by spend (last 12 months) */
-$topCust = mysql_query("
-    SELECT c.name,
-           COUNT(o.id)  AS num_orders,
-           SUM(o.total) AS spend
-    FROM orders o
-    JOIN customers c ON c.id = o.customer_id
-    WHERE o.order_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
-    GROUP BY c.id
-    ORDER BY spend DESC
-    LIMIT 5
-");
+$topCust = Database::query(
+    "SELECT c.name,
+            COUNT(o.id)  AS num_orders,
+            SUM(o.total) AS spend
+     FROM orders o
+     JOIN customers c ON c.id = o.customer_id
+     WHERE o.order_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+     GROUP BY c.id
+     ORDER BY spend DESC
+     LIMIT 5"
+)->fetchAll();
 
 /* 3. Low-stock products (< 20) */
-$lowStock = mysql_query("
-    SELECT sku, name, stock
-    FROM products
-    WHERE stock < 20
-    ORDER BY stock ASC
-");
+$lowStock = Database::query(
+    "SELECT sku, name, stock
+     FROM products
+     WHERE stock < 20
+     ORDER BY stock ASC"
+)->fetchAll();
 
 /* Build arrays for the (very old) Chart.js v1 API */
-$labels   = [];
-$revenues = [];
-while ($row = mysql_fetch_assoc($monthly)) {
+$labels   = array();
+$revenues = array();
+foreach ($monthly as $row) {
     $labels[]   = $row['ym'];
     $revenues[] = round($row['revenue'], 2);
 }
@@ -73,13 +74,15 @@ new Chart(ctx).Bar(data, {
 <table>
     <thead><tr><th>Customer</th><th>Orders</th><th>Spend (£)</th></tr></thead>
     <tbody>
-    <?php while ($row = mysql_fetch_assoc($topCust)): ?>
+    <?php if (!$topCust): ?>
+        <tr><td colspan="3">No orders in the last 12 months.</td></tr>
+    <?php else: foreach ($topCust as $row): ?>
         <tr>
             <td><?php echo htmlspecialchars($row['name']); ?></td>
             <td><?php echo $row['num_orders']; ?></td>
             <td><?php echo number_format($row['spend'], 2); ?></td>
         </tr>
-    <?php endwhile; ?>
+    <?php endforeach; endif; ?>
     </tbody>
 </table>
 
@@ -87,15 +90,15 @@ new Chart(ctx).Bar(data, {
 <table>
     <thead><tr><th>SKU</th><th>Name</th><th>Stock</th></tr></thead>
     <tbody>
-    <?php if (mysql_num_rows($lowStock) === 0): ?>
+    <?php if (!$lowStock): ?>
         <tr><td colspan="3">No items below threshold.</td></tr>
-    <?php else: while ($row = mysql_fetch_assoc($lowStock)): ?>
+    <?php else: foreach ($lowStock as $row): ?>
         <tr>
             <td><?php echo htmlspecialchars($row['sku']); ?></td>
             <td><?php echo htmlspecialchars($row['name']); ?></td>
             <td><?php echo $row['stock']; ?></td>
         </tr>
-    <?php endwhile; endif; ?>
+    <?php endforeach; endif; ?>
     </tbody>
 </table>
 
