@@ -1,27 +1,29 @@
 <?php
 include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
 /* ---------- flash notice ---------- */
 $flash = '';
 if (isset($_GET['msg'])) {
-    if ($_GET['msg'] === 'added')   $flash = '<p class="notice">Delivery recorded.</p>';
-    if ($_GET['msg'] === 'updated') $flash = '<p class="notice">Delivery updated.</p>';
-    if ($_GET['msg'] === 'deleted') $flash = '<p class="notice">Delivery deleted.</p>';
+  if ($_GET['msg'] === 'added')   $flash = '<p class="notice">Delivery recorded.</p>';
+  if ($_GET['msg'] === 'updated') $flash = '<p class="notice">Delivery updated.</p>';
+  if ($_GET['msg'] === 'deleted') $flash = '<p class="notice">Delivery deleted.</p>';
+  if ($_GET['msg'] === 'error')   $flash = '<p class="notice">Delivery action failed. Please try again.</p>';
 }
 
 /* ---------- fetch deliveries ---------- */
-$res = mysql_query("
-    SELECT d.id,
-           d.received_at,
-           d.qty,
-           d.supplier_ref,
-           p.sku,
-           p.name
-    FROM deliveries d
-    JOIN products   p ON p.id = d.product_id
-    ORDER BY d.received_at DESC
-");
+$deliveries = Database::query(
+  "SELECT d.id,
+      d.received_at,
+      d.qty,
+      d.supplier_ref,
+      p.sku,
+      p.name
+   FROM deliveries d
+   JOIN products   p ON p.id = d.product_id
+   ORDER BY d.received_at DESC"
+)->fetchAll();
 ?>
 <h2>Deliveries</h2>
 <?php echo $flash; ?>
@@ -36,9 +38,9 @@ $res = mysql_query("
     </tr>
   </thead>
   <tbody>
-  <?php if (mysql_num_rows($res) === 0): ?>
+  <?php if (!$deliveries): ?>
       <tr><td colspan="7">No deliveries recorded.</td></tr>
-  <?php else: while ($r = mysql_fetch_assoc($res)): ?>
+  <?php else: foreach ($deliveries as $r): ?>
       <tr>
         <td><?php echo $r['id']; ?></td>
         <td><?php echo $r['received_at']; ?></td>
@@ -52,7 +54,7 @@ $res = mysql_query("
              onclick="return confirm('Delete this delivery?');">Delete</a>
         </td>
       </tr>
-  <?php endwhile; endif; ?>
+  <?php endforeach; endif; ?>
   </tbody>
 </table>
 

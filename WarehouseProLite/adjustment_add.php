@@ -4,41 +4,71 @@
    ?pid=11&delta=-20   → pre-fill product and qty_delta
 */
 include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
+
+$notice = '';
+$supportsRefId = false;
+
+try {
+    $supportsRefId = (bool)Database::query("SHOW COLUMNS FROM adjustments LIKE 'ref_id'")->fetch();
+} catch (Exception $schemaException) {
+    // fallback to schema without ref_id
+    $supportsRefId = false;
+}
 
 /* --------- Save on POST --------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pid   = (int)$_POST['product_id'];
     $delta = (int)$_POST['qty_delta'];
-    $reason= mysql_real_escape_string($_POST['reason']);
+    $reason= trim($_POST['reason']);
 
-    /* approved_by could be the logged-in user’s ID; using 0 for legacy demo */
-    $uid   = isset($_SESSION['wh_user_id']) ? (int)$_SESSION['wh_user_id'] : 'NULL';
-
-    /* optional ref back to a stock-take id */
+    $uid   = isset($_SESSION['wh_user_id']) ? (int)$_SESSION['wh_user_id'] : null;
     $refId = isset($_POST['ref_id']) ? (int)$_POST['ref_id'] : 0;
 
-    mysql_query("
-        INSERT INTO adjustments (product_id, qty_delta, reason, approved_by, created_at, ref_id)
-        VALUES ($pid, $delta, '$reason', $uid, NOW(), $refId)
-    ");
-    
-        // apply the adjustment to the product stock so the variance seen on
-        // the originating stock-take will reflect the posted adjustment
-        if ($delta != 0) {
-            mysql_query("UPDATE products SET stock = stock + ($delta) WHERE id = $pid");
-        }
-    
+    try {
+        Database::transaction(function () use ($pid, $delta, $reason, $uid, $refId, $supportsRefId) {
+            $columns = 'product_id, qty_delta, reason, approved_by, created_at';
+            $values  = ':product_id, :qty_delta, :reason, :approved_by, NOW()';
+            $params  = array(
+                ':product_id' => $pid,
+                ':qty_delta' => $delta,
+                ':reason' => $reason,
+                ':approved_by' => $uid
+            );
+
+            if ($supportsRefId) {
+                $columns .= ', ref_id';
+                $values  .= ', :ref_id';
+                $params[':ref_id'] = $refId ?: null;
+            }
+
+            Database::query(
+                "INSERT INTO adjustments ($columns) VALUES ($values)",
+                $params
+            );
+
+            if ($delta !== 0) {
+                Database::query(
+                    "UPDATE products SET stock = stock + :delta WHERE id = :id",
+                    array(':delta' => $delta, ':id' => $pid)
+                );
+            }
+        });
+
         if ($refId) {
             header('Location: stocktake_view.php?id=' . $refId);
         } else {
             header('Location: adjustments.php?msg=added');
         }
-    exit();
+        exit();
+    } catch (Exception $exception) {
+        $notice = 'Adjustment could not be saved. Please try again.';
+    }
 }
 
 /* ---------- Load products for drop-down ---------- */
-$prods = mysql_query("SELECT id, sku, name FROM products ORDER BY name");
+$prods = Database::query("SELECT id, sku, name FROM products ORDER BY name")->fetchAll();
 
 /* Pre-fill fields if called from stock-take variance link */
 $prefillPid   = isset($_GET['pid'])   ? (int)$_GET['pid']   : '';
@@ -48,15 +78,18 @@ $prefillRefId = isset($_GET['ref_id']) ? (int)$_GET['ref_id'] : 0;
 <h2>Add Adjustment</h2>
 
 <form action="adjustment_add.php" method="post">
+    <?php if ($notice): ?>
+        <p class="notice"><?php echo htmlspecialchars($notice); ?></p>
+    <?php endif; ?>
     <label>Product
         <select name="product_id" required>
             <option value="">-- select --</option>
-            <?php while ($p = mysql_fetch_assoc($prods)): ?>
+            <?php foreach ($prods as $p): ?>
                 <option value="<?php echo $p['id']; ?>"
                     <?php if ($p['id'] == $prefillPid) echo 'selected'; ?>>
                     <?php echo $p['sku'].' - '.htmlspecialchars($p['name']); ?>
                 </option>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </select>
     </label>
 
