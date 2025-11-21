@@ -1,7 +1,7 @@
 <?php
-require_once dirname(__DIR__) . '/../includes/mysql_compat.php';
-
-$conn = mysql_connect("127.0.0.1:3306", "root", "");
-mysql_select_db("stocktrackpro", $conn);
-mysql_set_charset('utf8', $conn);  
+/**
+ * Legacy bootstrap retained so pages including includes/db.php pick up
+ * the shared PDO helper without rewriting every include statement.
+ */
+require_once dirname(__DIR__) . '/../includes/database.php';
 ?>
