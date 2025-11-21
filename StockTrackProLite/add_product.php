@@ -29,10 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $cats = mysql_query("SELECT id, name FROM categories ORDER BY name");
 ?>
 <h2>Add Product</h2>
-
+<!-- Formats SKU user input to force a specific pattern -->
 <form action="add_product.php" method="post">
     <label>SKU
-        <input type="text" name="sku" required>
+    <input type="text" name="sku" required
+           pattern="[A-Z]{2}[._%+\-][A-Z]{3}[._%+\-][0-9]{3,}"
+           title="SKU must consist of two capital letters, a dash, three capital letters, a dash, and at least three digits (e.g. AB-XYZ-123)"
+           oninput="this.value=this.value.toUpperCase()">
     </label>
 
     <label>Name
