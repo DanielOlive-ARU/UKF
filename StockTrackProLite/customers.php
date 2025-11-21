@@ -46,6 +46,8 @@ if (isset($_GET['msg']) && $_GET['msg'] === 'deleted') {
                 <a href="customer_edit.php?id=<?php echo $row['id']; ?>">Edit</a> |
                 <a href="customer_delete.php?id=<?php echo $row['id']; ?>"
                    onclick="return confirm('Delete this customer?');">Delete</a>
+                |
+                <a href="customer_view.php?id=<?php echo $row['id']; ?>">History</a>
             </td>
         </tr>
     <?php endwhile; ?>
