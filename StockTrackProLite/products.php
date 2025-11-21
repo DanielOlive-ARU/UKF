@@ -12,8 +12,31 @@ $stmt = Database::query("
     ORDER BY p.name
 ");
 $products = $stmt->fetchAll();
+
+$flash = '';
+if (isset($_GET['msg'])) {
+    switch ($_GET['msg']) {
+        case 'added':
+            $flash = '<p class="notice">Product added.</p>';
+            break;
+        case 'updated':
+            $flash = '<p class="notice">Product updated.</p>';
+            break;
+        case 'deleted':
+            $flash = '<p class="notice">Product deleted.</p>';
+            break;
+        case 'in_use':
+            $flash = '<p class="notice">Product is referenced by other records and cannot be deleted yet.</p>';
+            break;
+        case 'error':
+            $flash = '<p class="notice">Action failed. Please try again.</p>';
+            break;
+    }
+}
 ?>
 <h2>Products</h2>
+
+<?php echo $flash; ?>
 
 <p>
     <a href="add_product.php" class="btn">+ Add Product</a>
