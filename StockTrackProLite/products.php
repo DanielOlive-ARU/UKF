@@ -1,15 +1,17 @@
 <?php
 include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
 /* join categories so we can show the name */
-$res = mysql_query("
+$stmt = Database::query("
     SELECT p.id, p.sku, p.name, p.price, p.stock,
            IFNULL(c.name,'-') AS category
     FROM products p
     LEFT JOIN categories c ON c.id = p.category_id
     ORDER BY p.name
 ");
+$products = $stmt->fetchAll();
 ?>
 <h2>Products</h2>
 
@@ -25,9 +27,9 @@ $res = mysql_query("
         </tr>
     </thead>
     <tbody>
-<?php if (mysql_num_rows($res) === 0): ?>
+<?php if (!$products): ?>
         <tr><td colspan="6">No products yet.</td></tr>
-<?php else: while ($row = mysql_fetch_assoc($res)): ?>
+<?php else: foreach ($products as $row): ?>
         <tr>
             <td><?php echo htmlspecialchars($row['sku']); ?></td>
             <td><?php echo htmlspecialchars($row['name']); ?></td>
@@ -41,7 +43,7 @@ $res = mysql_query("
                    onclick="return confirm('Delete this product?');">Delete</a>
             </td>
         </tr>
-<?php endwhile; endif; ?>
+<?php endforeach; endif; ?>
     </tbody>
 </table>
 

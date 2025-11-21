@@ -1,15 +1,15 @@
 <?php
 include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
 /* join customers so we can show their name */
-$res = mysql_query("
-    SELECT o.id, o.order_date, o.total,
-           c.name AS customer
-    FROM orders o
-    LEFT JOIN customers c ON c.id = o.customer_id
-    ORDER BY o.order_date DESC
-");
+$orders = Database::query(
+    "SELECT o.id, o.order_date, o.total, c.name AS customer
+     FROM orders o
+     LEFT JOIN customers c ON c.id = o.customer_id
+     ORDER BY o.order_date DESC"
+)->fetchAll();
 ?>
 <h2>Orders</h2>
 
@@ -26,10 +26,10 @@ $res = mysql_query("
         </tr>
     </thead>
     <tbody>
-<?php if (mysql_num_rows($res) === 0): ?>
+<?php if (!$orders): ?>
         <tr><td colspan="5">No orders yet.</td></tr>
 <?php else:
-      while ($row = mysql_fetch_assoc($res)): ?>
+      foreach ($orders as $row): ?>
         <tr>
             <td><?php echo $row['id']; ?></td>
             <td><?php echo date('Y-m-d H:i', strtotime($row['order_date'])); ?></td>
@@ -37,7 +37,7 @@ $res = mysql_query("
             <td><?php echo number_format($row['total'], 2); ?></td>
             <td><a href="order_view.php?id=<?php echo $row['id']; ?>">View</a></td>
         </tr>
-<?php endwhile; endif; ?>
+<?php endforeach; endif; ?>
     </tbody>
 </table>
 

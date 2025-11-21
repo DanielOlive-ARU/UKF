@@ -1,34 +1,46 @@
 <?php
 include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 /* ---------- save ---------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sku  = mysql_real_escape_string($_POST['sku']);
-    $name = mysql_real_escape_string($_POST['name']);
-    $cat  = (int)$_POST['category_id'];
-    $price= (float)$_POST['price'];
-    $stock= (int)$_POST['stock'];
+    $sku   = trim($_POST['sku']);
+    $name  = trim($_POST['name']);
+    $cat   = ($_POST['category_id'] === '' ? null : (int)$_POST['category_id']);
+    $price = (float)$_POST['price'];
+    $stock = (int)$_POST['stock'];
 
-    mysql_query("
-        UPDATE products SET
-            sku='$sku', name='$name',
-            category_id=".($cat?:'NULL').",
-            price=$price, stock=$stock
-        WHERE id=$id
-    ");
+    Database::query(
+        "UPDATE products SET
+            sku = :sku,
+            name = :name,
+            category_id = :category_id,
+            price = :price,
+            stock = :stock
+         WHERE id = :id",
+        array(
+            ':sku' => $sku,
+            ':name' => $name,
+            ':category_id' => $cat,
+            ':price' => $price,
+            ':stock' => $stock,
+            ':id' => $id
+        )
+    );
+
     header('Location: products.php?msg=updated');
     exit();
 }
 
 /* load row */
-$row = mysql_fetch_assoc(mysql_query("SELECT * FROM products WHERE id=$id"));
+$row = Database::fetchOne("SELECT * FROM products WHERE id = :id", array(':id' => $id));
 if (!$row) { echo "<p class='notice'>Product not found.</p>"; include 'includes/footer.php'; exit; }
 
 /* categories for dropdown */
-$cats = mysql_query("SELECT id, name FROM categories ORDER BY name");
+$cats = Database::query("SELECT id, name FROM categories ORDER BY name")->fetchAll();
 ?>
 <h2>Edit Product</h2>
 
@@ -44,12 +56,12 @@ $cats = mysql_query("SELECT id, name FROM categories ORDER BY name");
     <label>Category
         <select name="category_id">
             <option value="">- none -</option>
-            <?php while ($c = mysql_fetch_assoc($cats)): ?>
+            <?php foreach ($cats as $c): ?>
                 <option value="<?php echo $c['id']; ?>"
                     <?php if ($c['id']==$row['category_id']) echo 'selected'; ?>>
                     <?php echo htmlspecialchars($c['name']); ?>
                 </option>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </select>
     </label>
 
