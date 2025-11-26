@@ -1,26 +1,33 @@
 <?php
 include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
 /* -------------------------------------------------
    Stock-take list (JOIN + GROUP BY)
 ------------------------------------------------- */
-$sql = "
-    SELECT  t.id,
-            t.taken_at,
-            t.reconciled,
-            COUNT(l.id) AS line_count
-    FROM    stock_takes t
-    LEFT JOIN stock_take_lines l ON l.stock_take_id = t.id
-    GROUP BY t.id, t.taken_at, t.reconciled
-    ORDER BY t.taken_at DESC
-";
-$takes = mysql_query($sql);
-if (!$takes) {
-    die('<p class=\"notice\">Query failed: '.mysql_error().'</p>');
+$notice = '';
+try {
+    $takes = Database::query(
+        "SELECT  t.id,
+                 t.taken_at,
+                 t.reconciled,
+                 COUNT(l.id) AS line_count
+         FROM    stock_takes t
+         LEFT JOIN stock_take_lines l ON l.stock_take_id = t.id
+         GROUP BY t.id, t.taken_at, t.reconciled
+         ORDER BY t.taken_at DESC"
+    )->fetchAll();
+} catch (Exception $exception) {
+    $notice = 'Unable to load stock-take history right now.';
+    $takes = array();
 }
 ?>
 <h2>Stock-Take History</h2>
+
+<?php if ($notice): ?>
+    <p class="notice"><?php echo htmlspecialchars($notice); ?></p>
+<?php endif; ?>
 
 <table>
   <thead>
@@ -30,9 +37,9 @@ if (!$takes) {
     </tr>
   </thead>
   <tbody>
-  <?php if (mysql_num_rows($takes) === 0): ?>
+  <?php if (!$takes): ?>
       <tr><td colspan="5">No stock-takes recorded.</td></tr>
-  <?php else: while ($row = mysql_fetch_assoc($takes)): ?>
+  <?php else: foreach ($takes as $row): ?>
       <?php
         $statusIcon = ($row['reconciled'] === 'yes')
             ? '<span style="color:#2e8b57;">&#10004;</span>'   // green check
@@ -45,7 +52,7 @@ if (!$takes) {
         <td><?php echo $statusIcon.' '.$row['reconciled']; ?></td>
         <td><a href="stocktake_view.php?id=<?php echo $row['id']; ?>">Variance</a></td>
       </tr>
-  <?php endwhile; endif; ?>
+  <?php endforeach; endif; ?>
   </tbody>
 </table>
 

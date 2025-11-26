@@ -1,31 +1,47 @@
 <?php
 include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
 $takeId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$notice = '';
 
 /* ---------- Final-approve handler ---------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['finalise'])) {
-    mysql_query("UPDATE stock_takes SET reconciled='yes' WHERE id=$takeId");
+  try {
+    Database::query("UPDATE stock_takes SET reconciled='yes' WHERE id = :id", array(':id' => $takeId));
     header('Location: stocktakes.php');   // back to history list
     exit();
+  } catch (Exception $exception) {
+    $notice = 'Unable to mark this stock-take as reconciled.';
+  }
 }
 
 /* ---------- Pull variance lines ---------- */
-$lines = mysql_query("
-    SELECT p.id   AS pid,
-           p.sku,
-           p.name,
-           p.stock              AS theoretical,
-           l.counted_qty,
-           (l.counted_qty - p.stock) AS variance
-    FROM stock_take_lines l
-    JOIN products p ON p.id = l.product_id
-    WHERE l.stock_take_id = $takeId
-    ORDER BY p.name
-");
+try {
+  $lineRows = Database::query(
+    "SELECT p.id   AS pid,
+        p.sku,
+        p.name,
+        p.stock              AS theoretical,
+        l.counted_qty,
+        (l.counted_qty - p.stock) AS variance
+     FROM stock_take_lines l
+     JOIN products p ON p.id = l.product_id
+     WHERE l.stock_take_id = :take
+     ORDER BY p.name",
+    array(':take' => $takeId)
+  )->fetchAll();
+} catch (Exception $exception) {
+  $notice = 'Unable to load stock-take variance lines.';
+  $lineRows = array();
+}
 ?>
 <h2>Stock-Take #<?php echo $takeId; ?> – Variance</h2>
+
+<?php if ($notice): ?>
+  <p class="notice"><?php echo htmlspecialchars($notice); ?></p>
+<?php endif; ?>
 
 <table>
 <thead>
@@ -34,10 +50,10 @@ $lines = mysql_query("
 <tbody>
 <?php
 $outstanding = 0;
-while ($r = mysql_fetch_assoc($lines)):
-    $absVar = abs($r['variance']);
-    $rowStyle = ($absVar > 10) ? "style='background:#ffecec;color:#a00;'" : "";
-    if ($r['variance'] != 0) $outstanding++;
+foreach ($lineRows as $r):
+  $absVar = abs($r['variance']);
+  $rowStyle = ($absVar > 10) ? "style='background:#ffecec;color:#a00;'" : "";
+  if ($r['variance'] != 0) $outstanding++;
 ?>
   <tr <?php echo $rowStyle; ?>>
     <td><?php echo $r['sku']; ?></td>
@@ -55,7 +71,7 @@ while ($r = mysql_fetch_assoc($lines)):
       <?php endif; ?>
     </td>
   </tr>
-<?php endwhile; ?>
+<?php endforeach; ?>
 </tbody>
 </table>
 

@@ -1,33 +1,41 @@
 <?php
 /* customer_edit.php – View / update single customer */
 include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 /* ------- Handle SAVE (POST) ------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name    = mysql_real_escape_string($_POST['name']);
-    $phone   = mysql_real_escape_string($_POST['phone']);
-    $email   = mysql_real_escape_string($_POST['email']);
-    $address = mysql_real_escape_string($_POST['address']);
+    $name    = trim($_POST['name']);
+    $phone   = trim($_POST['phone']);
+    $email   = trim($_POST['email']);
+    $address = trim($_POST['address']);
 
-    mysql_query("
-        UPDATE customers
-        SET name='$name',
-            phone='$phone',
-            email='$email',
-            address='$address'
-        WHERE id=$id
-    ");
+    Database::query(
+        "UPDATE customers
+         SET name = :name,
+             phone = :phone,
+             email = :email,
+             address = :address
+         WHERE id = :id",
+        array(
+            ':name' => $name,
+            ':phone' => $phone,
+            ':email' => $email,
+            ':address' => $address,
+            ':id' => $id
+        )
+    );
 
     header('Location: customers.php?msg=updated');
     exit();
 }
 
 /* ------- Load existing row ------- */
-$res = mysql_query("SELECT * FROM customers WHERE id=$id");
-if (!$row = mysql_fetch_assoc($res)) {
+$row = Database::fetchOne("SELECT * FROM customers WHERE id = :id", array(':id' => $id));
+if (!$row) {
     echo '<p class="notice">Customer not found.</p>';
     include 'includes/footer.php';
     exit();

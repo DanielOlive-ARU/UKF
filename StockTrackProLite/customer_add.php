@@ -1,19 +1,26 @@
 <?php
 /* customer_add.php – Create a new customer */
 include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
 /* ------- Handle INSERT ------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name    = mysql_real_escape_string($_POST['name']);
-    $phone   = mysql_real_escape_string($_POST['phone']);
-    $email   = mysql_real_escape_string($_POST['email']);
-    $address = mysql_real_escape_string($_POST['address']);
+    $name    = trim($_POST['name']);
+    $phone   = trim($_POST['phone']);
+    $email   = trim($_POST['email']);
+    $address = trim($_POST['address']);
 
-    mysql_query("
-        INSERT INTO customers (name, phone, email, address)
-        VALUES ('$name', '$phone', '$email', '$address')
-    ");
+    Database::query(
+        "INSERT INTO customers (name, phone, email, address)
+         VALUES (:name, :phone, :email, :address)",
+        array(
+            ':name' => $name,
+            ':phone' => $phone,
+            ':email' => $email,
+            ':address' => $address
+        )
+    );
 
     header('Location: customers.php?msg=added');
     exit();

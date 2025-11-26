@@ -1,32 +1,34 @@
 <?php
 include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
 /* ---------- Handle INSERT ---------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sku   = mysql_real_escape_string($_POST['sku']);
-    $name  = mysql_real_escape_string($_POST['name']);
-    $cat   = (int)$_POST['category_id'];
+    $sku   = trim($_POST['sku']);
+    $name  = trim($_POST['name']);
+    $cat   = ($_POST['category_id'] === '' ? null : (int)$_POST['category_id']);
     $price = (float)$_POST['price'];
     $stock = (int)$_POST['stock'];
 
-    mysql_query("
-        INSERT INTO products (sku, name, category_id, price, stock)
-        VALUES (
-            '$sku',
-            '$name',
-            ".($cat ?: 'NULL').",
-            $price,
-            $stock
+    Database::query(
+        "INSERT INTO products (sku, name, category_id, price, stock)
+         VALUES (:sku, :name, :category_id, :price, :stock)",
+        array(
+            ':sku' => $sku,
+            ':name' => $name,
+            ':category_id' => $cat,
+            ':price' => $price,
+            ':stock' => $stock
         )
-    ");
+    );
 
     header('Location: products.php?msg=added');
     exit();
 }
 
 /* ------- Load categories for drop-down ------- */
-$cats = mysql_query("SELECT id, name FROM categories ORDER BY name");
+$cats = Database::query("SELECT id, name FROM categories ORDER BY name")->fetchAll();
 ?>
 <h2>Add Product</h2>
 
@@ -42,11 +44,11 @@ $cats = mysql_query("SELECT id, name FROM categories ORDER BY name");
     <label>Category
         <select name="category_id">
             <option value="">- none -</option>
-            <?php while ($c = mysql_fetch_assoc($cats)): ?>
+            <?php foreach ($cats as $c): ?>
                 <option value="<?php echo $c['id']; ?>">
                     <?php echo htmlspecialchars($c['name']); ?>
                 </option>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </select>
     </label>
 
