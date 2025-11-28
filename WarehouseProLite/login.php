@@ -1,31 +1,39 @@
 <?php
 session_start();
 include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    /* legacy MD5 password */
-    $u = mysql_real_escape_string($_POST['username']);
-    $p = md5($_POST['password']);
+    $username = isset($_POST['username']) ? trim($_POST['username']) : '';
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
 
-    $res = mysql_query("
-        SELECT id, username, role
-        FROM wh_users
-        WHERE username='$u' AND password='$p'
-        LIMIT 1
-    ");
+    if ($username !== '' && $password !== '') {
+        try {
+            $row = Database::fetchOne(
+                "SELECT id, username, role
+                 FROM wh_users
+                 WHERE username = :username AND password = :password
+                 LIMIT 1",
+                array(
+                    ':username' => $username,
+                    ':password' => md5($password) // legacy hash retained
+                )
+            );
 
-    if ($row = mysql_fetch_assoc($res)) {
-        /* valid login — store details */
-        $_SESSION['wh_user_id'] = $row['id'];
-        $_SESSION['wh_user']    = $row['username'];
-        $_SESSION['wh_role']    = $row['role'];
+            if ($row) {
+                $_SESSION['wh_user_id'] = $row['id'];
+                $_SESSION['wh_user']    = $row['username'];
+                $_SESSION['wh_role']    = $row['role'];
 
-        header('Location: dashboard.php');
-        exit();
+                header('Location: dashboard.php');
+                exit();
+            }
+        } catch (Exception $exception) {
+            // fall through to error flag; optional logging could go here
+        }
     }
 }
 
-/* failed login — back to index with error flag */
 header('Location: index.php?error=1');
 exit();
 ?>

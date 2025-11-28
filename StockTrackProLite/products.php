@@ -1,17 +1,42 @@
 <?php
 include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
 /* join categories so we can show the name */
-$res = mysql_query("
+$stmt = Database::query("
     SELECT p.id, p.sku, p.name, p.price, p.stock,
            IFNULL(c.name,'-') AS category
     FROM products p
     LEFT JOIN categories c ON c.id = p.category_id
     ORDER BY p.name
 ");
+$products = $stmt->fetchAll();
+
+$flash = '';
+if (isset($_GET['msg'])) {
+    switch ($_GET['msg']) {
+        case 'added':
+            $flash = '<p class="notice">Product added.</p>';
+            break;
+        case 'updated':
+            $flash = '<p class="notice">Product updated.</p>';
+            break;
+        case 'deleted':
+            $flash = '<p class="notice">Product deleted.</p>';
+            break;
+        case 'in_use':
+            $flash = '<p class="notice">Product is referenced by other records and cannot be deleted yet.</p>';
+            break;
+        case 'error':
+            $flash = '<p class="notice">Action failed. Please try again.</p>';
+            break;
+    }
+}
 ?>
 <h2>Products</h2>
+
+<?php echo $flash; ?>
 
 <p>
     <a href="add_product.php" class="btn">+ Add Product</a>
@@ -25,9 +50,9 @@ $res = mysql_query("
         </tr>
     </thead>
     <tbody>
-<?php if (mysql_num_rows($res) === 0): ?>
+<?php if (!$products): ?>
         <tr><td colspan="6">No products yet.</td></tr>
-<?php else: while ($row = mysql_fetch_assoc($res)): ?>
+<?php else: foreach ($products as $row): ?>
         <tr>
             <td><?php echo htmlspecialchars($row['sku']); ?></td>
             <td><?php echo htmlspecialchars($row['name']); ?></td>
@@ -41,7 +66,7 @@ $res = mysql_query("
                    onclick="return confirm('Delete this product?');">Delete</a>
             </td>
         </tr>
-<?php endwhile; endif; ?>
+<?php endforeach; endif; ?>
     </tbody>
 </table>
 
