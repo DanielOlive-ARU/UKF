@@ -30,15 +30,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <form action="customer_add.php" method="post">
     <label>Name:
-        <input type="text" name="name" required>
+        <input type="text" name="name" required
+        pattern="[A-Za-z0-9._%+\-!?]{1,}"
+        title="Customer name should be at least 1 letter long and contain only letters.">
     </label>
 
     <label>Phone:
-        <input type="text" name="phone">
+        <input type="text" name="phone" required
+        pattern="[+0-9][0-9]{10,13}"
+           title="Phone number must be exactly 14 digits.">
     </label>
 
     <label>Email:
-        <input type="text" name="email">
+        <input type="text" name="email" required
+        pattern="[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+        title="Please enter a valid email address.">
     </label>
 
     <label>Address:
