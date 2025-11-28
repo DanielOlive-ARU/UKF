@@ -1,23 +1,40 @@
 <?php
 /* customer_view.php – Show a customer's details and order history */
 include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-/* Load customer */
-$res = mysql_query("SELECT * FROM customers WHERE id=$id");
-if (!$customer = mysql_fetch_assoc($res)) {
-    echo '<p class="notice">Customer not found.</p>';
+try {
+    /* Load customer using PDO */
+    $customer = Database::fetchOne(
+        "SELECT id, name, phone, email, address FROM customers WHERE id = ?",
+        [$id]
+    );
+    
+    if (!$customer) {
+        echo '<p class="notice">Customer not found.</p>';
+        include 'includes/footer.php';
+        exit();
+    }
+
+    /* Load orders for this customer using PDO */
+    $orders = Database::query(
+        "SELECT id, order_date, total FROM orders WHERE customer_id = ? ORDER BY order_date DESC",
+        [$id]
+    )->fetchAll();
+
+    /* Order count & totals using PDO */
+    $summary = Database::fetchOne(
+        "SELECT COUNT(*) as cnt, COALESCE(SUM(total), 0) as total_sum FROM orders WHERE customer_id = ?",
+        [$id]
+    );
+} catch (Exception $e) {
+    echo '<p class="notice">Error loading customer data: ' . htmlspecialchars($e->getMessage()) . '</p>';
     include 'includes/footer.php';
     exit();
 }
-
-/* Load orders for this customer */
-$orders = mysql_query("SELECT id, order_date, total FROM orders WHERE customer_id=$id ORDER BY order_date DESC");
-
-/* Order count & totals */
-$summary = mysql_fetch_assoc(mysql_query("SELECT COUNT(*) as cnt, COALESCE(SUM(total),0) as total_sum FROM orders WHERE customer_id=$id"));
 
 ?>
 <h2>Customer: <?php echo htmlspecialchars($customer['name']); ?></h2>
@@ -33,16 +50,16 @@ $summary = mysql_fetch_assoc(mysql_query("SELECT COUNT(*) as cnt, COALESCE(SUM(t
 <table>
     <thead><tr><th>#</th><th>Date</th><th>Total (£)</th><th>Actions</th></tr></thead>
     <tbody>
-<?php if (mysql_num_rows($orders) === 0): ?>
+<?php if (!$orders): ?>
         <tr><td colspan="4">No orders for this customer.</td></tr>
-<?php else: while ($o = mysql_fetch_assoc($orders)): ?>
+<?php else: foreach ($orders as $o): ?>
         <tr>
             <td><?php echo $o['id']; ?></td>
             <td><?php echo date('Y-m-d H:i', strtotime($o['order_date'])); ?></td>
             <td><?php echo number_format($o['total'], 2); ?></td>
             <td><a href="order_view.php?id=<?php echo $o['id']; ?>">View</a></td>
         </tr>
-<?php endwhile; endif; ?>
+<?php endforeach; endif; ?>
     </tbody>
 </table>
 
