@@ -37,11 +37,14 @@ $formData = array(
 );
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $formData['product_id'] = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
-    $rawBrix = isset($_POST['brix']) ? trim($_POST['brix']) : '';
-    $rawTemp = isset($_POST['temperature']) ? trim($_POST['temperature']) : '';
-    $formData['passed'] = isset($_POST['passed']) ? $_POST['passed'] : 'pending';
-    $formData['note'] = isset($_POST['note']) ? trim($_POST['note']) : '';
+    if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'wh_qa_edit')) {
+        $notice = 'Session expired. Please resubmit the form.';
+    } else {
+        $formData['product_id'] = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
+        $rawBrix = isset($_POST['brix']) ? trim($_POST['brix']) : '';
+        $rawTemp = isset($_POST['temperature']) ? trim($_POST['temperature']) : '';
+        $formData['passed'] = isset($_POST['passed']) ? $_POST['passed'] : 'pending';
+        $formData['note'] = isset($_POST['note']) ? trim($_POST['note']) : '';
 
     $productId = $formData['product_id'];
     if ($rawBrix !== '' && is_numeric($rawBrix)) {
@@ -60,13 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $formData['temperature'] = '';
     }
 
-    $passed = in_array($formData['passed'], $statusOptions, true) ? $formData['passed'] : 'pending';
-    $note = $formData['note'];
+        $passed = in_array($formData['passed'], $statusOptions, true) ? $formData['passed'] : 'pending';
+        $note = $formData['note'];
 
-    if ($productId <= 0) {
-        $notice = 'Select a product before saving.';
-    } else {
-        try {
+        if ($productId <= 0) {
+            $notice = 'Select a product before saving.';
+        } else {
+            try {
             Database::query(
                 "UPDATE qa_samples
                  SET product_id = :product_id,
@@ -87,8 +90,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             header('Location: qa_samples.php?msg=updated');
             exit();
-        } catch (Exception $exception) {
-            $notice = 'QA sample could not be updated. Please try again.';
+            } catch (Exception $exception) {
+                $notice = 'QA sample could not be updated. Please try again.';
+            }
         }
     }
 }
@@ -102,6 +106,7 @@ $prods = Database::query("SELECT id, sku, name FROM products ORDER BY name")->fe
 <?php endif; ?>
 
 <form action="qa_edit.php?id=<?php echo $id; ?>" method="post">
+    <?php echo Csrf::field('wh_qa_edit'); ?>
     <label>Product
         <select name="product_id" required>
             <?php foreach ($prods as $p): ?>

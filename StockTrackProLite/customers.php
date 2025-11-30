@@ -30,6 +30,9 @@ if (isset($_GET['msg'])) {
         case 'error':
             $flash = '<p class="notice">Action failed. Please try again.</p>';
             break;
+        case 'csrf':
+            $flash = '<p class="notice">Session expired. Please resubmit the action.</p>';
+            break;
     }
 }
 ?>
@@ -60,10 +63,12 @@ if (isset($_GET['msg'])) {
             <td><?php echo htmlspecialchars($row['email']); ?></td>
             <td><?php echo nl2br(htmlspecialchars($row['address'])); ?></td>
             <td>
-                <a href="customer_edit.php?id=<?php echo $row['id']; ?>">Edit</a> |
-                <a href="customer_delete.php?id=<?php echo $row['id']; ?>"
-                   onclick="return confirm('Delete this customer?');">Delete</a>
-                |
+                     <a href="customer_edit.php?id=<?php echo $row['id']; ?>">Edit</a> |
+                     <form action="customer_delete.php" method="post" style="display:inline" onsubmit="return confirm('Delete this customer?');">
+                         <?php echo Csrf::field('stock_customer_delete'); ?>
+                         <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                         <button type="submit" style="background:none;border:none;color:#06c;padding:0;cursor:pointer;text-decoration:underline;">Delete</button>
+                     </form>
                 <a href="customer_view.php?id=<?php echo $row['id']; ?>">History</a>
             </td>
         </tr>

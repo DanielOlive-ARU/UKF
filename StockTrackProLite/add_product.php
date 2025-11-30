@@ -5,6 +5,11 @@ include 'includes/header.php';
 
 /* ---------- Handle INSERT ---------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'stock_product_add')) {
+        header('Location: products.php?msg=csrf');
+        exit();
+    }
+
     $sku   = trim($_POST['sku']);
     $name  = trim($_POST['name']);
     $cat   = ($_POST['category_id'] === '' ? null : (int)$_POST['category_id']);
@@ -33,11 +38,11 @@ $cats = Database::query("SELECT id, name FROM categories ORDER BY name")->fetchA
 <h2>Add Product</h2>
 <!-- Formats SKU user input to force a specific pattern -->
 <form action="add_product.php" method="post">
+    <?php echo Csrf::field('stock_product_add'); ?>
     <label>SKU
-    <input type="text" name="sku" required
-           pattern="[A-Z]{2}[._%+\-][A-Z]{3}[._%+\-][0-9]{3,}"
-           title="SKU must consist of two capital letters, a dash, three capital letters, a dash, and at least three digits (e.g. AB-XYZ-123)"
-           oninput="this.value=this.value.toUpperCase()">
+        <input type="text" name="sku" required
+               pattern="[A-Z]{2}[._%+\-][A-Z]{3}[._%+\-][0-9]{3,}"
+               title="Format: AA-XAAA-X### (uppercase, separators ., _, %, +, -)">
     </label>
 
     <label>Name

@@ -2,8 +2,14 @@
 include 'includes/db.php';
 require_once dirname(__DIR__) . '/includes/database.php';
 require_once 'includes/auth.php';
+require_once dirname(__DIR__) . '/includes/security.php';
 
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$id = ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) ? (int)$_POST['id'] : 0;
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' ||
+	!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'stock_product_delete')) {
+	header('Location: products.php?msg=csrf');
+    exit();
+}
 if ($id > 0) {
 	try {
 		Database::query('DELETE FROM products WHERE id = :id', array(':id' => $id));

@@ -19,14 +19,17 @@ try {
 
 /* --------- Save on POST --------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $pid   = (int)$_POST['product_id'];
-    $delta = (int)$_POST['qty_delta'];
-    $reason= trim($_POST['reason']);
+    if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'wh_adjustment_add')) {
+        $notice = 'Session expired. Please resubmit the form.';
+    } else {
+        $pid   = (int)$_POST['product_id'];
+        $delta = (int)$_POST['qty_delta'];
+        $reason= trim($_POST['reason']);
 
-    $uid   = isset($_SESSION['wh_user_id']) ? (int)$_SESSION['wh_user_id'] : null;
-    $refId = isset($_POST['ref_id']) ? (int)$_POST['ref_id'] : 0;
+        $uid   = isset($_SESSION['wh_user_id']) ? (int)$_SESSION['wh_user_id'] : null;
+        $refId = isset($_POST['ref_id']) ? (int)$_POST['ref_id'] : 0;
 
-    try {
+        try {
         Database::transaction(function () use ($pid, $delta, $reason, $uid, $refId, $supportsRefId) {
             $columns = 'product_id, qty_delta, reason, approved_by, created_at';
             $values  = ':product_id, :qty_delta, :reason, :approved_by, NOW()';
@@ -62,8 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: adjustments.php?msg=added');
         }
         exit();
-    } catch (Exception $exception) {
-        $notice = 'Adjustment could not be saved. Please try again.';
+        } catch (Exception $exception) {
+            $notice = 'Adjustment could not be saved. Please try again.';
+        }
     }
 }
 
@@ -78,6 +82,7 @@ $prefillRefId = isset($_GET['ref_id']) ? (int)$_GET['ref_id'] : 0;
 <h2>Add Adjustment</h2>
 
 <form action="adjustment_add.php" method="post">
+    <?php echo Csrf::field('wh_adjustment_add'); ?>
     <?php if ($notice): ?>
         <p class="notice"><?php echo htmlspecialchars($notice); ?></p>
     <?php endif; ?>

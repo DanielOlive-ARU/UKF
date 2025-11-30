@@ -2,9 +2,15 @@
 include 'includes/db.php';
 require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/auth.php';      // ensure only logged users can delete
+require_once dirname(__DIR__) . '/includes/security.php';
 
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$id = ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) ? (int)$_POST['id'] : 0;
 $msg = 'error';
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'wh_adjustment_delete')) {
+    header('Location: adjustments.php?msg=csrf');
+    exit();
+}
 
 if ($id) {
     try {

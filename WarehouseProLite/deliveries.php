@@ -10,7 +10,10 @@ if (isset($_GET['msg'])) {
   if ($_GET['msg'] === 'updated') $flash = '<p class="notice">Delivery updated.</p>';
   if ($_GET['msg'] === 'deleted') $flash = '<p class="notice">Delivery deleted.</p>';
   if ($_GET['msg'] === 'error')   $flash = '<p class="notice">Delivery action failed. Please try again.</p>';
+  if ($_GET['msg'] === 'csrf')    $flash = '<p class="notice">Session expired. Please retry the action.</p>';
 }
+
+// CSRF tokens are embedded per-form via Csrf::field calls below.
 
 /* ---------- fetch deliveries ---------- */
 $deliveries = Database::query(
@@ -50,8 +53,11 @@ $deliveries = Database::query(
         <td><?php echo htmlspecialchars($r['supplier_ref']); ?></td>
         <td>
           <a href="delivery_edit.php?id=<?php echo $r['id']; ?>">Edit</a> |
-          <a href="delivery_delete.php?id=<?php echo $r['id']; ?>"
-             onclick="return confirm('Delete this delivery?');">Delete</a>
+            <form action="delivery_delete.php" method="post" style="display:inline" onsubmit="return confirm('Delete this delivery?');">
+                <?php echo Csrf::field('wh_delivery_delete'); ?>
+                <input type="hidden" name="id" value="<?php echo $r['id']; ?>">
+              <button type="submit" style="background:none;border:none;color:#06c;padding:0;cursor:pointer;text-decoration:underline;">Delete</button>
+            </form>
         </td>
       </tr>
   <?php endforeach; endif; ?>

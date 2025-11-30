@@ -31,6 +31,9 @@ if (isset($_GET['msg'])) {
         case 'error':
             $flash = '<p class="notice">Action failed. Please try again.</p>';
             break;
+        case 'csrf':
+            $flash = '<p class="notice">Session expired. Please resubmit the form.</p>';
+            break;
     }
 }
 ?>
@@ -45,8 +48,12 @@ if (isset($_GET['msg'])) {
 <table>
     <thead>
         <tr>
-            <th>SKU</th><th>Name</th><th>Category</th>
-            <th>Price (£)</th><th>Stock</th><th>Actions</th>
+            <th>SKU</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price (£)</th>
+            <th>Stock</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -57,13 +64,15 @@ if (isset($_GET['msg'])) {
             <td><?php echo htmlspecialchars($row['sku']); ?></td>
             <td><?php echo htmlspecialchars($row['name']); ?></td>
             <td><?php echo htmlspecialchars($row['category']); ?></td>
-            <td><?php echo number_format($row['price'],2); ?></td>
-            <td><?php echo $row['stock']; ?></td>
+            <td><?php echo number_format($row['price'], 2); ?></td>
+            <td><?php echo (int)$row['stock']; ?></td>
             <td>
-                <!-- NEW links -->
                 <a href="product_edit.php?id=<?php echo $row['id']; ?>">Edit</a> |
-                <a href="product_delete.php?id=<?php echo $row['id']; ?>"
-                   onclick="return confirm('Delete this product?');">Delete</a>
+                <form action="product_delete.php" method="post" style="display:inline" onsubmit="return confirm('Delete this product?');">
+                    <?php echo Csrf::field('stock_product_delete'); ?>
+                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                    <button type="submit" style="background:none;border:none;color:#06c;padding:0;cursor:pointer;text-decoration:underline;">Delete</button>
+                </form>
             </td>
         </tr>
 <?php endforeach; endif; ?>

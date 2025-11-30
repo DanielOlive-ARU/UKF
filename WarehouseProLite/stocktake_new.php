@@ -9,6 +9,9 @@ $takeId = isset($_GET['take']) ? (int)$_GET['take'] : 0;
 
 /* ---------- Handle first POST: create stock_take header ---------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_take'])) {
+    if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'wh_stocktake_create')) {
+        $notice = 'Session expired. Please try again.';
+    } else {
 
     /* use real clerk id, or NULL if not stored in session */
     $clerk = isset($_SESSION['wh_user_id']) ? (int)$_SESSION['wh_user_id'] : null;
@@ -26,11 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_take'])) {
     } catch (Exception $exception) {
         $notice = 'Unable to start a new stock-take. Please try again.';
     }
+    }
 }
 
 
 /* ------------ Handle save counts (second POST) ------------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_lines'])) {
+    if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'wh_stocktake_lines')) {
+        $notice = 'Session expired. Please resubmit the form.';
+    } else {
     $takeId = isset($_POST['take_id']) ? (int)$_POST['take_id'] : 0;
     $counts = isset($_POST['count']) && is_array($_POST['count']) ? $_POST['count'] : array();
 
@@ -65,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_lines'])) {
             $notice = 'Counts could not be saved. Please try again.';
         }
     }
+    }
 }
 
 /* ---------- If no take yet, show “Create” button ---------- */
@@ -75,6 +83,7 @@ if (!$takeId):
     <p class="notice"><?php echo htmlspecialchars($notice); ?></p>
 <?php endif; ?>
 <form method="post">
+    <?php echo Csrf::field('wh_stocktake_create'); ?>
     <p>This will create a new stock-take session for ALL products.</p>
     <input type="hidden" name="create_take" value="1">
     <input type="submit" value="Start Stock-Take">
@@ -93,6 +102,7 @@ $prods  = Database::query("SELECT id, sku, name, stock FROM products ORDER BY na
     <p class="notice"><?php echo htmlspecialchars($notice); ?></p>
 <?php endif; ?>
 <form method="post">
+<?php echo Csrf::field('wh_stocktake_lines'); ?>
 <input type="hidden" name="take_id" value="<?php echo $takeId; ?>">
 <table>
 <thead><tr><th>SKU</th><th>Name</th><th>Theoretical</th><th>Counted Qty</th></tr></thead>

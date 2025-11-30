@@ -1,6 +1,8 @@
 <?php
 session_start();
 session_regenerate_id(true);
+require_once dirname(__DIR__) . '/includes/security.php';
+Csrf::reset();
 session_unset();
 session_destroy();
 

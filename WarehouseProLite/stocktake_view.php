@@ -8,12 +8,16 @@ $notice = '';
 
 /* ---------- Final-approve handler ---------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['finalise'])) {
-  try {
-    Database::query("UPDATE stock_takes SET reconciled='yes' WHERE id = :id", array(':id' => $takeId));
-    header('Location: stocktakes.php');   // back to history list
-    exit();
-  } catch (Exception $exception) {
-    $notice = 'Unable to mark this stock-take as reconciled.';
+  if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'wh_stocktake_finalise')) {
+    $notice = 'Session expired. Please resubmit the form.';
+  } else {
+    try {
+      Database::query("UPDATE stock_takes SET reconciled='yes' WHERE id = :id", array(':id' => $takeId));
+      header('Location: stocktakes.php');   // back to history list
+      exit();
+    } catch (Exception $exception) {
+      $notice = 'Unable to mark this stock-take as reconciled.';
+    }
   }
 }
 
@@ -77,6 +81,7 @@ foreach ($lineRows as $r):
 
 <!-- Final-approve form -->
 <form method="post" style="margin-top:1rem;">
+  <?php echo Csrf::field('wh_stocktake_finalise'); ?>
   <input type="hidden" name="finalise" value="1">
   <input type="submit"
          value="Mark Reconciled"

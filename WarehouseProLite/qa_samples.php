@@ -10,7 +10,9 @@ if (isset($_GET['msg'])) {
   if ($_GET['msg'] === 'updated') $flash = '<p class="notice">QA sample updated.</p>';
   if ($_GET['msg'] === 'deleted') $flash = '<p class="notice">QA sample deleted.</p>';
   if ($_GET['msg'] === 'error')   $flash = '<p class="notice">QA action failed. Please try again.</p>';
+  if ($_GET['msg'] === 'csrf')    $flash = '<p class="notice">Session expired. Please retry the action.</p>';
 }
+// Delete buttons render their own CSRF inputs.
 
 /* ---------- fetch samples (latest first) ---------- */
 $notice = '';
@@ -67,8 +69,11 @@ try {
         <td><?php echo $status; ?></td>
         <td>
           <a href="qa_edit.php?id=<?php echo $r['id']; ?>">Edit</a> |
-          <a href="qa_delete.php?id=<?php echo $r['id']; ?>"
-             onclick="return confirm('Delete this QA sample?');">Delete</a>
+           <form action="qa_delete.php" method="post" style="display:inline" onsubmit="return confirm('Delete this QA sample?');">
+             <?php echo Csrf::field('wh_qa_delete'); ?>
+             <input type="hidden" name="id" value="<?php echo $r['id']; ?>">
+             <button type="submit" style="background:none;border:none;color:#06c;padding:0;cursor:pointer;text-decoration:underline;">Delete</button>
+           </form>
         </td>
       </tr>
   <?php endforeach; endif; ?>

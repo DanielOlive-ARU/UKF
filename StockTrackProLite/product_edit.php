@@ -7,6 +7,11 @@ $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 /* ---------- save ---------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'stock_product_edit')) {
+        header('Location: products.php?msg=csrf');
+        exit();
+    }
+
     $sku   = trim($_POST['sku']);
     $name  = trim($_POST['name']);
     $cat   = ($_POST['category_id'] === '' ? null : (int)$_POST['category_id']);
@@ -45,6 +50,7 @@ $cats = Database::query("SELECT id, name FROM categories ORDER BY name")->fetchA
 <h2>Edit Product</h2>
 
 <form action="product_edit.php?id=<?php echo $id; ?>" method="post">
+    <?php echo Csrf::field('stock_product_edit'); ?>
     <label>SKU
         <input type="text" name="sku" value="<?php echo htmlspecialchars($row['sku']); ?>" required>
     </label>
