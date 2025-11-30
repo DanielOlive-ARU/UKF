@@ -4,6 +4,7 @@ if (isset($_SESSION['user'])) {
     header("Location: dashboard.php");
     exit();
 }
+$invalid = isset($_GET['error']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +21,10 @@ if (isset($_SESSION['user'])) {
         <p>Manage your inventory with ease.</p>
     </div>
     <p><img src="assets/UKFruit2010.png" width="400" alt="Customer Logo" class="logo"></p>
+
+    <?php if ($invalid): ?>
+        <p style="color:#a00; margin-bottom:1rem;">Invalid username or password</p>
+    <?php endif; ?>
 
     <form action="login.php" method="post">
         <label>Username

@@ -1,6 +1,7 @@
 <?php
 include 'includes/db.php';
 require_once dirname(__DIR__) . '/includes/database.php';
+require_once 'includes/auth.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$name = trim($_POST['name']);

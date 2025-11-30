@@ -1,3 +1,9 @@
+<?php
+/**
+ * Shared header for WarehouseProLite pages – enforces authentication.
+ */
+require_once __DIR__ . '/auth.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
