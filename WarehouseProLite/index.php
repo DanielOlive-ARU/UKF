@@ -9,9 +9,13 @@ if (isset($_SESSION['wh_user'])) {
 
 $errorMessage = '';
 if (isset($_GET['error'])) {
-    $errorMessage = $_GET['error'] === 'csrf'
-        ? 'Your session expired. Please try again.'
-        : 'Invalid username or password';
+    if ($_GET['error'] === 'csrf') {
+        $errorMessage = 'Your session expired. Please try again.';
+    } elseif ($_GET['error'] === 'locked') {
+        $errorMessage = 'Too many failed attempts. Please wait one minute before trying again.';
+    } else {
+        $errorMessage = 'Invalid username or password';
+    }
 }
 ?>
 <!DOCTYPE html>

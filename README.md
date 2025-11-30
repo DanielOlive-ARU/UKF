@@ -23,7 +23,9 @@ Team project UK Fruit
 
 ## Authentication & sessions
 - Both apps now enforce authentication through their shared headers: `StockTrackProLite/includes/header.php` requires `includes/auth.php`, and `WarehouseProLite/includes/header.php` does the same for warehouse routes. Any page that includes the header automatically checks `$_SESSION['user_id']`, `$_SESSION['user']`, and the corresponding `role` key before rendering.
-- Login handlers populate those session keys via the PDO helper; keep the session shape identical when adding new entry points so the guard stays reliable.
+- Login handlers populate those session keys via the PDO helper and regenerate the session ID on each successful authentication; keep the session shape and regeneration step identical when adding new entry points so the guard stays reliable.
+- A simple session-scoped throttle blocks login attempts for one minute after 5 consecutive failures. Reuse the helper in `includes/login_throttle.php` if new authentication surfaces are added.
+- CSRF tokens are issued per form via `includes/security.php`; each successful submission invalidates that token and logout clears the session cache. Always embed tokens using `Csrf::field()` when adding forms or POST endpoints.
 - Logout scripts regenerate the session ID, clear data with `session_unset()`/`session_destroy()`, and explicitly expire the session cookie. Reuse that sequence (`session_start()`, `session_regenerate_id(true)`, `session_unset()`, `session_destroy()`, expire cookie, redirect) for any future logout or impersonation flows to prevent fixation and leave no residual session data.
 
 ## Manual smoke tests

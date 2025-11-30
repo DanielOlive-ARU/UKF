@@ -5,11 +5,11 @@ require_once dirname(__DIR__) . '/includes/database.php';
 require_once 'includes/auth.php';
 require_once dirname(__DIR__) . '/includes/security.php';
 
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-$token = isset($_GET['csrf_token']) ? $_GET['csrf_token'] : '';
+$id = ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) ? (int)$_POST['id'] : 0;
+$token = isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '';
 $redirect = 'error';
 
-if (!Csrf::validate($token, 'stock_customer_delete')) {
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !Csrf::validate($token, 'stock_customer_delete')) {
 	header('Location: customers.php?msg=csrf');
 	exit();
 }

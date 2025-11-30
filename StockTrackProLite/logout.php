@@ -2,6 +2,8 @@
 /* logout.php – destroy session and return to login */
 session_start();
 session_regenerate_id(true);
+require_once dirname(__DIR__) . '/includes/security.php';
+Csrf::reset();
 
 /* Remove all session variables & cookies */
 session_unset();

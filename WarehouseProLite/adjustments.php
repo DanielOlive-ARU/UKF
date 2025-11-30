@@ -17,7 +17,7 @@ if (isset($_GET['msg'])) {
     }
 }
 
-$deleteToken = Csrf::token('wh_adjustment_delete');
+// Each delete button renders its own CSRF field.
 
 /* Fetch journal */
 $adjustments = Database::query(
@@ -55,10 +55,13 @@ $adjustments = Database::query(
             <td><?php echo htmlspecialchars($r['name']); ?></td>
             <td><?php echo $r['qty_delta']; ?></td>
             <td><?php echo $r['reason']; ?></td>
-                 <td>
-                  <a href="adjustment_delete.php?id=<?php echo $r['id']; ?>&csrf_token=<?php echo urlencode($deleteToken); ?>"
-                     onclick="return confirm('Delete this adjustment?');">Delete</a>
-                 </td>
+                                 <td>
+                                       <form action="adjustment_delete.php" method="post" style="display:inline" onsubmit="return confirm('Delete this adjustment?');">
+                                             <?php echo Csrf::field('wh_adjustment_delete'); ?>
+                                             <input type="hidden" name="id" value="<?php echo $r['id']; ?>">
+                                           <button type="submit" style="background:none;border:none;color:#06c;padding:0;cursor:pointer;text-decoration:underline;">Delete</button>
+                                     </form>
+                                 </td>
         </tr>
 <?php endforeach; endif; ?>
     </tbody>

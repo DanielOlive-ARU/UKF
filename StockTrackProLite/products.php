@@ -36,7 +36,6 @@ if (isset($_GET['msg'])) {
             break;
     }
 }
-$deleteToken = Csrf::token('stock_product_delete');
 ?>
 <h2>Products</h2>
 
@@ -69,8 +68,11 @@ $deleteToken = Csrf::token('stock_product_delete');
             <td><?php echo (int)$row['stock']; ?></td>
             <td>
                 <a href="product_edit.php?id=<?php echo $row['id']; ?>">Edit</a> |
-                <a href="product_delete.php?id=<?php echo $row['id']; ?>&csrf_token=<?php echo urlencode($deleteToken); ?>"
-                   onclick="return confirm('Delete this product?');">Delete</a>
+                <form action="product_delete.php" method="post" style="display:inline" onsubmit="return confirm('Delete this product?');">
+                    <?php echo Csrf::field('stock_product_delete'); ?>
+                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                    <button type="submit" style="background:none;border:none;color:#06c;padding:0;cursor:pointer;text-decoration:underline;">Delete</button>
+                </form>
             </td>
         </tr>
 <?php endforeach; endif; ?>

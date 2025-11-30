@@ -7,6 +7,7 @@ session_start();
 include 'includes/db.php';
 require_once dirname(__DIR__) . '/includes/database.php';
 require_once dirname(__DIR__) . '/includes/security.php';
+require_once dirname(__DIR__) . '/includes/login_throttle.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'stock_login')) {
@@ -16,6 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $username = isset($_POST['username']) ? trim($_POST['username']) : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
+    $throttleKey = LoginThrottle::makeKey($username);
+
+    if (LoginThrottle::isLocked($throttleKey)) {
+        header('Location: index.php?error=locked');
+        exit();
+    }
 
     if ($username !== '' && $password !== '') {
         try {
@@ -36,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user']    = $user['username'];
                 $_SESSION['role']    = $user['role'];
+                LoginThrottle::clear($throttleKey);
 
                 header('Location: dashboard.php');
                 exit();
@@ -45,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    LoginThrottle::registerFailure($throttleKey);
     header('Location: index.php?error=1');
     exit();
 }
