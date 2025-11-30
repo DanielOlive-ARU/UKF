@@ -103,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $notice = $runtimeException->getMessage();
         } catch (Exception $exception) {
             $notice = 'Order could not be saved. Please try again.';
+        }
         } else {
             $notice = 'Select a customer and at least one item.';
         }
