@@ -69,7 +69,6 @@ if (isset($_GET['msg'])) {
                          <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                          <button type="submit" style="background:none;border:none;color:#06c;padding:0;cursor:pointer;text-decoration:underline;">Delete</button>
                      </form>
-                |
                 <a href="customer_view.php?id=<?php echo $row['id']; ?>">History</a>
             </td>
         </tr>
