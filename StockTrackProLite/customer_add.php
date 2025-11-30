@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label>Phone:
         <input type="text" name="phone" required
         pattern="[+0-9][0-9]{10,13}"
-           title="Phone number must be exactly 14 digits.">
+           title="Phone number must be 11-14 digits, optionally starting with +.">
     </label>
 
     <label>Email:
