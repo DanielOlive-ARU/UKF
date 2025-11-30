@@ -8,7 +8,7 @@ $id = ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) ? (int)$_PO
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' ||
 	!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'stock_product_delete')) {
 	header('Location: products.php?msg=csrf');
-	exit();
+    exit();
 }
 if ($id > 0) {
 	try {
