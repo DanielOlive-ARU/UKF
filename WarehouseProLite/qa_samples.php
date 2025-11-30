@@ -10,7 +10,9 @@ if (isset($_GET['msg'])) {
   if ($_GET['msg'] === 'updated') $flash = '<p class="notice">QA sample updated.</p>';
   if ($_GET['msg'] === 'deleted') $flash = '<p class="notice">QA sample deleted.</p>';
   if ($_GET['msg'] === 'error')   $flash = '<p class="notice">QA action failed. Please try again.</p>';
+  if ($_GET['msg'] === 'csrf')    $flash = '<p class="notice">Session expired. Please retry the action.</p>';
 }
+$deleteToken = Csrf::token('wh_qa_delete');
 
 /* ---------- fetch samples (latest first) ---------- */
 $notice = '';
@@ -67,7 +69,7 @@ try {
         <td><?php echo $status; ?></td>
         <td>
           <a href="qa_edit.php?id=<?php echo $r['id']; ?>">Edit</a> |
-          <a href="qa_delete.php?id=<?php echo $r['id']; ?>"
+           <a href="qa_delete.php?id=<?php echo $r['id']; ?>&csrf_token=<?php echo urlencode($deleteToken); ?>"
              onclick="return confirm('Delete this QA sample?');">Delete</a>
         </td>
       </tr>

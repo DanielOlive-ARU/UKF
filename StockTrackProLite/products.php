@@ -31,8 +31,12 @@ if (isset($_GET['msg'])) {
         case 'error':
             $flash = '<p class="notice">Action failed. Please try again.</p>';
             break;
+        case 'csrf':
+            $flash = '<p class="notice">Session expired. Please resubmit the form.</p>';
+            break;
     }
 }
+$deleteToken = Csrf::token('stock_product_delete');
 ?>
 <h2>Products</h2>
 
@@ -45,8 +49,12 @@ if (isset($_GET['msg'])) {
 <table>
     <thead>
         <tr>
-            <th>SKU</th><th>Name</th><th>Category</th>
-            <th>Price (£)</th><th>Stock</th><th>Actions</th>
+            <th>SKU</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price (£)</th>
+            <th>Stock</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -57,12 +65,11 @@ if (isset($_GET['msg'])) {
             <td><?php echo htmlspecialchars($row['sku']); ?></td>
             <td><?php echo htmlspecialchars($row['name']); ?></td>
             <td><?php echo htmlspecialchars($row['category']); ?></td>
-            <td><?php echo number_format($row['price'],2); ?></td>
-            <td><?php echo $row['stock']; ?></td>
+            <td><?php echo number_format($row['price'], 2); ?></td>
+            <td><?php echo (int)$row['stock']; ?></td>
             <td>
-                <!-- NEW links -->
                 <a href="product_edit.php?id=<?php echo $row['id']; ?>">Edit</a> |
-                <a href="product_delete.php?id=<?php echo $row['id']; ?>"
+                <a href="product_delete.php?id=<?php echo $row['id']; ?>&csrf_token=<?php echo urlencode($deleteToken); ?>"
                    onclick="return confirm('Delete this product?');">Delete</a>
             </td>
         </tr>

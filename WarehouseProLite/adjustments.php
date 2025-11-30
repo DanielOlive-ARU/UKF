@@ -12,8 +12,12 @@ if (isset($_GET['msg'])) {
         $flash = '<p class="notice">Adjustment saved.</p>';
     } elseif ($_GET['msg'] === 'error') {
         $flash = '<p class="notice">Adjustment action failed. Please try again.</p>';
+    } elseif ($_GET['msg'] === 'csrf') {
+        $flash = '<p class="notice">Session expired. Please retry the action.</p>';
     }
 }
+
+$deleteToken = Csrf::token('wh_adjustment_delete');
 
 /* Fetch journal */
 $adjustments = Database::query(
@@ -51,10 +55,10 @@ $adjustments = Database::query(
             <td><?php echo htmlspecialchars($r['name']); ?></td>
             <td><?php echo $r['qty_delta']; ?></td>
             <td><?php echo $r['reason']; ?></td>
-            <td>
-                <a href="adjustment_delete.php?id=<?php echo $r['id']; ?>"
-                   onclick="return confirm('Delete this adjustment?');">Delete</a>
-            </td>
+                 <td>
+                  <a href="adjustment_delete.php?id=<?php echo $r['id']; ?>&csrf_token=<?php echo urlencode($deleteToken); ?>"
+                     onclick="return confirm('Delete this adjustment?');">Delete</a>
+                 </td>
         </tr>
 <?php endforeach; endif; ?>
     </tbody>

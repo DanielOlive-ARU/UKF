@@ -10,7 +10,10 @@ if (isset($_GET['msg'])) {
   if ($_GET['msg'] === 'updated') $flash = '<p class="notice">Delivery updated.</p>';
   if ($_GET['msg'] === 'deleted') $flash = '<p class="notice">Delivery deleted.</p>';
   if ($_GET['msg'] === 'error')   $flash = '<p class="notice">Delivery action failed. Please try again.</p>';
+  if ($_GET['msg'] === 'csrf')    $flash = '<p class="notice">Session expired. Please retry the action.</p>';
 }
+
+$deleteToken = Csrf::token('wh_delivery_delete');
 
 /* ---------- fetch deliveries ---------- */
 $deliveries = Database::query(
@@ -50,7 +53,7 @@ $deliveries = Database::query(
         <td><?php echo htmlspecialchars($r['supplier_ref']); ?></td>
         <td>
           <a href="delivery_edit.php?id=<?php echo $r['id']; ?>">Edit</a> |
-          <a href="delivery_delete.php?id=<?php echo $r['id']; ?>"
+            <a href="delivery_delete.php?id=<?php echo $r['id']; ?>&csrf_token=<?php echo urlencode($deleteToken); ?>"
              onclick="return confirm('Delete this delivery?');">Delete</a>
         </td>
       </tr>

@@ -6,6 +6,11 @@ include 'includes/header.php';
 
 /* ------- Handle INSERT ------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'stock_customer_add')) {
+        header('Location: customers.php?msg=csrf');
+        exit();
+    }
+
     $name    = trim($_POST['name']);
     $phone   = trim($_POST['phone']);
     $email   = trim($_POST['email']);
@@ -29,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <h2>Add Customer</h2>
 
 <form action="customer_add.php" method="post">
+    <?php echo Csrf::field('stock_customer_add'); ?>
     <label>Name:
         <input type="text" name="name" required>
     </label>

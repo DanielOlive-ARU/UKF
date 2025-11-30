@@ -16,11 +16,14 @@ $statusOptions = array('yes', 'no', 'pending');
 
 /* ---------- INSERT on POST ---------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $formData['product_id'] = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
-    $rawBrix = isset($_POST['brix']) ? trim($_POST['brix']) : '';
-    $rawTemp = isset($_POST['temperature']) ? trim($_POST['temperature']) : '';
-    $formData['passed'] = isset($_POST['passed']) ? $_POST['passed'] : 'pending';
-    $formData['note'] = isset($_POST['note']) ? trim($_POST['note']) : '';
+    if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'wh_qa_add')) {
+        $notice = 'Session expired. Please resubmit the form.';
+    } else {
+        $formData['product_id'] = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
+        $rawBrix = isset($_POST['brix']) ? trim($_POST['brix']) : '';
+        $rawTemp = isset($_POST['temperature']) ? trim($_POST['temperature']) : '';
+        $formData['passed'] = isset($_POST['passed']) ? $_POST['passed'] : 'pending';
+        $formData['note'] = isset($_POST['note']) ? trim($_POST['note']) : '';
 
     $productId = $formData['product_id'];
     if ($rawBrix !== '' && is_numeric($rawBrix)) {
@@ -39,14 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $formData['temperature'] = '';
     }
 
-    $passed = in_array($formData['passed'], $statusOptions, true) ? $formData['passed'] : 'pending';
-    $note = $formData['note'];
-    $techId = isset($_SESSION['wh_user_id']) ? (int)$_SESSION['wh_user_id'] : null;
+        $passed = in_array($formData['passed'], $statusOptions, true) ? $formData['passed'] : 'pending';
+        $note = $formData['note'];
+        $techId = isset($_SESSION['wh_user_id']) ? (int)$_SESSION['wh_user_id'] : null;
 
-    if ($productId <= 0) {
-        $notice = 'Select a product before saving.';
-    } else {
-        try {
+        if ($productId <= 0) {
+            $notice = 'Select a product before saving.';
+        } else {
+            try {
             Database::query(
                 "INSERT INTO qa_samples
                     (product_id, sample_time, brix, temperature, passed, tech_id, note)
@@ -64,8 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             header('Location: qa_samples.php?msg=added');
             exit();
-        } catch (Exception $exception) {
-            $notice = 'QA sample could not be saved. Please try again.';
+            } catch (Exception $exception) {
+                $notice = 'QA sample could not be saved. Please try again.';
+            }
         }
     }
 }
@@ -80,6 +84,7 @@ $prods = Database::query("SELECT id, sku, name FROM products ORDER BY name")->fe
 <?php endif; ?>
 
 <form action="qa_add.php" method="post">
+    <?php echo Csrf::field('wh_qa_add'); ?>
     <label>Product
         <select name="product_id" required>
             <option value="">-- select --</option>

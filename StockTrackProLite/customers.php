@@ -30,8 +30,12 @@ if (isset($_GET['msg'])) {
         case 'error':
             $flash = '<p class="notice">Action failed. Please try again.</p>';
             break;
+        case 'csrf':
+            $flash = '<p class="notice">Session expired. Please resubmit the action.</p>';
+            break;
     }
 }
+$deleteToken = Csrf::token('stock_customer_delete');
 ?>
 <h2>Customers</h2>
 
@@ -60,9 +64,9 @@ if (isset($_GET['msg'])) {
             <td><?php echo htmlspecialchars($row['email']); ?></td>
             <td><?php echo nl2br(htmlspecialchars($row['address'])); ?></td>
             <td>
-                <a href="customer_edit.php?id=<?php echo $row['id']; ?>">Edit</a> |
-                <a href="customer_delete.php?id=<?php echo $row['id']; ?>"
-                   onclick="return confirm('Delete this customer?');">Delete</a>
+                     <a href="customer_edit.php?id=<?php echo $row['id']; ?>">Edit</a> |
+                     <a href="customer_delete.php?id=<?php echo $row['id']; ?>&csrf_token=<?php echo urlencode($deleteToken); ?>"
+                         onclick="return confirm('Delete this customer?');">Delete</a>
                 |
                 <a href="customer_view.php?id=<?php echo $row['id']; ?>">History</a>
             </td>

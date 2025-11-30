@@ -9,11 +9,14 @@ $notice = '';
 
 /* ---------- Update on POST ---------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $pidNew = (int)$_POST['product_id'];
-    $qtyNew = (int)$_POST['qty'];
-    $refNew = trim($_POST['ref']);
+    if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'wh_delivery_edit')) {
+        $notice = 'Session expired. Please resubmit the form.';
+    } else {
+        $pidNew = (int)$_POST['product_id'];
+        $qtyNew = (int)$_POST['qty'];
+        $refNew = trim($_POST['ref']);
 
-    try {
+        try {
         Database::transaction(function () use ($id, $pidNew, $qtyNew, $refNew) {
             $old = Database::fetchOne(
                 "SELECT product_id, qty FROM deliveries WHERE id = :id FOR UPDATE",
@@ -60,10 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         header('Location: deliveries.php?msg=updated');
         exit();
-    } catch (RuntimeException $runtimeException) {
-        $notice = $runtimeException->getMessage();
-    } catch (Exception $exception) {
-        $notice = 'Delivery could not be updated. Please try again.';
+        } catch (RuntimeException $runtimeException) {
+            $notice = $runtimeException->getMessage();
+        } catch (Exception $exception) {
+            $notice = 'Delivery could not be updated. Please try again.';
+        }
     }
 }
 
@@ -91,6 +95,7 @@ $prods = Database::query("SELECT id, sku, name FROM products ORDER BY name")->fe
 <?php endif; ?>
 
 <form action="delivery_edit.php?id=<?php echo $id; ?>" method="post">
+    <?php echo Csrf::field('wh_delivery_edit'); ?>
     <label>Product
         <select name="product_id" required>
             <?php foreach ($prods as $p): ?>

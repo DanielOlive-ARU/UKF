@@ -2,8 +2,14 @@
 session_start();
 include 'includes/db.php';
 require_once dirname(__DIR__) . '/includes/database.php';
+require_once dirname(__DIR__) . '/includes/security.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'wh_login')) {
+        header('Location: index.php?error=csrf');
+        exit();
+    }
+
     $username = isset($_POST['username']) ? trim($_POST['username']) : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
 

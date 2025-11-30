@@ -1,10 +1,18 @@
 <?php
 session_start();
+require_once dirname(__DIR__) . '/includes/security.php';
+
 if (isset($_SESSION['user'])) {
     header("Location: dashboard.php");
     exit();
 }
-$invalid = isset($_GET['error']);
+
+$errorMessage = '';
+if (isset($_GET['error'])) {
+    $errorMessage = $_GET['error'] === 'csrf'
+        ? 'Your session expired. Please try again.'
+        : 'Invalid username or password';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,11 +30,12 @@ $invalid = isset($_GET['error']);
     </div>
     <p><img src="assets/UKFruit2010.png" width="400" alt="Customer Logo" class="logo"></p>
 
-    <?php if ($invalid): ?>
-        <p style="color:#a00; margin-bottom:1rem;">Invalid username or password</p>
+    <?php if ($errorMessage !== ''): ?>
+        <p style="color:#a00; margin-bottom:1rem;"><?php echo htmlspecialchars($errorMessage); ?></p>
     <?php endif; ?>
 
     <form action="login.php" method="post">
+        <?php echo Csrf::field('stock_login'); ?>
         <label>Username
             <input type="text" name="username" required>
         </label>

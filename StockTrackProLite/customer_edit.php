@@ -8,6 +8,11 @@ $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 /* ------- Handle SAVE (POST) ------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'stock_customer_edit')) {
+        header('Location: customers.php?msg=csrf');
+        exit();
+    }
+
     $name    = trim($_POST['name']);
     $phone   = trim($_POST['phone']);
     $email   = trim($_POST['email']);
@@ -44,6 +49,7 @@ if (!$row) {
 <h2>Edit Customer</h2>
 
 <form action="customer_edit.php?id=<?php echo $id; ?>" method="post">
+    <?php echo Csrf::field('stock_customer_edit'); ?>
     <label>Name:
         <input type="text" name="name" value="<?php echo htmlspecialchars($row['name']); ?>" required>
     </label>

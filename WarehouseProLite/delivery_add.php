@@ -8,11 +8,14 @@ $notice = '';
 
 /* ---------- INSERT on POST ---------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $productId = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
-    $qty = isset($_POST['qty']) ? (int)$_POST['qty'] : 0;
-    $ref = trim($_POST['ref']);
+    if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'wh_delivery_add')) {
+        $notice = 'Session expired. Please resubmit the form.';
+    } else {
+        $productId = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
+        $qty = isset($_POST['qty']) ? (int)$_POST['qty'] : 0;
+        $ref = trim($_POST['ref']);
 
-    if ($productId > 0 && $qty > 0) {
+        if ($productId > 0 && $qty > 0) {
         try {
             Database::transaction(function () use ($productId, $qty, $ref) {
                 // Lock the product row before adjusting stock.
@@ -48,8 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } catch (Exception $exception) {
             $notice = 'Delivery could not be saved. Please try again.';
         }
-    } else {
-        $notice = 'Select a product and enter a quantity.';
+        } else {
+            $notice = 'Select a product and enter a quantity.';
+        }
     }
 }
 
@@ -63,6 +67,7 @@ $prods = Database::query("SELECT id, sku, name FROM products ORDER BY name")->fe
 <?php endif; ?>
 
 <form action="delivery_add.php" method="post">
+    <?php echo Csrf::field('wh_delivery_add'); ?>
     <label>Product
         <select name="product_id" required>
             <option value="">-- select --</option>

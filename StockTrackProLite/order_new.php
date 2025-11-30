@@ -4,11 +4,16 @@ require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
 $notice = '';
+$customerId = 0;
+$items = array();
 
 /* ---------------- Handle POST save ---------------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $customerId = isset($_POST['customer_id']) ? (int)$_POST['customer_id'] : 0;
-    $rawItems = isset($_POST['item']) && is_array($_POST['item']) ? $_POST['item'] : array();
+    if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'stock_order_new')) {
+        $notice = 'Session expired. Please resubmit the form.';
+    } else {
+        $customerId = isset($_POST['customer_id']) ? (int)$_POST['customer_id'] : 0;
+        $rawItems = isset($_POST['item']) && is_array($_POST['item']) ? $_POST['item'] : array();
 
     $items = array(); // normalized [product_id => qty]
     foreach ($rawItems as $pid => $qty) {
@@ -19,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    if ($customerId && $items) {
+        if ($customerId && $items) {
         try {
             $orderId = Database::transaction(function () use ($customerId, $items) {
                 $productIds = array_keys($items);
@@ -98,9 +103,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $notice = $runtimeException->getMessage();
         } catch (Exception $exception) {
             $notice = 'Order could not be saved. Please try again.';
+        } else {
+            $notice = 'Select a customer and at least one item.';
         }
-    } else {
-        $notice = 'Select a customer and at least one item.';
     }
 }
 
@@ -115,6 +120,7 @@ $products  = Database::query("SELECT id, name, price, stock FROM products ORDER 
 <?php endif; ?>
 
 <form action="order_new.php" method="post">
+    <?php echo Csrf::field('stock_order_new'); ?>
     <label>Customer:
         <select name="customer_id" required>
             <option value="">-- select --</option>
