@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $cats = Database::query("SELECT id, name FROM categories ORDER BY name")->fetchAll();
 ?>
 <h2>Add Product</h2>
-
+<!-- Formats SKU user input to force a specific pattern -->
 <form action="add_product.php" method="post">
     <?php echo Csrf::field('stock_product_add'); ?>
     <label>SKU
