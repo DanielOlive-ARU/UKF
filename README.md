@@ -5,7 +5,7 @@ Team project UK Fruit
 - Copy `config/database.php` to `config/database.local.php` if you need to override credentials locally (the `.local` file is git-ignored).
 - The shared PDO helper lives in `includes/database.php`. Pages can include it with `require_once dirname(__DIR__) . '/includes/database.php';` and call `Database::query()` / `Database::transaction()`; the legacy `mysql_*` shim has been removed.
 
-## Local runtime (XAMPP 8.2)
+## Local runtime (XAMPP 3.3, PHP 8.2)
 1. Keep the editable source in your local `UKF` repo workspace (wherever you cloned it).
 2. When you need to test, mirror the folders into XAMPP using:
 	```powershell
@@ -20,6 +20,11 @@ Team project UK Fruit
 ## Linting & tooling
 - PHP is not on the global `PATH`. Invoke the XAMPP binary directly when linting, e.g. `"C:\xampp\php\php.exe" -l WarehouseProLite/qa_edit.php`.
 - Alternatively install a PHP-aware VS Code extension (Intelephense, PHP IntelelliSense) or project-local Composer tools (`phpcs`, `phpstan`) and document any new commands here.
+
+## Authentication & sessions
+- Both apps now enforce authentication through their shared headers: `StockTrackProLite/includes/header.php` requires `includes/auth.php`, and `WarehouseProLite/includes/header.php` does the same for warehouse routes. Any page that includes the header automatically checks `$_SESSION['user_id']`, `$_SESSION['user']`, and the corresponding `role` key before rendering.
+- Login handlers populate those session keys via the PDO helper; keep the session shape identical when adding new entry points so the guard stays reliable.
+- Logout scripts regenerate the session ID, clear data with `session_unset()`/`session_destroy()`, and explicitly expire the session cookie. Reuse that sequence (`session_start()`, `session_regenerate_id(true)`, `session_unset()`, `session_destroy()`, expire cookie, redirect) for any future logout or impersonation flows to prevent fixation and leave no residual session data.
 
 ## Manual smoke tests
 Run these flows after significant changes to confirm both apps behave:
