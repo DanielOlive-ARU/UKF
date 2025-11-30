@@ -10,8 +10,8 @@ $token = isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '';
 $redirect = 'error';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !Csrf::validate($token, 'stock_customer_delete')) {
-	header('Location: customers.php?msg=csrf');
-	exit();
+    header('Location: customers.php?msg=csrf');
+    exit();
 }
 
 if ($id > 0) {
