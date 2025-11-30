@@ -40,7 +40,9 @@ $cats = Database::query("SELECT id, name FROM categories ORDER BY name")->fetchA
 <form action="add_product.php" method="post">
     <?php echo Csrf::field('stock_product_add'); ?>
     <label>SKU
-        <input type="text" name="sku" required>
+        <input type="text" name="sku" required
+               pattern="[A-Z]{2}[._%+\-][A-Z]{3}[._%+\-][0-9]{3,}"
+               title="Format: AA-XAAA-X### (uppercase, separators ., _, %, +, -)">
     </label>
 
     <label>Name
