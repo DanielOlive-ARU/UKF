@@ -16,12 +16,12 @@ class LoginThrottle
         }
     }
 
-    public static function makeKey(string $username): string
+    public static function makeKey(string $unusedUsername): string
     {
         return 'session';
     }
 
-    private static function &bucket(): array
+    private static function &bucket()
     {
         self::ensureSession();
         if (!isset($_SESSION[self::SESSION_KEY]) || !is_array($_SESSION[self::SESSION_KEY])) {
