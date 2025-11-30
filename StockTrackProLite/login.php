@@ -1,18 +1,48 @@
 <?php
-// login.php  (place in StockTrackProLite root)
-
+/**
+ * Handles office login submissions.
+ * Authenticates against the legacy `users` table via the PDO helper.
+ */
 session_start();
-
-// ---  VERY LEGACY / UNSAFE  ---
-// Accept *any* credentials and mark the user as logged-in.
-// Replace this with a real lookup + hashing.
+include 'includes/db.php';
+require_once dirname(__DIR__) . '/includes/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $_SESSION['user'] = isset($_POST['username']) ? $_POST['username'] : 'demo';
-    $_SESSION['role'] = 'admin';           // default for now
-    header('Location: dashboard.php');
+    $username = isset($_POST['username']) ? trim($_POST['username']) : '';
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
+
+    if ($username !== '' && $password !== '') {
+        try {
+            $user = Database::fetchOne(
+                "SELECT id, username, role
+                 FROM users
+                 WHERE username = :username AND password = :password
+                 LIMIT 1",
+                array(
+                    ':username' => $username,
+                    // TODO(§Language compatibility sweep, LegacyBusinessCase.docx): Migrate to password_hash()/password_verify() during PHP 8 transition. MD5 is insecure and preserved here only for legacy compatibility.
+                    ':password' => md5($password)
+                )
+            );
+
+            if ($user) {
+                session_regenerate_id(true);
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user']    = $user['username'];
+                $_SESSION['role']    = $user['role'];
+
+                header('Location: dashboard.php');
+                exit();
+            }
+        } catch (Exception $exception) {
+            // Optional logging hook; fall through to the error flag.
+        }
+    }
+
+    header('Location: index.php?error=1');
     exit();
 }
 
-// If someone hit /login.php directly (GET) show the login form again.
 header('Location: index.php');
+exit();
+?>

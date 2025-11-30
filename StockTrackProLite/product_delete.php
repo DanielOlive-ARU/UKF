@@ -1,6 +1,7 @@
 <?php
 include 'includes/db.php';
 require_once dirname(__DIR__) . '/includes/database.php';
+require_once 'includes/auth.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($id > 0) {
