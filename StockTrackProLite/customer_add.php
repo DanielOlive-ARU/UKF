@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label>Name:
         <input type="text" name="name" required
         pattern="[A-Za-z0-9._%+\-!?]{1,}"
-        title="Customer name should be at least 1 letter long and contain only letters.">
+        title="Customer name should contain letters, numbers, and common punctuation.">
     </label>
 
     <label>Phone:
