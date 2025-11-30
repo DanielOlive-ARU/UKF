@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                  LIMIT 1",
                 array(
                     ':username' => $username,
+                    // TODO(§Language compatibility sweep, LegacyBusinessCase.docx): Migrate to password_hash()/password_verify() during PHP 8 transition. MD5 is insecure and preserved here only for legacy compatibility.
                     ':password' => md5($password)
                 )
             );
