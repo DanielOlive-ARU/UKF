@@ -13,6 +13,8 @@
 - No automated tests exist. Document manual walkthroughs (orders, deliveries, adjustments, QA, stocktake) in PRs so teammates can replay them against the shared DB snapshot.
 - Forms post back to the same file, run business logic before HTML, then redirect with `header('Location: page.php?msg=...')`. Preserve this until a router/controller layer is introduced.
 - Shared styling lives per app under `assets/style.css`; keep changes scoped so warehouse and office UIs remain visually aligned while the merge plan lands.
+- Authentication flows must include the shared header (`includes/header.php`) so `includes/auth.php` runs, `Csrf` is available, and the session guard is applied consistently. Login handlers are expected to call `session_regenerate_id(true)` on success and use the shared throttle in `includes/login_throttle.php` (5 consecutive failures → 60s lockout) before redirecting.
+- CSRF protection now lives in `includes/security.php`. Every form or POST endpoint must embed `Csrf::field('context')` and validate with `Csrf::validate(..., 'context')`; tokens are single-use, so fetch a fresh field each render. Destructive actions (delete, approve, etc.) should post via `<form method="post">` instead of GET links.
 
 - **Runtime baseline (Section 1):**
 	- The canonical PHP 5.6 setup is checked in at `UKFLegacy/xampp56/php/php.ini`. It runs with `display_errors=On`, `short_open_tag=Off`, `date.timezone=`, `output_buffering=4096`, and enables the MySQL extensions. Mirror the same ini choices when standing up PHP 8.2 (extension equivalents only) so behaviour stays consistent across runtimes.
@@ -37,7 +39,7 @@
 
 ## Conventions & Risks
 - Authentication data lives in separate tables: `users` (office, MD5 hashes) and `wh_users` (warehouse). Plan to normalize them and upgrade to `password_hash` during the PHP 8 transition.
-- Destructive actions (`*_delete.php`) accept GET parameters with no CSRF checks; when adding protections, centralize them (e.g., `includes/security.php`) so both apps stay consistent.
+- Destructive actions (`*_delete.php`) must use POST submissions guarded by `Csrf::validate()`—do not reintroduce GET-triggered deletes. When adding new flows, reuse the helpers in `includes/security.php` so StockTrackProLite and WarehouseProLite stay aligned.
 - Character sets mix `utf8` connections with `latin1` tables. Record any encoding fixes because they may require DB migrations (see `LegacyBusinessCase.docx` §Maintainability).
 - External assets still load over HTTP (old jQuery/Chart.js). Switch to HTTPS/local copies before production to avoid mixed-content issues.
 
