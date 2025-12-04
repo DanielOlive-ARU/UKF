@@ -36,6 +36,49 @@ $lowStock = Database::query(
      ORDER BY stock ASC"
 )->fetchAll();
 
+/* 4. Top 10 selling products by quantity (last 12 months) */
+$topProducts = Database::query(
+    "SELECT p.sku,
+            p.name,
+            SUM(oi.quantity) AS total_qty,
+            SUM(oi.quantity * oi.price) AS total_revenue
+     FROM order_items oi
+     JOIN products p ON p.id = oi.product_id
+     JOIN orders o ON o.id = oi.order_id
+     WHERE o.order_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+     GROUP BY p.id
+     ORDER BY total_qty DESC
+     LIMIT 10"
+)->fetchAll();
+
+/* 5. Product trends (monthly sales per product, top 3 products) */
+$topThreeIds = Database::query(
+    "SELECT p.id
+     FROM order_items oi
+     JOIN products p ON p.id = oi.product_id
+     JOIN orders o ON o.id = oi.order_id
+     WHERE o.order_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+     GROUP BY p.id
+     ORDER BY SUM(oi.quantity) DESC
+     LIMIT 3"
+)->fetchAll();
+
+$trends = array();
+foreach ($topThreeIds as $row) {
+    $trends[$row['id']] = Database::query(
+        "SELECT DATE_FORMAT(o.order_date,'%Y-%m') AS ym,
+                SUM(oi.quantity) AS qty,
+                SUM(oi.quantity * oi.price) AS revenue
+         FROM order_items oi
+         JOIN orders o ON o.id = oi.order_id
+         WHERE oi.product_id = :pid
+           AND o.order_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+         GROUP BY ym
+         ORDER BY ym",
+        array(':pid' => $row['id'])
+    )->fetchAll();
+}
+
 /* Build arrays for the (very old) Chart.js v1 API */
 $labels   = array();
 $revenues = array();
@@ -99,6 +142,54 @@ new Chart(ctx).Bar(data, {
             <td><?php echo $row['stock']; ?></td>
         </tr>
     <?php endforeach; endif; ?>
+    </tbody>
+</table>
+
+<h3>Top 10 Selling Products (last 12 months)</h3>
+<table>
+    <thead><tr><th>SKU</th><th>Name</th><th>Qty Sold</th><th>Revenue (£)</th></tr></thead>
+    <tbody>
+    <?php if (!$topProducts): ?>
+        <tr><td colspan="4">No sales data available.</td></tr>
+    <?php else: foreach ($topProducts as $row): ?>
+        <tr>
+            <td><?php echo htmlspecialchars($row['sku']); ?></td>
+            <td><?php echo htmlspecialchars($row['name']); ?></td>
+            <td><?php echo (int)$row['total_qty']; ?></td>
+            <td><?php echo number_format($row['total_revenue'], 2); ?></td>
+        </tr>
+    <?php endforeach; endif; ?>
+    </tbody>
+</table>
+
+<h3>Product Trends (Top 3 products, monthly)</h3>
+<table>
+    <thead><tr><th>Month</th><th>Product</th><th>Qty</th><th>Revenue (£)</th></tr></thead>
+    <tbody>
+    <?php 
+    $hasData = false;
+    foreach ($trends as $pid => $trendRows) {
+        if (!empty($trendRows)) {
+            $hasData = true;
+            $prodName = Database::query(
+                "SELECT name FROM products WHERE id = :id",
+                array(':id' => $pid)
+            )->fetch();
+            
+            foreach ($trendRows as $t) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($t['ym']) . "</td>";
+                echo "<td>" . htmlspecialchars($prodName['name']) . "</td>";
+                echo "<td>" . (int)$t['qty'] . "</td>";
+                echo "<td>" . number_format($t['revenue'], 2) . "</td>";
+                echo "</tr>";
+            }
+        }
+    }
+    if (!$hasData) {
+        echo "<tr><td colspan=\"4\">No trend data available.</td></tr>";
+    }
+    ?>
     </tbody>
 </table>
 
