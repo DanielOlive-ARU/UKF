@@ -59,6 +59,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 /* ---------- Build product dropdown ---------- */
 $prods = Database::query("SELECT id, sku, name FROM products ORDER BY name")->fetchAll();
+
+/* ---------- Build supplier dropdown ---------- */
+$suppliers = Database::query("SELECT code, name FROM suppliers WHERE active = 1 ORDER BY name")->fetchAll();
 ?>
 <h2>Record Delivery</h2>
 
@@ -83,8 +86,15 @@ $prods = Database::query("SELECT id, sku, name FROM products ORDER BY name")->fe
         <input type="number" name="qty" min="1" required>
     </label>
 
-    <label>Supplier Ref
-        <input type="text" name="ref">
+    <label>Supplier
+        <select name="ref" required>
+            <option value="">-- select --</option>
+            <?php foreach ($suppliers as $s): ?>
+                <option value="<?php echo htmlspecialchars($s['code']); ?>">
+                    <?php echo htmlspecialchars($s['name']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
     </label>
 
     <p>
