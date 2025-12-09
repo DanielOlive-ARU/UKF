@@ -22,6 +22,12 @@ Use this checklist after significant changes (schema updates, PDO refactors, sty
 2. Edit the same entry, change status, ensure notices display.
 3. Delete the entry; list shows `?msg=deleted`.
 
+## Warehouse – Label Printing
+1. `label_print.php` → filter by a known SKU and confirm the list paginates 10 rows at a time.
+2. Select a SKU, enter a copy count between 1 and 99, and submit.
+3. Verify the preview shows name, country, class, pack details, best-before date, lot number, and the Code39 barcode.
+4. Use the browser print dialog to ensure the layout switches to landscape and only the label grid is printed.
+
 ## Warehouse – Stocktake
 1. `stocktake_new.php` → start a new take, note the ID.
 2. Enter counts for a few SKUs and save.

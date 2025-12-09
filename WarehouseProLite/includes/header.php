@@ -24,6 +24,7 @@ require_once dirname(__DIR__) . '/../includes/security.php';
     <a href='stocktakes.php' class='<?php echo basename($_SERVER["PHP_SELF"])=="stocktakes.php"?"active":"";?>'>Take History</a>
     <a href='adjustments.php' class='<?php echo basename($_SERVER['PHP_SELF'])=='adjustments.php' ? 'active' :'';?>'>Adjustments</a>
     <a href='qa_samples.php'  class='<?php echo basename($_SERVER['PHP_SELF'])=='qa_samples.php'  ? 'active' :'';?>'>QA Samples</a>
+    <a href='label_print.php' class='<?php echo basename($_SERVER['PHP_SELF'])=='label_print.php' ? 'active' :'';?>'>Labels</a>
     <a href='reports.php'     class='<?php echo basename($_SERVER['PHP_SELF'])=='reports.php'     ? 'active' :'';?>'>Reports</a>
     <a href='logout.php' class='right'>Logout</a>
   </nav>
