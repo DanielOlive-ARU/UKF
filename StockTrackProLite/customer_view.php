@@ -5,6 +5,47 @@ require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+/* Handle notes POST actions (add / delete) */
+$post_error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    try {
+        // add note
+        if (isset($_POST['action']) && $_POST['action'] === 'add_note') {
+            if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'customer_note_add')) {
+                header('Location: customers.php?msg=csrf');
+                exit();
+            }
+            $noteText = isset($_POST['note']) ? trim($_POST['note']) : '';
+            if ($noteText !== '') {
+                Database::query(
+                    "INSERT INTO customer_notes (customer_id, note, created_at) VALUES (:cid, :note, :created_at)",
+                    array(':cid' => $id, ':note' => $noteText, ':created_at' => date('Y-m-d H:i:s'))
+                );
+            }
+            header('Location: customer_view.php?id=' . $id);
+            exit();
+        }
+
+        // delete note
+        if (isset($_POST['action']) && $_POST['action'] === 'delete_note') {
+            if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'customer_note_delete')) {
+                header('Location: customers.php?msg=csrf');
+                exit();
+            }
+            $noteId = isset($_POST['note_id']) ? (int)$_POST['note_id'] : 0;
+            if ($noteId) {
+                Database::query(
+                    "DELETE FROM customer_notes WHERE id = :nid AND customer_id = :cid",
+                    array(':nid' => $noteId, ':cid' => $id)
+                );
+            }
+            header('Location: customer_view.php?id=' . $id);
+            exit();
+        }
+    } catch (Exception $e) {
+        $post_error = $e->getMessage();
+    }
+}
 
 try {
     /* Load customer using PDO */
@@ -30,6 +71,12 @@ try {
         "SELECT COUNT(*) as cnt, COALESCE(SUM(total), 0) as total_sum FROM orders WHERE customer_id = ?",
         [$id]
     );
+
+    /* Load notes for this customer */
+    $notes = Database::query(
+        "SELECT id, note, created_at FROM customer_notes WHERE customer_id = ? ORDER BY created_at DESC",
+        [$id]
+    )->fetchAll();
 } catch (Exception $e) {
     echo '<p class="notice">Error loading customer data: ' . htmlspecialchars($e->getMessage()) . '</p>';
     include 'includes/footer.php';
@@ -46,6 +93,46 @@ try {
 
 <h3>Order History</h3>
 <p><?php echo (int)$summary['cnt']; ?> orders — Total spent: £<?php echo number_format($summary['total_sum'], 2); ?></p>
+
+<!-- Customer Notes -->
+<h3>Notes</h3>
+<?php if ($post_error): ?>
+    <p class="notice">Error saving note: <?php echo htmlspecialchars($post_error); ?></p>
+<?php endif; ?>
+<form method="post" action="customer_view.php?id=<?php echo $id; ?>">
+    <?php echo Csrf::field('customer_note_add'); ?>
+    <input type="hidden" name="action" value="add_note">
+    <label>
+        <textarea name="note" rows="4" style="width:100%;box-sizing:border-box;" placeholder="Write a note about this customer..."></textarea>
+    </label>
+    <p>
+        <input type="submit" value="Save Note">
+    </p>
+</form>
+
+<?php if ($notes): ?>
+    <table>
+        <thead><tr><th>Date</th><th>Note</th><th>Actions</th></tr></thead>
+        <tbody>
+        <?php foreach ($notes as $n): ?>
+            <tr>
+                <td><?php echo date('Y-m-d H:i', strtotime($n['created_at'])); ?></td>
+                <td><?php echo nl2br(htmlspecialchars($n['note'])); ?></td>
+                <td>
+                    <form method="post" action="customer_view.php?id=<?php echo $id; ?>" style="display:inline" onsubmit="return confirm('Delete this note?');">
+                        <?php echo Csrf::field('customer_note_delete'); ?>
+                        <input type="hidden" name="action" value="delete_note">
+                        <input type="hidden" name="note_id" value="<?php echo (int)$n['id']; ?>">
+                        <button type="submit" style="background:none;border:none;color:#06c;padding:0;cursor:pointer;text-decoration:underline;">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php else: ?>
+    <p>No notes for this customer.</p>
+<?php endif; ?>
 
 <table>
     <thead><tr><th>#</th><th>Date</th><th>Total (£)</th><th>Actions</th></tr></thead>
