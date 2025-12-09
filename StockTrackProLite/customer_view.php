@@ -72,6 +72,16 @@ try {
         [$id]
     );
 
+    /* Spending by year (total amount and order count per year) */
+    $spend_by_year = Database::query(
+        "SELECT YEAR(order_date) AS yr, COUNT(*) AS orders_count, COALESCE(SUM(total),0) AS total_sum
+         FROM orders
+         WHERE customer_id = ?
+         GROUP BY YEAR(order_date)
+         ORDER BY yr DESC",
+        [$id]
+    )->fetchAll();
+
     /* Load notes for this customer */
     $notes = Database::query(
         "SELECT id, note, created_at FROM customer_notes WHERE customer_id = ? ORDER BY created_at DESC",
@@ -95,6 +105,24 @@ try {
 <p><?php echo (int)$summary['cnt']; ?> orders — Total spent: £<?php echo number_format($summary['total_sum'], 2); ?></p>
 
 <!-- Customer Notes -->
+
+<!-- Spending by Year -->
+<?php if (!empty($spend_by_year)): ?>
+    <h4>Spending by Year</h4>
+    <table style="margin-bottom:12px;">
+        <thead><tr><th>Year</th><th>Orders</th><th>Total (£)</th></tr></thead>
+        <tbody>
+        <?php foreach ($spend_by_year as $y): ?>
+            <tr>
+                <td><?php echo htmlspecialchars($y['yr']); ?></td>
+                <td><?php echo (int)$y['orders_count']; ?></td>
+                <td><?php echo number_format($y['total_sum'], 2); ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>
+
 <h3>Notes</h3>
 <?php if ($post_error): ?>
     <p class="notice">Error saving note: <?php echo htmlspecialchars($post_error); ?></p>
