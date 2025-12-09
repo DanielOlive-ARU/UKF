@@ -35,7 +35,7 @@ $orders = Database::query(
             <td><?php echo date('Y-m-d H:i', strtotime($row['order_date'])); ?></td>
             <td><?php echo htmlspecialchars($row['customer']); ?></td>
             <td><?php echo number_format($row['total'], 2); ?></td>
-            <td><a href="order_view.php?id=<?php echo $row['id']; ?>">View</a></td>
+            <td><a class="action-link" href="order_view.php?id=<?php echo $row['id']; ?>">View</a></td>
         </tr>
 <?php endforeach; endif; ?>
     </tbody>
