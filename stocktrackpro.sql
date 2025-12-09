@@ -5,7 +5,7 @@ USE stocktrackpro;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2025 at 02:44 PM
+-- Generation Time: Dec 09, 2025 at 06:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -102,6 +102,19 @@ INSERT INTO `customers` (`id`, `name`, `phone`, `email`, `address`) VALUES
 (8, 'Little Learners Nursery', '0131 447 3322', 'nurseryoffice@littlelearners.scot', '45 Mayfield Rd, Edinburgh, EH9 3AA'),
 (9, 'Pick & Mix Farm Shop', '01452 841 615', 'hello@pickmixfarm.co.uk', 'High Street, Painswick, GL6 6XX'),
 (10, 'Rainbow Events Co.', '0207 404 4405', 'procurement@rainbowevents.uk', '5th Floor, 122 Bishopsgate, London, EC2M 4BP');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_notes`
+--
+
+CREATE TABLE `customer_notes` (
+  `id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `note` text NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -989,6 +1002,191 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`) 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `print_log`
+--
+
+CREATE TABLE `print_log` (
+  `print_id` int(11) NOT NULL,
+  `sku` varchar(30) NOT NULL,
+  `copies` int(11) NOT NULL,
+  `pack_date` datetime NOT NULL,
+  `printed_at` datetime NOT NULL,
+  `printer_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `print_log`
+--
+
+INSERT INTO `print_log` (`print_id`, `sku`, `copies`, `pack_date`, `printed_at`, `printer_name`) VALUES
+(1, 'LF-APL-001', 1, '2009-10-03 00:00:00', '2009-10-03 01:29:43', 'Microsoft XPS Document Writer'),
+(2, 'PF-APL-101', 1, '2009-10-03 00:00:00', '2009-10-03 01:52:00', 'Microsoft XPS Document Writer'),
+(3, 'PF-APL-101', 1, '2009-10-03 00:00:00', '2009-10-03 01:58:56', 'Microsoft XPS Document Writer'),
+(4, 'PF-GRP-106', 1, '2009-10-03 00:00:00', '2009-10-03 02:49:04', 'Microsoft XPS Document Writer'),
+(5, 'LF-APL-001', 1, '2009-10-05 00:00:00', '2009-10-05 02:53:09', 'Microsoft XPS Document Writer'),
+(6, 'PF-BLU-109', 1, '2009-10-05 00:00:00', '2009-10-05 02:53:18', 'Microsoft XPS Document Writer'),
+(7, 'PF-BAN-001', 1, '2009-10-05 00:00:00', '2009-10-05 08:46:07', 'Microsoft XPS Document Writer'),
+(8, 'LF-APL-001', 12, '2017-01-17 00:00:00', '2017-01-17 09:12:00', 'Zebra GK420d'),
+(9, 'LF-APL-002', 8, '2017-02-03 00:00:00', '2017-02-03 10:05:00', 'Zebra GK420d'),
+(10, 'LF-ORN-003', 12, '2017-02-20 00:00:00', '2017-02-20 11:22:10', 'Zebra GK420d'),
+(11, 'LF-PER-004', 6, '2017-03-07 00:00:00', '2017-03-07 08:41:00', 'HP LaserJet 4100'),
+(12, 'LF-BAN-005', 24, '2017-03-25 00:00:00', '2017-03-25 07:59:00', 'Zebra GK420d'),
+(13, 'LF-LMN-006', 10, '2017-04-10 00:00:00', '2017-04-10 10:02:00', 'HP LaserJet 4100'),
+(14, 'LF-LME-007', 10, '2017-04-28 00:00:00', '2017-04-28 09:44:00', 'HP LaserJet 4100'),
+(15, 'LF-PCH-008', 5, '2017-05-12 00:00:00', '2017-05-12 11:05:00', 'Zebra GK420d'),
+(16, 'PF-APL-101', 18, '2017-06-03 00:00:00', '2017-06-03 13:22:00', 'Zebra GK420d'),
+(17, 'PF-APL-102', 12, '2017-06-19 00:00:00', '2017-06-19 08:36:00', 'Zebra GK420d'),
+(18, 'PF-BAN-103', 20, '2017-07-05 00:00:00', '2017-07-05 06:58:00', 'Zebra GK420d'),
+(19, 'PF-MDT-104', 14, '2017-07-22 00:00:00', '2017-07-22 09:10:00', 'Zebra GK420d'),
+(20, 'PF-GRP-105', 16, '2017-08-08 00:00:00', '2017-08-08 10:12:00', 'Zebra GK420d'),
+(21, 'PF-GRP-106', 16, '2017-08-23 00:00:00', '2017-08-23 09:55:00', 'Zebra GK420d'),
+(22, 'PF-BRY-107', 30, '2017-09-09 00:00:00', '2017-09-09 12:41:00', 'Zebra GK420d'),
+(23, 'PF-BRY-108', 24, '2017-09-26 00:00:00', '2017-09-26 07:48:00', 'Zebra GK420d'),
+(24, 'PF-PIN-109', 10, '2017-10-11 00:00:00', '2017-10-11 09:03:00', 'Zebra GK420d'),
+(25, 'LF-APL-001', 12, '2017-10-28 00:00:00', '2017-10-28 09:12:00', 'Zebra GK420d'),
+(26, 'LF-APL-002', 8, '2017-11-12 00:00:00', '2017-11-12 10:05:00', 'Zebra GK420d'),
+(27, 'LF-ORN-003', 10, '2017-11-27 00:00:00', '2017-11-27 11:22:10', 'Zebra GK420d'),
+(28, 'LF-PER-004', 6, '2017-12-14 00:00:00', '2017-12-14 08:41:00', 'HP LaserJet 4100'),
+(29, 'LF-BAN-005', 18, '2017-12-29 00:00:00', '2017-12-29 07:59:00', 'Zebra GK420d'),
+(30, 'LF-APL-001', 10, '2018-01-16 00:00:00', '2018-01-16 09:06:00', 'Zebra GK420d'),
+(31, 'LF-APL-002', 10, '2018-02-05 00:00:00', '2018-02-05 10:07:00', 'HP LaserJet 4100'),
+(32, 'LF-ORN-003', 12, '2018-02-21 00:00:00', '2018-02-21 11:09:00', 'HP LaserJet 4100'),
+(33, 'LF-PER-004', 8, '2018-03-08 00:00:00', '2018-03-08 08:33:00', 'HP LaserJet 4100'),
+(34, 'LF-BAN-005', 20, '2018-03-26 00:00:00', '2018-03-26 07:57:00', 'Zebra GK420d'),
+(35, 'LF-LMN-006', 10, '2018-04-11 00:00:00', '2018-04-11 10:01:00', 'HP LaserJet 4100'),
+(36, 'LF-LME-007', 10, '2018-04-27 00:00:00', '2018-04-27 09:42:00', 'HP LaserJet 4100'),
+(37, 'LF-PCH-008', 4, '2018-05-15 00:00:00', '2018-05-15 11:04:00', 'Zebra GK420d'),
+(38, 'PF-APL-101', 16, '2018-06-04 00:00:00', '2018-06-04 13:16:00', 'Zebra GK420d'),
+(39, 'PF-APL-102', 12, '2018-06-20 00:00:00', '2018-06-20 08:34:00', 'Zebra GK420d'),
+(40, 'PF-BAN-103', 22, '2018-07-06 00:00:00', '2018-07-06 06:56:00', 'Zebra GK420d'),
+(41, 'PF-MDT-104', 14, '2018-07-23 00:00:00', '2018-07-23 09:08:00', 'Zebra GK420d'),
+(42, 'PF-GRP-105', 14, '2018-08-09 00:00:00', '2018-08-09 10:10:00', 'Zebra GK420d'),
+(43, 'PF-GRP-106', 18, '2018-08-24 00:00:00', '2018-08-24 09:54:00', 'Zebra GK420d'),
+(44, 'PF-BRY-107', 28, '2018-09-10 00:00:00', '2018-09-10 12:39:00', 'Zebra GK420d'),
+(45, 'PF-BRY-108', 26, '2018-09-27 00:00:00', '2018-09-27 07:46:00', 'Zebra GK420d'),
+(46, 'PF-PIN-109', 12, '2018-10-12 00:00:00', '2018-10-12 09:01:00', 'Zebra GK420d'),
+(47, 'LF-APL-001', 14, '2019-01-14 00:00:00', '2019-01-14 09:04:00', 'Zebra GK420d'),
+(48, 'LF-APL-002', 12, '2019-02-04 00:00:00', '2019-02-04 10:06:00', 'HP LaserJet 4100'),
+(49, 'LF-ORN-003', 12, '2019-02-21 00:00:00', '2019-02-21 11:11:00', 'HP LaserJet 4100'),
+(50, 'LF-PER-004', 7, '2019-03-06 00:00:00', '2019-03-06 08:31:00', 'HP LaserJet 4100'),
+(51, 'LF-BAN-005', 20, '2019-03-25 00:00:00', '2019-03-25 07:55:00', 'Zebra GK420d'),
+(52, 'LF-LMN-006', 10, '2019-04-09 00:00:00', '2019-04-09 10:00:00', 'HP LaserJet 4100'),
+(53, 'LF-LME-007', 10, '2019-04-26 00:00:00', '2019-04-26 09:40:00', 'HP LaserJet 4100'),
+(54, 'LF-PCH-008', 5, '2019-05-14 00:00:00', '2019-05-14 11:03:00', 'Zebra GK420d'),
+(55, 'PF-APL-101', 18, '2019-06-05 00:00:00', '2019-06-05 13:14:00', 'Zebra GK420d'),
+(56, 'PF-APL-102', 12, '2019-06-21 00:00:00', '2019-06-21 08:33:00', 'Zebra GK420d'),
+(57, 'PF-BAN-103', 20, '2019-07-04 00:00:00', '2019-07-04 06:55:00', 'Zebra GK420d'),
+(58, 'PF-MDT-104', 14, '2019-07-24 00:00:00', '2019-07-24 09:07:00', 'Zebra GK420d'),
+(59, 'PF-GRP-105', 16, '2019-08-08 00:00:00', '2019-08-08 10:09:00', 'Zebra GK420d'),
+(60, 'PF-GRP-106', 16, '2019-08-23 00:00:00', '2019-08-23 09:53:00', 'Zebra GK420d'),
+(61, 'PF-BRY-107', 30, '2019-09-09 00:00:00', '2019-09-09 12:38:00', 'Zebra GK420d'),
+(62, 'PF-BRY-108', 24, '2019-09-26 00:00:00', '2019-09-26 07:45:00', 'Zebra GK420d'),
+(63, 'PF-PIN-109', 10, '2019-10-11 00:00:00', '2019-10-11 09:00:00', 'Zebra GK420d'),
+(64, 'LF-APL-001', 16, '2020-01-15 00:00:00', '2020-01-15 09:05:00', 'Zebra GK420d'),
+(65, 'LF-APL-002', 12, '2020-02-05 00:00:00', '2020-02-05 10:04:00', 'HP LaserJet 4100'),
+(66, 'LF-ORN-003', 12, '2020-02-20 00:00:00', '2020-02-20 11:08:00', 'HP LaserJet 4100'),
+(67, 'LF-PER-004', 8, '2020-03-06 00:00:00', '2020-03-06 08:30:00', 'HP LaserJet 4100'),
+(68, 'LF-BAN-005', 22, '2020-03-27 00:00:00', '2020-03-27 07:58:00', 'Zebra GK420d'),
+(69, 'LF-LMN-006', 10, '2020-04-09 00:00:00', '2020-04-09 09:59:00', 'HP LaserJet 4100'),
+(70, 'LF-LME-007', 10, '2020-04-24 00:00:00', '2020-04-24 09:39:00', 'HP LaserJet 4100'),
+(71, 'LF-PCH-008', 4, '2020-05-15 00:00:00', '2020-05-15 11:02:00', 'Zebra GK420d'),
+(72, 'PF-APL-101', 18, '2020-06-04 00:00:00', '2020-06-04 13:13:00', 'Zebra GK420d'),
+(73, 'PF-APL-102', 12, '2020-06-22 00:00:00', '2020-06-22 08:32:00', 'Zebra GK420d'),
+(74, 'PF-BAN-103', 20, '2020-07-07 00:00:00', '2020-07-07 06:54:00', 'Zebra GK420d'),
+(75, 'PF-MDT-104', 14, '2020-07-23 00:00:00', '2020-07-23 09:06:00', 'Zebra GK420d'),
+(76, 'PF-GRP-105', 16, '2020-08-10 00:00:00', '2020-08-10 10:08:00', 'Zebra GK420d'),
+(77, 'PF-GRP-106', 16, '2020-08-25 00:00:00', '2020-08-25 09:52:00', 'Zebra GK420d'),
+(78, 'PF-BRY-107', 30, '2020-09-09 00:00:00', '2020-09-09 12:37:00', 'Zebra GK420d'),
+(79, 'PF-BRY-108', 24, '2020-09-24 00:00:00', '2020-09-24 07:44:00', 'Zebra GK420d'),
+(80, 'PF-PIN-109', 10, '2020-10-13 00:00:00', '2020-10-13 09:02:00', 'Zebra GK420d'),
+(81, 'LF-APL-001', 12, '2021-01-18 00:00:00', '2021-01-18 09:05:00', 'Zebra GK420d'),
+(82, 'LF-APL-002', 10, '2021-02-04 00:00:00', '2021-02-04 10:05:00', 'HP LaserJet 4100'),
+(83, 'LF-ORN-003', 12, '2021-02-22 00:00:00', '2021-02-22 11:07:00', 'HP LaserJet 4100'),
+(84, 'LF-PER-004', 8, '2021-03-08 00:00:00', '2021-03-08 08:32:00', 'HP LaserJet 4100'),
+(85, 'LF-BAN-005', 22, '2021-03-29 00:00:00', '2021-03-29 07:57:00', 'Zebra GK420d'),
+(86, 'LF-LMN-006', 10, '2021-04-12 00:00:00', '2021-04-12 09:59:30', 'HP LaserJet 4100'),
+(87, 'LF-LME-007', 10, '2021-04-27 00:00:00', '2021-04-27 09:40:30', 'HP LaserJet 4100'),
+(88, 'LF-PCH-008', 4, '2021-05-14 00:00:00', '2021-05-14 11:04:00', 'Zebra GK420d'),
+(89, 'PF-APL-101', 18, '2021-06-07 00:00:00', '2021-06-07 13:15:00', 'Zebra GK420d'),
+(90, 'PF-APL-102', 12, '2021-06-21 00:00:00', '2021-06-21 08:33:00', 'Zebra GK420d'),
+(91, 'PF-BAN-103', 20, '2021-07-06 00:00:00', '2021-07-06 06:56:00', 'Zebra GK420d'),
+(92, 'PF-MDT-104', 14, '2021-07-22 00:00:00', '2021-07-22 09:07:00', 'Zebra GK420d'),
+(93, 'PF-GRP-105', 16, '2021-08-09 00:00:00', '2021-08-09 10:09:30', 'Zebra GK420d'),
+(94, 'PF-GRP-106', 16, '2021-08-24 00:00:00', '2021-08-24 09:53:30', 'Zebra GK420d'),
+(95, 'PF-BRY-107', 30, '2021-09-09 00:00:00', '2021-09-09 12:38:30', 'Zebra GK420d'),
+(96, 'PF-BRY-108', 24, '2021-09-27 00:00:00', '2021-09-27 07:46:30', 'Zebra GK420d'),
+(97, 'PF-PIN-109', 10, '2021-10-12 00:00:00', '2021-10-12 09:01:30', 'Zebra GK420d'),
+(98, 'LF-APL-001', 15, '2022-01-17 00:00:00', '2022-01-17 09:04:30', 'Zebra GK420d'),
+(99, 'LF-APL-002', 11, '2022-02-07 00:00:00', '2022-02-07 10:06:30', 'HP LaserJet 4100'),
+(100, 'LF-ORN-003', 12, '2022-02-21 00:00:00', '2022-02-21 11:10:30', 'HP LaserJet 4100'),
+(101, 'LF-PER-004', 8, '2022-03-07 00:00:00', '2022-03-07 08:31:30', 'HP LaserJet 4100'),
+(102, 'LF-BAN-005', 22, '2022-03-28 00:00:00', '2022-03-28 07:56:30', 'Zebra GK420d'),
+(103, 'LF-LMN-006', 10, '2022-04-11 00:00:00', '2022-04-11 10:00:30', 'HP LaserJet 4100'),
+(104, 'LF-LME-007', 10, '2022-04-26 00:00:00', '2022-04-26 09:41:30', 'HP LaserJet 4100'),
+(105, 'LF-PCH-008', 5, '2022-05-13 00:00:00', '2022-05-13 11:03:30', 'Zebra GK420d'),
+(106, 'PF-APL-101', 18, '2022-06-06 00:00:00', '2022-06-06 13:14:30', 'Zebra GK420d'),
+(107, 'PF-APL-102', 12, '2022-06-20 00:00:00', '2022-06-20 08:34:30', 'Zebra GK420d'),
+(108, 'PF-BAN-103', 20, '2022-07-05 00:00:00', '2022-07-05 06:55:30', 'Zebra GK420d'),
+(109, 'PF-MDT-104', 14, '2022-07-21 00:00:00', '2022-07-21 09:06:30', 'Zebra GK420d'),
+(110, 'PF-GRP-105', 16, '2022-08-08 00:00:00', '2022-08-08 10:08:30', 'Zebra GK420d'),
+(111, 'PF-GRP-106', 16, '2022-08-23 00:00:00', '2022-08-23 09:52:30', 'Zebra GK420d'),
+(112, 'PF-BRY-107', 30, '2022-09-09 00:00:00', '2022-09-09 12:37:30', 'Zebra GK420d'),
+(113, 'PF-BRY-108', 24, '2022-09-26 00:00:00', '2022-09-26 07:45:30', 'Zebra GK420d'),
+(114, 'PF-PIN-109', 10, '2022-10-11 00:00:00', '2022-10-11 09:00:30', 'Zebra GK420d'),
+(115, 'LF-APL-001', 16, '2023-01-16 00:00:00', '2023-01-16 09:06:30', 'Zebra GK420d'),
+(116, 'LF-APL-002', 12, '2023-02-06 00:00:00', '2023-02-06 10:05:30', 'HP LaserJet 4100'),
+(117, 'LF-ORN-003', 12, '2023-02-20 00:00:00', '2023-02-20 11:09:30', 'HP LaserJet 4100'),
+(118, 'LF-PER-004', 8, '2023-03-06 00:00:00', '2023-03-06 08:33:30', 'HP LaserJet 4100'),
+(119, 'LF-BAN-005', 22, '2023-03-27 00:00:00', '2023-03-27 07:58:30', 'Zebra GK420d'),
+(120, 'LF-LMN-006', 10, '2023-04-10 00:00:00', '2023-04-10 10:01:30', 'HP LaserJet 4100'),
+(121, 'LF-LME-007', 10, '2023-04-25 00:00:00', '2023-04-25 09:41:30', 'HP LaserJet 4100'),
+(122, 'LF-PCH-008', 5, '2023-05-12 00:00:00', '2023-05-12 11:02:30', 'Zebra GK420d'),
+(123, 'PF-APL-101', 18, '2023-06-05 00:00:00', '2023-06-05 13:13:30', 'Zebra GK420d'),
+(124, 'PF-APL-102', 12, '2023-06-19 00:00:00', '2023-06-19 08:33:30', 'Zebra GK420d'),
+(125, 'PF-BAN-103', 20, '2023-07-04 00:00:00', '2023-07-04 06:54:30', 'Zebra GK420d'),
+(126, 'PF-MDT-104', 14, '2023-07-24 00:00:00', '2023-07-24 09:05:30', 'Zebra GK420d'),
+(127, 'PF-GRP-105', 16, '2023-08-07 00:00:00', '2023-08-07 10:07:30', 'Zebra GK420d'),
+(128, 'PF-GRP-106', 16, '2023-08-24 00:00:00', '2023-08-24 09:51:30', 'Zebra GK420d'),
+(129, 'PF-BRY-107', 30, '2023-09-08 00:00:00', '2023-09-08 12:36:30', 'Zebra GK420d'),
+(130, 'PF-BRY-108', 24, '2023-09-25 00:00:00', '2023-09-25 07:44:30', 'Zebra GK420d'),
+(131, 'PF-PIN-109', 10, '2023-10-12 00:00:00', '2023-10-12 09:02:30', 'Zebra GK420d'),
+(132, 'LF-APL-001', 14, '2024-01-15 00:00:00', '2024-01-15 09:04:45', 'Zebra GK420d'),
+(133, 'LF-APL-002', 12, '2024-02-05 00:00:00', '2024-02-05 10:06:45', 'HP LaserJet 4100'),
+(134, 'LF-ORN-003', 12, '2024-02-19 00:00:00', '2024-02-19 11:10:45', 'HP LaserJet 4100'),
+(135, 'LF-PER-004', 8, '2024-03-04 00:00:00', '2024-03-04 08:32:45', 'HP LaserJet 4100'),
+(136, 'LF-BAN-005', 22, '2024-03-19 00:00:00', '2024-03-19 07:57:45', 'Zebra GK420d'),
+(137, 'LF-LMN-006', 10, '2024-04-08 00:00:00', '2024-04-08 09:59:45', 'HP LaserJet 4100'),
+(138, 'LF-LME-007', 10, '2024-04-24 00:00:00', '2024-04-24 09:40:45', 'HP LaserJet 4100'),
+(139, 'LF-PCH-008', 4, '2024-05-13 00:00:00', '2024-05-13 11:03:45', 'Zebra GK420d'),
+(140, 'PF-APL-101', 18, '2024-06-03 00:00:00', '2024-06-03 13:14:45', 'Zebra GK420d'),
+(141, 'PF-APL-102', 12, '2024-06-17 00:00:00', '2024-06-17 08:34:45', 'Zebra GK420d'),
+(142, 'PF-BAN-103', 20, '2024-07-02 00:00:00', '2024-07-02 06:55:45', 'Zebra GK420d'),
+(143, 'PF-MDT-104', 14, '2024-07-22 00:00:00', '2024-07-22 09:06:45', 'Zebra GK420d'),
+(144, 'PF-GRP-105', 16, '2024-08-05 00:00:00', '2024-08-05 10:08:45', 'Zebra GK420d'),
+(145, 'PF-GRP-106', 16, '2024-08-23 00:00:00', '2024-08-23 09:52:45', 'Zebra GK420d'),
+(146, 'PF-BRY-107', 30, '2024-09-06 00:00:00', '2024-09-06 12:37:45', 'Zebra GK420d'),
+(147, 'PF-BRY-108', 24, '2024-09-20 00:00:00', '2024-09-20 07:45:45', 'Zebra GK420d'),
+(148, 'PF-PIN-109', 10, '2024-10-11 00:00:00', '2024-10-11 09:01:45', 'Zebra GK420d'),
+(149, 'LF-APL-001', 16, '2025-01-13 00:00:00', '2025-01-13 09:05:15', 'Zebra GK420d'),
+(150, 'LF-APL-002', 12, '2025-02-03 00:00:00', '2025-02-03 10:05:15', 'HP LaserJet 4100'),
+(151, 'LF-ORN-003', 12, '2025-02-17 00:00:00', '2025-02-17 11:07:15', 'HP LaserJet 4100'),
+(152, 'LF-PER-004', 8, '2025-03-10 00:00:00', '2025-03-10 08:31:15', 'HP LaserJet 4100'),
+(153, 'LF-BAN-005', 22, '2025-03-25 00:00:00', '2025-03-25 07:58:15', 'Zebra GK420d'),
+(154, 'LF-LMN-006', 10, '2025-04-07 00:00:00', '2025-04-07 09:59:15', 'HP LaserJet 4100'),
+(155, 'LF-LME-007', 10, '2025-04-22 00:00:00', '2025-04-22 09:41:15', 'HP LaserJet 4100'),
+(156, 'LF-PCH-008', 5, '2025-05-12 00:00:00', '2025-05-12 11:03:15', 'Zebra GK420d'),
+(157, 'PF-APL-101', 18, '2025-06-02 00:00:00', '2025-06-02 13:14:15', 'Zebra GK420d'),
+(158, 'PF-APL-102', 12, '2025-06-16 00:00:00', '2025-06-16 08:34:15', 'Zebra GK420d'),
+(159, 'PF-BAN-103', 20, '2025-07-01 00:00:00', '2025-07-01 06:55:15', 'Zebra GK420d'),
+(160, 'PF-MDT-104', 14, '2025-07-21 00:00:00', '2025-07-21 09:06:15', 'Zebra GK420d'),
+(161, 'PF-GRP-105', 16, '2025-08-04 00:00:00', '2025-08-04 10:08:15', 'Zebra GK420d'),
+(162, 'PF-GRP-106', 16, '2025-08-22 00:00:00', '2025-08-22 09:52:15', 'Zebra GK420d'),
+(163, 'PF-BRY-107', 30, '2025-09-05 00:00:00', '2025-09-05 12:37:15', 'Zebra GK420d'),
+(164, 'PF-BRY-108', 24, '2025-09-19 00:00:00', '2025-09-19 07:45:15', 'Zebra GK420d');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -998,31 +1196,39 @@ CREATE TABLE `products` (
   `name` varchar(100) NOT NULL,
   `category_id` int(11) DEFAULT NULL,
   `price` decimal(10,2) NOT NULL,
-  `stock` int(11) NOT NULL DEFAULT 0
+  `stock` int(11) NOT NULL DEFAULT 0,
+  `country_iso` char(2) DEFAULT NULL,
+  `class` enum('I','II') DEFAULT NULL,
+  `pack_uom` enum('each','g') NOT NULL DEFAULT 'each',
+  `default_pack_weight_g` int(11) DEFAULT NULL,
+  `best_before_days` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `sku`, `name`, `category_id`, `price`, `stock`) VALUES
-(1, 'LF-APL-001', 'Apple – Braeburn (loose)', 1, 0.30, 450),
-(2, 'LF-APL-002', 'Apple – Granny Smith (loose)', 1, 0.32, 450),
-(3, 'LF-ORN-003', 'Orange – Navel (loose)', 1, 0.35, 300),
-(4, 'LF-PER-004', 'Pear – Conference (loose)', 1, 0.28, 270),
-(5, 'LF-BAN-005', 'Banana (loose, per item)', 1, 0.22, 580),
-(6, 'LF-LMN-006', 'Lemon (loose)', 1, 0.20, 250),
-(7, 'LF-LME-007', 'Lime (loose)', 1, 0.18, 240),
-(8, 'LF-PCH-008', 'Peach (loose, seasonal)', 1, 0.40, 170),
-(9, 'PF-APL-101', 'Apples – Braeburn Bag (6 pack)', 2, 1.40, 110),
-(10, 'PF-APL-102', 'Apples – Granny Smith Bag (6 pack)', 2, 1.45, 100),
-(11, 'PF-BAN-103', 'Bananas – Family Bag (8-10)', 2, 1.60, 90),
-(12, 'PF-MDT-104', 'Mandarins – Net (1 kg)', 2, 1.95, 75),
-(13, 'PF-GRP-105', 'Grapes – Red Seedless Punnet (500 g)', 2, 2.20, 60),
-(14, 'PF-GRP-106', 'Grapes – Green Seedless Punnet (500 g)', 2, 2.15, 65),
-(15, 'PF-BRY-107', 'Strawberries Punnet (400 g)', 2, 2.50, 40),
-(16, 'PF-BRY-108', 'Blueberries Punnet (250 g)', 2, 2.30, 35),
-(18, 'PF-PIN-109', 'Pineapple Chunks (200g)', 2, 1.99, 0);
+INSERT INTO `products` (`id`, `sku`, `name`, `category_id`, `price`, `stock`, `country_iso`, `class`, `pack_uom`, `default_pack_weight_g`, `best_before_days`) VALUES
+(1, 'LF-APL-001', 'Apple – Braeburn (loose)', 1, 0.30, 450, 'GB', 'I', 'each', NULL, 8),
+(2, 'LF-APL-002', 'Apple – Granny Smith (loose)', 1, 0.32, 450, 'GB', 'I', 'each', NULL, 7),
+(3, 'LF-ORN-003', 'Orange – Navel (loose)', 1, 0.35, 300, 'ES', 'I', 'each', NULL, 10),
+(4, 'LF-PER-004', 'Pear – Conference (loose)', 1, 0.28, 270, 'NL', 'I', 'each', NULL, 7),
+(5, 'LF-BAN-005', 'Banana (loose, per item)', 1, 0.22, 580, 'EC', 'I', 'each', NULL, 5),
+(6, 'LF-LMN-006', 'Lemon (loose)', 1, 0.20, 250, 'ES', 'I', 'each', NULL, 14),
+(7, 'LF-LME-007', 'Lime (loose)', 1, 0.18, 240, 'BR', 'I', 'each', NULL, 14),
+(8, 'LF-PCH-008', 'Peach (loose, seasonal)', 1, 0.40, 170, 'ES', 'I', 'each', NULL, 5),
+(9, 'PF-APL-101', 'Apples – Braeburn Bag (6 pack)', 2, 1.40, 110, 'GB', 'I', 'g', 900, 8),
+(10, 'PF-APL-102', 'Apples – Granny Smith Bag (6 pack)', 2, 1.45, 100, 'GB', 'I', 'g', 900, 7),
+(11, 'PF-BAN-103', 'Bananas – Family Bag (8-10)', 2, 1.60, 90, 'EC', 'I', 'g', 1275, 15),
+(12, 'PF-MDT-104', 'Mandarins – Net (1 kg)', 2, 1.95, 75, 'ES', 'I', 'g', 1000, 10),
+(13, 'PF-GRP-105', 'Grapes – Red Seedless Punnet (500 g)', 2, 2.20, 60, 'ES', 'I', 'g', 500, 7),
+(14, 'PF-GRP-106', 'Grapes – Green Seedless Punnet (500 g)', 2, 2.15, 65, 'ES', 'II', 'g', 500, 14),
+(15, 'PF-BRY-107', 'Strawberries Punnet (400 g)', 2, 2.50, 40, 'GB', 'I', 'g', 400, 3),
+(16, 'PF-BRY-108', 'Blueberries Punnet (250 g)', 2, 2.30, 35, 'GB', 'I', 'g', 250, 5),
+(18, 'PF-PIN-109', 'Pineapple Chunks (200g)', 2, 1.99, 0, 'CR', 'I', 'g', 200, 5),
+(19, 'PF-BAN-110', 'Bananas (pack of 6)', 2, 0.00, 0, 'JM', 'II', 'g', 850, 15),
+(20, 'PF-BRY-111', 'Blueberries – Sunshine Blue Punnet (300 g)', 2, 0.00, 0, 'ZA', 'II', 'g', 300, 5),
+(21, 'LF-PIN-009', 'Pineapple (loose)', 1, 0.00, 0, 'ES', 'I', 'each', NULL, 10);
 
 -- --------------------------------------------------------
 
@@ -1248,6 +1454,13 @@ ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `customer_notes`
+--
+ALTER TABLE `customer_notes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `customer_id` (`customer_id`);
+
+--
 -- Indexes for table `deliveries`
 --
 ALTER TABLE `deliveries`
@@ -1269,6 +1482,13 @@ ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `order_id` (`order_id`),
   ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `print_log`
+--
+ALTER TABLE `print_log`
+  ADD PRIMARY KEY (`print_id`),
+  ADD KEY `idx_printlog_sku` (`sku`);
 
 --
 -- Indexes for table `products`
@@ -1344,6 +1564,12 @@ ALTER TABLE `customers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `customer_notes`
+--
+ALTER TABLE `customer_notes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `deliveries`
 --
 ALTER TABLE `deliveries`
@@ -1362,10 +1588,16 @@ ALTER TABLE `order_items`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=647;
 
 --
+-- AUTO_INCREMENT for table `print_log`
+--
+ALTER TABLE `print_log`
+  MODIFY `print_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `qa_samples`
@@ -1413,6 +1645,12 @@ ALTER TABLE `wh_users`
 ALTER TABLE `adjustments`
   ADD CONSTRAINT `adjustments_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `adjustments_ibfk_2` FOREIGN KEY (`approved_by`) REFERENCES `wh_users` (`id`);
+
+--
+-- Constraints for table `customer_notes`
+--
+ALTER TABLE `customer_notes`
+  ADD CONSTRAINT `customer_notes_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `deliveries`
