@@ -2,6 +2,7 @@
 /* label_print.php – generate barcode labels for warehouse products */
 include 'includes/db.php';
 require_once dirname(__DIR__) . '/includes/database.php';
+require_once __DIR__ . '/includes/qr_helper.php';
 include 'includes/header.php';
 
 $notice = '';
@@ -54,12 +55,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 $barcodeText = '*' . $asciiSku . '*';
 
+                $qrDataUri = QrHelper::dataUri($product['sku']);
+                $qrWarning = null;
+                if ($qrDataUri === null) {
+                    $qrWarning = extension_loaded('gd')
+                        ? 'Unable to render QR code for this SKU.'
+                        : 'QR code generation requires the PHP GD extension.';
+                }
+
                 $printJob = array(
                     'product' => $product,
                     'copies' => $copies,
                     'best_before' => $bestBefore,
                     'lot' => $lotNumber,
                     'barcode' => $barcodeText,
+                    'qr_data_uri' => $qrDataUri,
+                    'qr_warning' => $qrWarning,
                     'generated_at' => date('Y-m-d H:i')
                 );
             }
@@ -125,7 +136,6 @@ function pagerUrl($pageNumber, $filters)
 ?>
 <div class="screen-only label-intro">
   <h2>Label Printing</h2>
-  <p>Search for a SKU, choose up to 99 copies, and generate printable Code39 labels using the built-in Libre Barcode 39 font.</p>
 </div>
 
 <?php if ($notice): ?>
@@ -159,7 +169,7 @@ function pagerUrl($pageNumber, $filters)
       <tr>
         <th></th>
         <th>SKU</th>
-        <th>Name</th>
+        <th class="col-name">Name</th>
         <th>Country</th>
         <th>Class</th>
         <th>Pack UOM</th>
@@ -174,7 +184,7 @@ function pagerUrl($pageNumber, $filters)
       <tr>
         <td><input type="radio" name="product_id" value="<?php echo $row['id']; ?>" <?php if ($selectedProductId === (int)$row['id']) echo 'checked'; ?>></td>
         <td><?php echo htmlspecialchars($row['sku']); ?></td>
-        <td><?php echo htmlspecialchars($row['name']); ?></td>
+        <td class="col-name"><?php echo htmlspecialchars($row['name']); ?></td>
         <td><?php echo htmlspecialchars($row['country_iso']); ?></td>
         <td><?php echo htmlspecialchars($row['class']); ?></td>
         <td><?php echo htmlspecialchars($row['pack_uom']); ?></td>
@@ -228,6 +238,9 @@ function pagerUrl($pageNumber, $filters)
     </div>
     <button type="button" onclick="window.print()">Print Labels</button>
   </div>
+  <?php if (!empty($printJob['qr_warning'])): ?>
+    <p class="qr-warning screen-only">QR notice: <?php echo htmlspecialchars($printJob['qr_warning']); ?></p>
+  <?php endif; ?>
 
   <div class="label-grid">
     <?php for ($i = 0; $i < $printJob['copies']; $i++): ?>
@@ -259,7 +272,13 @@ function pagerUrl($pageNumber, $filters)
             </div>
           </div>
         </div>
-        <div>
+        <div class="label-codes">
+          <?php if (!empty($printJob['qr_data_uri'])): ?>
+            <img
+              class="qr-code"
+              src="<?php echo htmlspecialchars($printJob['qr_data_uri']); ?>"
+              alt="QR code for SKU <?php echo htmlspecialchars($printJob['product']['sku']); ?>">
+          <?php endif; ?>
           <div class="barcode" aria-label="Barcode for <?php echo htmlspecialchars($printJob['product']['sku']); ?>"><?php echo htmlspecialchars($printJob['barcode']); ?></div>
         </div>
       </div>
