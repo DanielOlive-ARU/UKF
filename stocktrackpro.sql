@@ -5,7 +5,7 @@ USE stocktrackpro;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2025 at 06:49 PM
+-- Generation Time: Dec 10, 2025 at 03:14 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 

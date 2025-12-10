@@ -13,6 +13,16 @@ if ($copiesInput < 1) {
     $copiesInput = 1;
 }
 
+$printerOptions = array();
+try {
+  $printerStatement = Database::query(
+    'SELECT DISTINCT printer_name FROM print_log ORDER BY printer_name ASC'
+  );
+  $printerOptions = $printerStatement ? $printerStatement->fetchAll(PDO::FETCH_COLUMN) : array();
+} catch (Exception $printerException) {
+  $printerOptions = array();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'wh_label_print')) {
         $notice = 'Session expired. Please resubmit the form.';
@@ -236,8 +246,29 @@ function pagerUrl($pageNumber, $filters)
       &middot; Lot <?php echo htmlspecialchars($printJob['lot']); ?>
       &middot; Generated <?php echo htmlspecialchars($printJob['generated_at']); ?>
     </div>
-    <button type="button" onclick="window.print()">Print Labels</button>
+    <form class="print-controls" id="print-log-form" method="post" action="label_print_log.php" data-has-options="<?php echo !empty($printerOptions) ? '1' : '0'; ?>">
+      <?php echo Csrf::field('wh_label_log'); ?>
+      <input type="hidden" name="sku" value="<?php echo htmlspecialchars($printJob['product']['sku']); ?>">
+      <input type="hidden" name="copies" value="<?php echo (int)$printJob['copies']; ?>">
+      <label class="printer-field">
+        <span>Printer</span>
+        <select name="printer_name" id="printer-name">
+          <option value="">Select a printer…</option>
+          <?php foreach ($printerOptions as $printerName): ?>
+            <?php if ($printerName === null || $printerName === '') { continue; } ?>
+            <option value="<?php echo htmlspecialchars($printerName); ?>"><?php echo htmlspecialchars($printerName); ?></option>
+          <?php endforeach; ?>
+          <option value="__custom" <?php echo empty($printerOptions) ? 'selected' : ''; ?>>Manual entry…</option>
+        </select>
+      </label>
+      <label class="printer-custom<?php echo empty($printerOptions) ? ' visible' : ''; ?>" id="printer-custom-wrapper">
+        <span>Manual printer name</span>
+        <input type="text" name="printer_name_custom" id="printer-name-custom" placeholder="e.g. Zebra GK420d">
+      </label>
+      <button type="button" id="print-log-button">Log &amp; Print</button>
+    </form>
   </div>
+  <p id="print-log-message" class="print-log-message screen-only" role="status" aria-live="polite"></p>
   <?php if (!empty($printJob['qr_warning'])): ?>
     <p class="qr-warning screen-only">QR notice: <?php echo htmlspecialchars($printJob['qr_warning']); ?></p>
   <?php endif; ?>
@@ -287,6 +318,120 @@ function pagerUrl($pageNumber, $filters)
     <?php endfor; ?>
   </div>
 </section>
+<?php endif; ?>
+
+<?php if ($printJob): ?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var form = document.getElementById('print-log-form');
+  if (!form) {
+    return;
+  }
+
+  var button = document.getElementById('print-log-button');
+  var printerSelect = document.getElementById('printer-name');
+  var customWrapper = document.getElementById('printer-custom-wrapper');
+  var customInput = document.getElementById('printer-name-custom');
+  var statusEl = document.getElementById('print-log-message');
+  var hasSavedOptions = form.getAttribute('data-has-options') === '1';
+
+  function needsCustom() {
+    if (!hasSavedOptions || !printerSelect) {
+      return true;
+    }
+    return printerSelect.value === '__custom';
+  }
+
+  function syncCustomVisibility() {
+    if (!customWrapper) {
+      return;
+    }
+    var show = needsCustom();
+    if (show) {
+      customWrapper.classList.add('visible');
+      if (customInput) {
+        customInput.focus();
+      }
+    } else {
+      customWrapper.classList.remove('visible');
+    }
+  }
+
+  if (printerSelect) {
+    printerSelect.addEventListener('change', syncCustomVisibility);
+    syncCustomVisibility();
+  }
+
+  if (!button) {
+    return;
+  }
+
+  button.addEventListener('click', function () {
+    if (needsCustom()) {
+      if (customInput && customInput.value.trim() === '') {
+        if (statusEl) {
+          statusEl.textContent = 'Enter a printer name before printing.';
+        }
+        if (customInput) {
+          customInput.focus();
+        }
+        return;
+      }
+    } else if (printerSelect && printerSelect.value === '') {
+      if (statusEl) {
+        statusEl.textContent = 'Select a printer before printing.';
+      }
+      printerSelect.focus();
+      return;
+    }
+
+    if (statusEl) {
+      statusEl.textContent = 'Logging print job...';
+    }
+    button.disabled = true;
+
+    var formData = new FormData(form);
+    fetch('label_print_log.php', {
+      method: 'POST',
+      body: formData,
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error('Server responded with ' + response.status);
+        }
+        return response.json();
+      })
+      .then(function (payload) {
+        if (payload && payload.status === 'ok') {
+          if (payload.nextToken) {
+            var tokenInput = form.querySelector('input[name="csrf_token"]');
+            if (tokenInput) {
+              tokenInput.value = payload.nextToken;
+            }
+          }
+          if (statusEl && payload.loggedAt) {
+            statusEl.textContent = 'Print logged at ' + payload.loggedAt + '.';
+          }
+        } else {
+          throw new Error(payload && payload.message ? payload.message : 'Unknown error');
+        }
+      })
+      .catch(function (error) {
+        if (statusEl) {
+          statusEl.textContent = 'Could not log print job: ' + error.message + '. Printing anyway.';
+        }
+      })
+      .finally(function () {
+        button.disabled = false;
+        window.print();
+      });
+  });
+});
+</script>
 <?php endif; ?>
 
 <?php include 'includes/footer.php'; ?>
