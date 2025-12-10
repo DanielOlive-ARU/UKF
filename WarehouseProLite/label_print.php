@@ -271,14 +271,16 @@ function pagerUrl($pageNumber, $filters)
               <span><span class="label-term">SKU</span><strong><?php echo htmlspecialchars($printJob['product']['sku']); ?></strong></span>
             </div>
           </div>
+          <div class="label-qr">
+            <?php if (!empty($printJob['qr_data_uri'])): ?>
+              <img
+                class="qr-code"
+                src="<?php echo htmlspecialchars($printJob['qr_data_uri']); ?>"
+                alt="QR code for SKU <?php echo htmlspecialchars($printJob['product']['sku']); ?>">
+            <?php endif; ?>
+          </div>
         </div>
-        <div class="label-codes">
-          <?php if (!empty($printJob['qr_data_uri'])): ?>
-            <img
-              class="qr-code"
-              src="<?php echo htmlspecialchars($printJob['qr_data_uri']); ?>"
-              alt="QR code for SKU <?php echo htmlspecialchars($printJob['product']['sku']); ?>">
-          <?php endif; ?>
+        <div class="label-barcode">
           <div class="barcode" aria-label="Barcode for <?php echo htmlspecialchars($printJob['product']['sku']); ?>"><?php echo htmlspecialchars($printJob['barcode']); ?></div>
         </div>
       </div>
