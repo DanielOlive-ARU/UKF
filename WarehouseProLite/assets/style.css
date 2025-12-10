@@ -1,43 +1,383 @@
-/* ========= WarehouseProLite theme ========= */
-:root{
-  --blue:#1e6fa1;
-  --blue-dark:#15527a;
-  --cream:#f4f7fa;
-  --gray:#e2e8f0;
-  --text:#222;
-  --text-light:#fff;
-  --radius:6px;
+/* ========= WarehouseProLite – Responsive & Consistent Stylesheet ========= */
+
+/* CSS Reset & Base Styles */
+* {
+    box-sizing: border-box;
 }
-*{box-sizing:border-box;}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--text);line-height:1.4;}
-/* Top bar */
-.topbar{background:var(--blue);color:var(--text-light);padding:.8rem 1.2rem;display:flex;flex-wrap:wrap;align-items:center;}
-.topbar .logo{font-size:1.25rem;margin:0;flex:1 0 auto;}
-.topbar nav a{color:var(--text-light);text-decoration:none;margin-left:1rem;padding:.4rem .6rem;border-radius:var(--radius);}
-.topbar nav a:hover,.topbar nav a.active{background:var(--blue-dark);}
-.topbar nav a.right{margin-left:auto;}
-/* Layout wrapper */
-.container{max-width:960px;margin:2rem auto;padding:0 1rem;}
-/* Tables */
-table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;}
-th,td{padding:.6rem .5rem;border-bottom:1px solid var(--gray);text-align:left;}
-th{background:var(--gray);font-weight:600;}
-tr:nth-child(even){background:#f9fbfc;}
-/* Forms */
-label{display:block;margin:.65rem 0 .25rem;font-weight:600;}
-input[type=text],input[type=password],input[type=number],select,textarea{width:100%;padding:.45rem;border:1px solid #ccc;border-radius:var(--radius);}
-input[type=submit],button{background:var(--blue);color:var(--text-light);border:none;padding:.5rem 1rem;border-radius:var(--radius);font-weight:600;cursor:pointer;}
-input[type=submit]:hover,button:hover{background:var(--blue-dark);}
-.btn{background:var(--blue);color:var(--text-light);padding:.4rem .8rem;border-radius:var(--radius);text-decoration:none;}
-.btn:hover{background:var(--blue-dark);}
-/* KPI cards */
-.cards{display:flex;gap:.8rem;overflow-x:auto;}
-.card{background:#fff;border:1px solid var(--gray);border-radius:var(--radius);padding:1rem 1.2rem;min-width:150px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.06);}
-.card .big{display:block;font-size:1.6rem;font-weight:600;margin-bottom:.15rem;}
-/* Footer */
-footer{background:var(--gray);text-align:center;padding:1rem;font-size:.85rem;}
-/* Login */
-body.login-page{display:flex;align-items:center;justify-content:center;height:100vh;}
-.login-card{width:320px;padding:2rem 2.4rem;border:1px solid var(--gray);border-radius:var(--radius);background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.08);text-align:center;}
-.login-card h1{font-size:1.45rem;margin:0 0 1.2rem;}
-.login-card label{text-align:left;}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #f4f7fa;
+    color: #222;
+    font: 14px/1.45 Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========== Colour & Spacing Constants ========== */
+:root {
+    --primary: #1e6fa1;
+    --primary-dark: #15527a;
+    --bg-light: #f4f7fa;
+    --border: #e2e8f0;
+    --bg-row-alt: #f9fbfc;
+    --bg-notice: #e3f2fd;
+    --notice-accent: #0d47a1;
+    --text-muted: #666;
+    --spacing-xs: 4px;
+    --spacing-sm: 6px;
+    --spacing-md: 8px;
+    --spacing-lg: 12px;
+    --spacing-xl: 20px;
+    --radius: 6px;
+}
+
+/* ========== Typography ========== */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 8px 0;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+h1 { font-size: 28px; }
+h2 { font-size: 20px; }
+h3 { font-size: 16px; }
+h4 { font-size: 14px; }
+
+p { margin: 0 0 8px 0; }
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ========== Header / Top Bar ========== */
+.topbar {
+    background: var(--primary);
+    color: #fff;
+    padding: var(--spacing-md) var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.topbar .logo {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 700;
+}
+
+.topbar nav {
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: center;
+}
+
+.topbar nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius);
+    transition: background 0.2s ease;
+}
+
+.topbar nav a:hover,
+.topbar nav a.active {
+    background: var(--primary-dark);
+}
+
+.topbar nav a.right {
+    margin-left: auto;
+}
+
+/* ========== Main Container ========== */
+main.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: var(--spacing-xl) auto;
+    padding: 0 var(--spacing-xl);
+    flex: 1 1 auto;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: var(--spacing-xl) auto;
+    padding: 0 var(--spacing-xl);
+}
+
+/* ========== Full-Width Breakout Wrappers ========== */
+.full-bleed > h2 {
+    display: block;
+    width: 100vw;
+    margin-left: calc((100% - 100vw) / 2);
+    margin-right: calc((100% - 100vw) / 2);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    font-size: 1.25em;
+    font-weight: 700;
+    background: transparent;
+}
+
+.full-width {
+    width: 100vw;
+    margin-left: calc((100% - 100vw) / 2);
+    margin-right: calc((100% - 100vw) / 2);
+    padding: var(--spacing-xl);
+    box-sizing: border-box;
+}
+
+/* ========== Tables ========== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--spacing-lg);
+    font-size: 13px;
+}
+
+th,
+td {
+    padding: var(--spacing-sm) var(--spacing-sm);
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+}
+
+th {
+    background: var(--border);
+    font-weight: 700;
+    color: #333;
+}
+
+tr:nth-child(even) {
+    background: var(--bg-row-alt);
+}
+
+tr:hover {
+    background: #f0f3f7;
+}
+
+/* ========== Forms ========== */
+form label {
+    display: block;
+    margin: var(--spacing-md) 0 var(--spacing-sm);
+    font-weight: 700;
+    color: #333;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid #ccc;
+    border-radius: var(--radius);
+    box-sizing: border-box;
+    font: 14px/1.45 Arial, Helvetica, sans-serif;
+    transition: border-color 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 3px rgba(30, 111, 161, 0.2);
+}
+
+input[type="submit"],
+button,
+.btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+input[type="submit"]:hover,
+button:hover,
+.btn:hover {
+    background: var(--primary-dark);
+}
+
+input[type="submit"]:active,
+button:active,
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* ========== KPI Cards ========== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--spacing-lg);
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.card .big {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.card label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ========== Login Page ========== */
+body.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    background: #fff;
+    padding: var(--spacing-xl);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 360px;
+    text-align: left;
+}
+
+.login-card h1 {
+    font-size: 20px;
+    margin: 0 0 var(--spacing-lg);
+}
+
+/* ========== Utility Classes ========== */
+.notice {
+    padding: var(--spacing-lg);
+    margin: var(--spacing-md) 0;
+    border-radius: var(--radius);
+    background: var(--bg-notice);
+    border-left: 4px solid var(--primary);
+    color: var(--notice-accent);
+}
+
+.btn {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    text-decoration: none;
+}
+
+/* ========== Pagination ========== */
+.pagination {
+    margin: var(--spacing-lg) 0;
+    text-align: center;
+}
+
+.pagination a,
+.pagination strong {
+    display: inline-block;
+    margin: 0 var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+.pagination a {
+    color: var(--primary);
+    text-decoration: none;
+    border-radius: var(--radius);
+    transition: background 0.2s ease;
+}
+
+.pagination a:hover {
+    background: #f0f0f0;
+    text-decoration: none;
+}
+
+.pagination strong {
+    background: var(--primary);
+    color: #fff;
+    border-radius: var(--radius);
+}
+
+/* ========== Footer ========== */
+footer,
+.footer {
+    background: var(--border);
+    color: #222;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    text-align: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: auto;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ========== Print Styles ========== */
+@media print {
+    body {
+        background: #fff;
+    }
+
+    .topbar,
+    footer,
+    .footer,
+    .pagination {
+        display: none;
+    }
+
+    main.container,
+    .container {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+}

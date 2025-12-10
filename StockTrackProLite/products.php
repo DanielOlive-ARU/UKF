@@ -67,8 +67,8 @@ if (isset($_GET['msg'])) {
             <td><?php echo number_format($row['price'], 2); ?></td>
             <td><?php echo (int)$row['stock']; ?></td>
             <td>
-                <a href="product_edit.php?id=<?php echo $row['id']; ?>">Edit</a> |
-                <a href="product_view.php?id=<?php echo $row['id']; ?>">History</a> |
+                <a class="action-link" href="product_edit.php?id=<?php echo $row['id']; ?>">Edit</a> |
+                <a class="action-link" href="product_view.php?id=<?php echo $row['id']; ?>">History</a> |
                 <form action="product_delete.php" method="post" style="display:inline" onsubmit="return confirm('Delete this product?');">
                     <?php echo Csrf::field('stock_product_delete'); ?>
                     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
