@@ -36,7 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <form action="customer_add.php" method="post">
     <?php echo Csrf::field('stock_customer_add'); ?>
     <label>Name:
-        <input type="text" name="name" required>
+        <input type="text" name="name" required
+               pattern="[A-Za-z0-9._%+\-!?]{1,}"
+               title="Customer name should contain letters, numbers, and common punctuation.">
     </label>
 
     <label>Phone:
@@ -48,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label>Email:
         <input type="text" name="email" required
                pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
-               title="Please enter a valid email address. Example: user@example.com">
+               title="Please enter a valid email address.">
     </label>
 
     <label>Address:
