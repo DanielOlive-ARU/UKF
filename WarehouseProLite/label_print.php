@@ -13,6 +13,7 @@ if ($copiesInput < 1) {
     $copiesInput = 1;
 }
 
+/* Hydrate the printer dropdown from past log entries; if it fails we fall back to manual entry. */
 $printerOptions = array();
 try {
   $printerStatement = Database::query(
@@ -73,6 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         : 'QR code generation requires the PHP GD extension.';
                 }
 
+                /* Normalize the selected product into a single print job payload (lot, barcode, QR, dates). */
                 $printJob = array(
                     'product' => $product,
                     'copies' => $copies,
@@ -246,6 +248,7 @@ function pagerUrl($pageNumber, $filters)
       &middot; Lot <?php echo htmlspecialchars($printJob['lot']); ?>
       &middot; Generated <?php echo htmlspecialchars($printJob['generated_at']); ?>
     </div>
+    <?php /* Printer logging form toggles between saved dropdown and manual entry, posting to the logging endpoint. */ ?>
     <form class="print-controls" id="print-log-form" method="post" action="label_print_log.php" data-has-options="<?php echo !empty($printerOptions) ? '1' : '0'; ?>">
       <?php echo Csrf::field('wh_label_log'); ?>
       <input type="hidden" name="sku" value="<?php echo htmlspecialchars($printJob['product']['sku']); ?>">
@@ -322,6 +325,7 @@ function pagerUrl($pageNumber, $filters)
 
 <?php if ($printJob): ?>
 <script>
+/* Front-end log-before-print flow: validate printer choice, post via fetch, refresh CSRF, then trigger window.print(). */
 document.addEventListener('DOMContentLoaded', function () {
   var form = document.getElementById('print-log-form');
   if (!form) {
