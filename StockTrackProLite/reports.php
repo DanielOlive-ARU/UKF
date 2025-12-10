@@ -15,64 +15,10 @@ $monthly = Database::query(
      ORDER BY ym"
 )->fetchAll();
 
-/* --- load products for selector --- */
-$prods = Database::query("SELECT id, sku, name FROM products ORDER BY name")->fetchAll();
-
-/* read selected product (GET) */
-$selectedProductId = isset($_GET['product_id']) && $_GET['product_id'] !== '' ? (int)$_GET['product_id'] : 0;
-$selectedProductName = '';
-if ($selectedProductId) {
-    $prodRow = Database::query(
-        "SELECT sku, name FROM products WHERE id = :id",
-        array(':id' => $selectedProductId)
-    )->fetch();
-    if ($prodRow) {
-        $selectedProductName = $prodRow['sku'].' - '.$prodRow['name'];
-    } else {
-        $selectedProductId = 0; // invalid id -> fallback
-    }
-}
-
-/* if a product is selected, get its monthly quantities for the same 12-month window */
-$monthlyProductSales = array();
-if ($selectedProductId) {
-    $rows = Database::query(
-        "SELECT DATE_FORMAT(o.order_date,'%Y-%m') AS ym,
-                SUM(oi.quantity) AS qty
-         FROM order_items oi
-         JOIN orders o ON o.id = oi.order_id
-         WHERE o.order_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
-           AND oi.product_id = :pid
-         GROUP BY ym
-         ORDER BY ym",
-        array(':pid' => $selectedProductId)
-    )->fetchAll();
-
-    /* map month -> qty for quick lookup */
-    $byYm = array();
-    foreach ($rows as $r) {
-        $byYm[$r['ym']] = (int)$r['qty'];
-    }
-
-    /* align with $monthly labels (ensures zero for months with no sales) */
-    foreach ($monthly as $m) {
-        $ym = $m['ym'];
-        $monthlyProductSales[] = isset($byYm[$ym]) ? $byYm[$ym] : 0;
-    }
-}
-
-/* Build arrays for Chart.js v1 */
-$labels   = array();
-$revenues = array();
-foreach ($monthly as $row) {
-    $labels[]   = $row['ym'];
-    $revenues[] = round($row['revenue'], 2);
-}
-
-/* 2. Top 5 customers (last 12 months) */
+/* 2. Top 5 customers by spend (last 12 months) */
 $topCust = Database::query(
     "SELECT c.name,
-            COUNT(DISTINCT o.id) AS num_orders,
+            COUNT(o.id)  AS num_orders,
             SUM(o.total) AS spend
      FROM orders o
      JOIN customers c ON c.id = o.customer_id
@@ -82,9 +28,9 @@ $topCust = Database::query(
      LIMIT 5"
 )->fetchAll();
 
-/* 3. Low-stock products (stock < 20) */
+/* 3. Low-stock products (< 20) */
 $lowStock = Database::query(
-    "SELECT id, sku, name, stock
+    "SELECT sku, name, stock
      FROM products
      WHERE stock < 20
      ORDER BY stock ASC"
@@ -137,26 +83,8 @@ foreach ($monthly as $row) {
     $revenues[] = round($row['revenue'], 2);
 }
 ?>
-<h2>Reports</h2>
 
-<!-- product selector for the chart -->
-<form method="get" action="reports.php" style="margin-bottom:12px;">
-    <label style="font-weight:normal;">
-        Show monthly for product:
-        <select name="product_id">
-            <option value="">-- overall revenue --</option>
-            <?php foreach ($prods as $p): ?>
-                <option value="<?php echo (int)$p['id']; ?>" <?php if ($selectedProductId == $p['id']) echo 'selected'; ?>>
-                    <?php echo htmlspecialchars($p['sku'].' - '.$p['name']); ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-    </label>
-    <input type="submit" value="Apply">
-    <?php if ($selectedProductId): ?>
-        <a href="reports.php" style="margin-left:8px;">Reset</a>
-    <?php endif; ?>
-</form>
+<h2>Reports</h2>
 
 <h3>Monthly Sales (last 12 months)</h3>
 <canvas id="salesChart" height="120"></canvas>
@@ -165,27 +93,8 @@ foreach ($monthly as $row) {
 <script src="http://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 <script>
 var ctx  = document.getElementById('salesChart').getContext('2d');
-var labels = <?php echo json_encode($labels); ?>;
-
-<?php if ($selectedProductId): ?>
-// product view: show monthly quantities for the selected product
 var data = {
-    labels: labels,
-    datasets: [{
-        label: "<?php echo addslashes($selectedProductName); ?> — Qty Sold",
-        fillColor   : "#2e86de",
-        strokeColor : "#1f5fa6",
-        data        : <?php echo json_encode($monthlyProductSales); ?>
-    }]
-};
-new Chart(ctx).Bar(data, {
-    responsive: true,
-    scaleLabel: "<%=value%> units"
-});
-<?php else: ?>
-// overall revenue view (existing behaviour)
-var data = {
-    labels: labels,
+    labels: <?php echo json_encode($labels); ?>,
     datasets: [{
         label: "Revenue £",
         fillColor   : "#2e8b57",
@@ -193,11 +102,11 @@ var data = {
         data        : <?php echo json_encode($revenues); ?>
     }]
 };
+/* Old v1 API: new Chart(ctx).Bar(...) */
 new Chart(ctx).Bar(data, {
     responsive: true,
     scaleLabel: "£<%=value%>"
 });
-<?php endif; ?>
 </script>
 
 <h3>Top 5 Customers (last 12 months)</h3>
