@@ -57,7 +57,7 @@ try {
             <td><?php echo $o['id']; ?></td>
             <td><?php echo date('Y-m-d H:i', strtotime($o['order_date'])); ?></td>
             <td><?php echo number_format($o['total'], 2); ?></td>
-            <td><a class="action-link" href="order_view.php?id=<?php echo $o['id']; ?>">View</a></td>
+            <td><a href="order_view.php?id=<?php echo $o['id']; ?>">View</a></td>
         </tr>
 <?php endforeach; endif; ?>
     </tbody>
