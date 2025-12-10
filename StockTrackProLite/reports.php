@@ -105,7 +105,9 @@ $topProducts = Database::query(
      LIMIT 10"
 )->fetchAll();
 
-/* 5. Monthly top-3 products (last 12 months) ordered by month DESC */
+/* 5. Monthly top-3 products (last 12 months)
+   Query returns month x product aggregates.
+   We group by month in PHP and extract the top 3 per month. */
 $monthlyProductRanks = Database::query(
     "SELECT DATE_FORMAT(o.order_date,'%Y-%m') AS ym,
             p.id AS product_id,
@@ -122,15 +124,17 @@ $monthlyProductRanks = Database::query(
 )->fetchAll();
 
 /* Group by month and extract top 3 per month */
-$trends = array();
+$byMonth = array();
 foreach ($monthlyProductRanks as $r) {
-    $ym = $r['ym'];
-    if (!isset($trends[$ym])) {
-        $trends[$ym] = array();
-    }
-    if (count($trends[$ym]) < 3) {
-        $trends[$ym][] = $r;
-    }
+    $byMonth[$r['ym']][] = $r;
+}
+
+/* Build arrays for the (very old) Chart.js v1 API */
+$labels   = array();
+$revenues = array();
+foreach ($monthly as $row) {
+    $labels[]   = $row['ym'];
+    $revenues[] = round($row['revenue'], 2);
 }
 ?>
 <h2>Reports</h2>
@@ -245,20 +249,23 @@ new Chart(ctx).Bar(data, {
     </tbody>
 </table>
 
-<h3>Product Trends — Top 3 Per Month (last 12 months)</h3>
+<h3>Product Trends — Top 3 Products (Quantity) Per Month (last 12 months)</h3>
 <table>
-    <thead><tr><th>Month</th><th>#1 Product</th><th>Qty</th><th>#2 Product</th><th>Qty</th><th>#3 Product</th><th>Qty</th></tr></thead>
+    <thead>
+        <tr><th>Month</th><th>Rank 1</th><th>Qty</th><th>Rank 2</th><th>Qty</th><th>Rank 3</th><th>Qty</th></tr>
+    </thead>
     <tbody>
-    <?php if (empty($trends)): ?>
-        <tr><td colspan="7">No trend data available.</td></tr>
-    <?php else: foreach ($trends as $ym => $items): ?>
+    <?php if (empty($byMonth)): ?>
+        <tr><td colspan="7">No sales data available.</td></tr>
+    <?php else: foreach ($byMonth as $ym => $items): ?>
         <?php
             $r1 = $items[0] ?? null;
             $r2 = $items[1] ?? null;
             $r3 = $items[2] ?? null;
+
             $fmt = function($r) {
                 if (!$r) return '—';
-                return htmlspecialchars($r['sku'].' – '.$r['name']);
+                return htmlspecialchars($r['sku']) . ' – ' . htmlspecialchars($r['name']);
             };
         ?>
         <tr>
