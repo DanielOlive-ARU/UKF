@@ -8,6 +8,13 @@ $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $notice = '';
 $statusOptions = array('yes', 'no', 'pending');
 
+/* ---------- Validation ranges ---------- */
+$BRIX_MIN = 0;
+$BRIX_MAX = 30;
+$TEMP_MIN = -10;
+$TEMP_MAX = 50;
+$NOTE_MAX_LEN = 500;
+
 if ($id <= 0) {
     echo "<p class='notice'>QA sample not found.</p>";
     include 'includes/footer.php';
@@ -46,50 +53,78 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $formData['passed'] = isset($_POST['passed']) ? $_POST['passed'] : 'pending';
         $formData['note'] = isset($_POST['note']) ? trim($_POST['note']) : '';
 
-    $productId = $formData['product_id'];
-    if ($rawBrix !== '' && is_numeric($rawBrix)) {
-        $brix = round((float)$rawBrix, 2);
-        $formData['brix'] = number_format($brix, 2, '.', '');
-    } else {
+        $productId = $formData['product_id'];
         $brix = null;
-        $formData['brix'] = '';
-    }
-
-    if ($rawTemp !== '' && is_numeric($rawTemp)) {
-        $temperature = round((float)$rawTemp, 2);
-        $formData['temperature'] = number_format($temperature, 2, '.', '');
-    } else {
         $temperature = null;
-        $formData['temperature'] = '';
-    }
 
+        /* Validate Brix */
+        if ($rawBrix !== '') {
+            if (!is_numeric($rawBrix)) {
+                $notice = 'Brix must be a valid number.';
+            } else {
+                $brixVal = (float)$rawBrix;
+                if ($brixVal < $BRIX_MIN || $brixVal > $BRIX_MAX) {
+                    $notice = "Brix must be between $BRIX_MIN and $BRIX_MAX.";
+                } else {
+                    $brix = round($brixVal, 2);
+                    $formData['brix'] = number_format($brix, 2, '.', '');
+                }
+            }
+        }
+
+        /* Validate Temperature */
+        if (!$notice && $rawTemp !== '') {
+            if (!is_numeric($rawTemp)) {
+                $notice = 'Temperature must be a valid number.';
+            } else {
+                $tempVal = (float)$rawTemp;
+                if ($tempVal < $TEMP_MIN || $tempVal > $TEMP_MAX) {
+                    $notice = "Temperature must be between $TEMP_MIN and $TEMP_MAX °C.";
+                } else {
+                    $temperature = round($tempVal, 2);
+                    $formData['temperature'] = number_format($temperature, 2, '.', '');
+                }
+            }
+        }
+
+        /* Validate Status */
         $passed = in_array($formData['passed'], $statusOptions, true) ? $formData['passed'] : 'pending';
-        $note = $formData['note'];
 
-        if ($productId <= 0) {
+        /* Validate Note length */
+        if (!$notice && strlen($formData['note']) > $NOTE_MAX_LEN) {
+            $notice = "Note must not exceed $NOTE_MAX_LEN characters.";
+        }
+
+        /* Validate Product selection */
+        if (!$notice && $productId <= 0) {
             $notice = 'Select a product before saving.';
-        } else {
-            try {
-            Database::query(
-                "UPDATE qa_samples
-                 SET product_id = :product_id,
-                     brix = :brix,
-                     temperature = :temperature,
-                     passed = :passed,
-                     note = :note
-                 WHERE id = :id",
-                array(
-                    ':product_id' => $productId,
-                    ':brix' => $brix,
-                    ':temperature' => $temperature,
-                    ':passed' => $passed,
-                    ':note' => $note,
-                    ':id' => $id
-                )
-            );
+        }
 
-            header('Location: qa_samples.php?msg=updated');
-            exit();
+        /* Update if all validations pass */
+        if (!$notice) {
+            $note = $formData['note'];
+
+            try {
+                Database::query(
+                    "UPDATE qa_samples
+                     SET product_id = :product_id,
+                         brix = :brix,
+                         temperature = :temperature,
+                         passed = :passed,
+                         note = :note
+                     WHERE id = :id",
+                    array(
+                        ':product_id' => $productId,
+                        ':brix' => $brix,
+                        ':temperature' => $temperature,
+                        ':passed' => $passed,
+                        ':note' => $note,
+                        ':id' => $id
+                    )
+                );
+
+                header('Location: qa_samples.php?msg=updated');
+                exit();
             } catch (Exception $exception) {
                 $notice = 'QA sample could not be updated. Please try again.';
             }
@@ -117,14 +152,14 @@ $prods = Database::query("SELECT id, sku, name FROM products ORDER BY name")->fe
         </select>
     </label>
 
-    <label>Brix
-        <input type="number" step="0.01" name="brix"
-               value="<?php echo htmlspecialchars($formData['brix']); ?>">
+    <label>Brix (<?php echo $BRIX_MIN; ?>–<?php echo $BRIX_MAX; ?>)
+        <input type="number" step="0.01" min="<?php echo $BRIX_MIN; ?>" max="<?php echo $BRIX_MAX; ?>" 
+               name="brix" value="<?php echo htmlspecialchars($formData['brix']); ?>">
     </label>
 
-    <label>Temperature °C
-        <input type="number" step="0.01" name="temperature"
-               value="<?php echo htmlspecialchars($formData['temperature']); ?>">
+    <label>Temperature °C (<?php echo $TEMP_MIN; ?>–<?php echo $TEMP_MAX; ?>)
+        <input type="number" step="0.01" min="<?php echo $TEMP_MIN; ?>" max="<?php echo $TEMP_MAX; ?>" 
+               name="temperature" value="<?php echo htmlspecialchars($formData['temperature']); ?>">
     </label>
 
     <label>Status
@@ -135,8 +170,8 @@ $prods = Database::query("SELECT id, sku, name FROM products ORDER BY name")->fe
         </select>
     </label>
 
-    <label>Note
-        <textarea name="note" rows="3"><?php echo htmlspecialchars($formData['note']); ?></textarea>
+    <label>Note (max <?php echo $NOTE_MAX_LEN; ?> characters)
+        <textarea name="note" rows="3" maxlength="<?php echo $NOTE_MAX_LEN; ?>"><?php echo htmlspecialchars($formData['note']); ?></textarea>
     </label>
 
     <p>
