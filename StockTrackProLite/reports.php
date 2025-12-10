@@ -51,28 +51,32 @@ $topProducts = Database::query(
      LIMIT 10"
 )->fetchAll();
 
-/* 5. Monthly top-3 products (last 12 months)
-   Query returns month x product aggregates.
-   We group by month in PHP and extract the top 3 per month. */
-$monthlyProductRanks = Database::query(
-    "SELECT DATE_FORMAT(o.order_date,'%Y-%m') AS ym,
-            p.id AS product_id,
-            p.sku,
-            p.name,
-            SUM(oi.quantity) AS qty,
-            SUM(oi.quantity * oi.price) AS revenue
+/* 5. Product trends (monthly sales per product, top 3 products) */
+$topThreeIds = Database::query(
+    "SELECT p.id
      FROM order_items oi
-     JOIN orders o ON o.id = oi.order_id
      JOIN products p ON p.id = oi.product_id
+     JOIN orders o ON o.id = oi.order_id
      WHERE o.order_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
-     GROUP BY ym, p.id
-     ORDER BY ym DESC, qty DESC"
+     GROUP BY p.id
+     ORDER BY SUM(oi.quantity) DESC
+     LIMIT 3"
 )->fetchAll();
 
-/* Group by month and extract top 3 per month */
-$byMonth = array();
-foreach ($monthlyProductRanks as $r) {
-    $byMonth[$r['ym']][] = $r;
+$trends = array();
+foreach ($topThreeIds as $row) {
+    $trends[$row['id']] = Database::query(
+        "SELECT DATE_FORMAT(o.order_date,'%Y-%m') AS ym,
+                SUM(oi.quantity) AS qty,
+                SUM(oi.quantity * oi.price) AS revenue
+         FROM order_items oi
+         JOIN orders o ON o.id = oi.order_id
+         WHERE oi.product_id = :pid
+           AND o.order_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+         GROUP BY ym
+         ORDER BY ym",
+        array(':pid' => $row['id'])
+    )->fetchAll();
 }
 
 /* Build arrays for the (very old) Chart.js v1 API */
@@ -158,35 +162,34 @@ new Chart(ctx).Bar(data, {
     </tbody>
 </table>
 
-<h3>Product Trends — Top 3 Products (Quantity) Per Month (last 12 months)</h3>
+<h3>Product Trends (Top 3 products, monthly)</h3>
 <table>
-    <thead>
-        <tr><th>Month</th><th>Rank 1</th><th>Qty</th><th>Rank 2</th><th>Qty</th><th>Rank 3</th><th>Qty</th></tr>
-    </thead>
+    <thead><tr><th>Month</th><th>Product</th><th>Qty</th><th>Revenue (£)</th></tr></thead>
     <tbody>
-    <?php if (empty($byMonth)): ?>
-        <tr><td colspan="7">No sales data available.</td></tr>
-    <?php else: foreach ($byMonth as $ym => $items): ?>
-        <?php
-            $r1 = $items[0] ?? null;
-            $r2 = $items[1] ?? null;
-            $r3 = $items[2] ?? null;
-
-            $fmt = function($r) {
-                if (!$r) return '—';
-                return htmlspecialchars($r['sku']) . ' – ' . htmlspecialchars($r['name']);
-            };
-        ?>
-        <tr>
-            <td><?php echo htmlspecialchars($ym); ?></td>
-            <td><?php echo $fmt($r1); ?></td>
-            <td><?php echo $r1 ? (int)$r1['qty'] : '—'; ?></td>
-            <td><?php echo $fmt($r2); ?></td>
-            <td><?php echo $r2 ? (int)$r2['qty'] : '—'; ?></td>
-            <td><?php echo $fmt($r3); ?></td>
-            <td><?php echo $r3 ? (int)$r3['qty'] : '—'; ?></td>
-        </tr>
-    <?php endforeach; endif; ?>
+    <?php 
+    $hasData = false;
+    foreach ($trends as $pid => $trendRows) {
+        if (!empty($trendRows)) {
+            $hasData = true;
+            $prodName = Database::query(
+                "SELECT name FROM products WHERE id = :id",
+                array(':id' => $pid)
+            )->fetch();
+            
+            foreach ($trendRows as $t) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($t['ym']) . "</td>";
+                echo "<td>" . htmlspecialchars($prodName['name']) . "</td>";
+                echo "<td>" . (int)$t['qty'] . "</td>";
+                echo "<td>" . number_format($t['revenue'], 2) . "</td>";
+                echo "</tr>";
+            }
+        }
+    }
+    if (!$hasData) {
+        echo "<tr><td colspan=\"4\">No trend data available.</td></tr>";
+    }
+    ?>
     </tbody>
 </table>
 
