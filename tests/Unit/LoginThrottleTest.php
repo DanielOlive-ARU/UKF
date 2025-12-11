@@ -95,4 +95,41 @@ class LoginThrottleTest extends TestCase
         // Session-scoped throttle always returns 'session'
         $this->assertEquals('session', $key);
     }
+
+    /**
+     * Bucket initializes structure when session key is missing.
+     */
+    public function testBucketInitializesStructure(): void
+    {
+        unset($_SESSION['_login_attempts']);
+
+        $this->assertFalse(LoginThrottle::isLocked($this->testKey));
+        $this->assertIsArray($_SESSION['_login_attempts']);
+        $this->assertArrayHasKey('failures', $_SESSION['_login_attempts']);
+        $this->assertArrayHasKey('lockout_until', $_SESSION['_login_attempts']);
+    }
+
+    /**
+     * Lockout expires and resets once the window passes.
+     */
+    public function testLockoutExpiresAndResets(): void
+    {
+        $_SESSION['_login_attempts'] = array('failures' => 5, 'lockout_until' => time() - 1);
+
+        $this->assertFalse(LoginThrottle::isLocked($this->testKey));
+        $this->assertEquals(array('failures' => 0, 'lockout_until' => 0), $_SESSION['_login_attempts']);
+    }
+
+    /**
+     * After expiry, a new failure starts from a clean slate.
+     */
+    public function testRegisterFailureAfterExpiryStartsFresh(): void
+    {
+        $_SESSION['_login_attempts'] = array('failures' => 5, 'lockout_until' => time() - 1);
+
+        LoginThrottle::registerFailure($this->testKey);
+
+        $this->assertEquals(1, $_SESSION['_login_attempts']['failures']);
+        $this->assertEquals(0, $_SESSION['_login_attempts']['lockout_until']);
+    }
 }

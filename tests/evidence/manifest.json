@@ -38,7 +38,13 @@
       "tests/evidence/phpunit_output_after_phpcbf2.txt",
       "tests/evidence/phpunit_output_after_phpcbf3.txt",
       "tests/evidence/phpunit_output_after_final.txt",
-      "tests/evidence/phpunit_output_after_final5.txt"
+      "tests/evidence/phpunit_output_after_final5.txt",
+      "tests/evidence/phpunit_output_FINAL.txt"
+    ],
+    "coverage": [
+      "tests/evidence/coverage_text.txt",
+      "tests/evidence/coverage_html/index.html",
+      "tests/evidence/coverage_html.log"
     ],
     "git_metadata": [
       "tests/evidence/git_commit.txt",
@@ -63,6 +69,8 @@
     "C:\\xampp\\php\\php.exe vendor\\bin\\phpcs.phar --standard=phpcs.xml --extensions=php includes StockTrackProLite WarehouseProLite --report=full --report-file=tests/evidence/phpcs_full_after_phpcbf_YYYYMMDDHHMMSS.txt",
     "C:\\xampp\\php\\php.exe vendor\\bin\\phpstan.phar analyse --configuration=phpstan.neon.dist includes StockTrackProLite WarehouseProLite > tests/evidence/phpstan_report_after_YYYYMMDDHHMMSS.txt 2>&1",
     "C:\\xampp\\php\\php.exe vendor\\bin\\phpunit.phar --configuration phpunit.xml > tests/evidence/phpunit_output_after_YYYYMMDDHHMMSS.txt 2>&1",
+    "C:\\xampp\\php\\php.exe vendor\\bin\\phpunit.phar --configuration phpunit.xml --coverage-text > tests/evidence/coverage_text.txt 2>&1",
+    "C:\\xampp\\php\\php.exe vendor\\bin\\phpunit.phar --configuration phpunit.xml --coverage-html tests/evidence/coverage_html > tests/evidence/coverage_html.log 2>&1",
     "powershell tests\\scripts\\phpcbf_loop.ps1 -- runs an iterative PHPCBF loop and saves reports",
     "git add -A; git commit -m 'Apply PHPCBF fixes and update evidence'; git push"
   ],

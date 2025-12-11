@@ -122,4 +122,39 @@ class PasswordTest extends TestCase
         
         $this->assertFalse($result['valid']);
     }
+
+    /**
+     * Low-cost bcrypt hashes should trigger needs_rehash.
+     */
+    public function testLowCostHashTriggersRehash(): void
+    {
+        $lowCostHash = password_hash('rehashMe', PASSWORD_BCRYPT, array('cost' => 4));
+
+        $result = verifyPassword('rehashMe', $lowCostHash);
+
+        $this->assertTrue($result['valid']);
+        $this->assertTrue($result['needs_rehash']);
+    }
+
+    /**
+     * Non-string stored hash should be rejected safely.
+     */
+    public function testVerifyPasswordRejectsNonStringHash(): void
+    {
+        $result = verifyPassword('anything', 12345);
+
+        $this->assertFalse($result['valid']);
+        $this->assertFalse($result['needs_rehash']);
+    }
+
+    /**
+     * Random non-legacy, non-bcrypt strings are rejected cleanly.
+     */
+    public function testVerifyPasswordWithInvalidHashString(): void
+    {
+        $result = verifyPassword('pw', 'not_a_valid_hash_format');
+
+        $this->assertFalse($result['valid']);
+        $this->assertFalse($result['needs_rehash']);
+    }
 }

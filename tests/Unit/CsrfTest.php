@@ -114,4 +114,106 @@ class CsrfTest extends TestCase
         
         $this->assertFalse(Csrf::validate('', 'test'));
     }
+
+    /**
+     * Expired tokens are pruned and rejected.
+     */
+    public function testExpiredTokenIsPrunedAndRejected(): void
+    {
+        $_SESSION['_csrf_tokens']['expired_ctx'][] = array(
+            'value'   => 'expired-token',
+            'created' => time() - 2000 // older than TTL
+        );
+
+        $this->assertFalse(Csrf::validate('expired-token', 'expired_ctx'));
+        $this->assertTrue(empty($_SESSION['_csrf_tokens']['expired_ctx']));
+    }
+
+    /**
+     * Token bucket is capped at MAX_TOKENS_PER_CONTEXT.
+     */
+    public function testTokenBucketIsCapped(): void
+    {
+        for ($i = 0; $i < 25; $i++) {
+            Csrf::token('cap_ctx');
+        }
+
+        $this->assertLessThanOrEqual(20, count($_SESSION['_csrf_tokens']['cap_ctx']));
+    }
+
+    /**
+     * Reset clears all stored tokens for every context.
+     */
+    public function testResetClearsAllTokens(): void
+    {
+        Csrf::token('ctx_a');
+        Csrf::token('ctx_b');
+
+        Csrf::reset();
+
+        $this->assertArrayNotHasKey('_csrf_tokens', $_SESSION);
+    }
+
+    /**
+     * ensureSession should start a session if closed.
+     */
+    public function testEnsureSessionStartsWhenClosed(): void
+    {
+        session_write_close();
+        $this->assertNotEquals(PHP_SESSION_ACTIVE, session_status());
+
+        Csrf::token('session_restart_ctx');
+
+        $this->assertEquals(PHP_SESSION_ACTIVE, session_status());
+    }
+
+    /**
+     * Malformed entries are skipped and valid token still passes.
+     */
+    public function testValidateSkipsMalformedEntries(): void
+    {
+        $_SESSION['_csrf_tokens']['mixed_ctx'] = array(
+            array('created' => time()), // missing value
+            array('value' => 'good', 'created' => time())
+        );
+
+        $this->assertTrue(Csrf::validate('good', 'mixed_ctx'));
+    }
+
+    /**
+     * Expired tokens are dropped while fresh tokens remain valid.
+     */
+    public function testPruneExpiredDropsOldKeepsNew(): void
+    {
+        $_SESSION['_csrf_tokens']['mixed_time'] = array(
+            array('value' => 'old', 'created' => time() - 2000),
+            array('value' => 'new', 'created' => time())
+        );
+
+        $this->assertTrue(Csrf::validate('new', 'mixed_time'));
+        $this->assertFalse(Csrf::validate('old', 'mixed_time'));
+    }
+
+    /**
+     * context bucket is re-initialized when session data is malformed.
+     */
+    public function testContextBucketResetsMalformedSessionData(): void
+    {
+        $_SESSION['_csrf_tokens'] = 'not-an-array';
+
+        Csrf::token('fix_ctx');
+
+        $this->assertIsArray($_SESSION['_csrf_tokens']);
+        $this->assertArrayHasKey('fix_ctx', $_SESSION['_csrf_tokens']);
+    }
+
+    /**
+     * Validate returns false when context is empty.
+     */
+    public function testValidateReturnsFalseWhenContextEmpty(): void
+    {
+        unset($_SESSION['_csrf_tokens']);
+
+        $this->assertFalse(Csrf::validate('anything', 'missing_ctx'));
+    }
 }
