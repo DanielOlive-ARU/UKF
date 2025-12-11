@@ -5,7 +5,7 @@ USE stocktrackpro;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2025 at 03:14 AM
+-- Generation Time: Dec 11, 2025 at 10:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -36,24 +36,23 @@ CREATE TABLE `adjustments` (
   `reason` enum('damage','writeoff','correction','qa_sample') NOT NULL,
   `approved_by` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
-  `ref_id` int(11) DEFAULT NULL,
-  KEY `idx_ref_id` (`ref_id`)
+  `ref_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `adjustments`
 --
 
-INSERT INTO `adjustments` (`id`, `product_id`, `qty_delta`, `reason`, `approved_by`, `created_at`) VALUES
-(16, 2, 6, 'damage', 7, '2025-09-03 23:21:44'),
-(17, 11, 2, 'correction', 7, '2025-09-03 23:21:44'),
-(18, 9, -10, 'damage', 7, '2025-09-03 23:21:44'),
-(19, 11, 1, 'correction', 7, '2025-09-03 23:21:44'),
-(20, 15, 7, 'writeoff', 7, '2025-09-03 23:21:44'),
-(26, 9, -10, 'correction', NULL, '2025-09-09 13:05:27'),
-(27, 11, -5, 'correction', NULL, '2025-09-09 13:05:33'),
-(28, 12, -1, 'qa_sample', NULL, '2025-09-09 13:36:00'),
-(29, 9, -10, 'correction', NULL, '2025-09-09 13:36:57');
+INSERT INTO `adjustments` (`id`, `product_id`, `qty_delta`, `reason`, `approved_by`, `created_at`, `ref_id`) VALUES
+(16, 2, 6, 'damage', 7, '2025-09-03 23:21:44', NULL),
+(17, 11, 2, 'correction', 7, '2025-09-03 23:21:44', NULL),
+(18, 9, -10, 'damage', 7, '2025-09-03 23:21:44', NULL),
+(19, 11, 1, 'correction', 7, '2025-09-03 23:21:44', NULL),
+(20, 15, 7, 'writeoff', 7, '2025-09-03 23:21:44', NULL),
+(26, 9, -10, 'correction', NULL, '2025-09-09 13:05:27', NULL),
+(27, 11, -5, 'correction', NULL, '2025-09-09 13:05:33', NULL),
+(28, 12, -1, 'qa_sample', NULL, '2025-09-09 13:36:00', NULL),
+(29, 9, -10, 'correction', NULL, '2025-09-09 13:36:57', NULL);
 
 -- --------------------------------------------------------
 
@@ -1221,16 +1220,16 @@ INSERT INTO `products` (`id`, `sku`, `name`, `category_id`, `price`, `stock`, `c
 (8, 'LF-PCH-008', 'Peach (loose, seasonal)', 1, 0.40, 170, 'ES', 'I', 'each', NULL, 5),
 (9, 'PF-APL-101', 'Apples – Braeburn Bag (6 pack)', 2, 1.40, 110, 'GB', 'I', 'g', 900, 8),
 (10, 'PF-APL-102', 'Apples – Granny Smith Bag (6 pack)', 2, 1.45, 100, 'GB', 'I', 'g', 900, 7),
-(11, 'PF-BAN-103', 'Bananas – Family Bag (8-10)', 2, 1.60, 90, 'EC', 'I', 'g', 1275, 15),
+(11, 'PF-BAN-103', 'Bananas – Family Bag (8-10)', 2, 1.60, 90, 'EC', 'I', 'varies', NULL, 15),
 (12, 'PF-MDT-104', 'Mandarins – Net (1 kg)', 2, 1.95, 75, 'ES', 'I', 'g', 1000, 10),
 (13, 'PF-GRP-105', 'Grapes – Red Seedless Punnet (500 g)', 2, 2.20, 60, 'ES', 'I', 'g', 500, 7),
 (14, 'PF-GRP-106', 'Grapes – Green Seedless Punnet (500 g)', 2, 2.15, 65, 'ES', 'II', 'g', 500, 14),
 (15, 'PF-BRY-107', 'Strawberries Punnet (400 g)', 2, 2.50, 40, 'GB', 'I', 'g', 400, 3),
 (16, 'PF-BRY-108', 'Blueberries Punnet (250 g)', 2, 2.30, 35, 'GB', 'I', 'g', 250, 5),
 (18, 'PF-PIN-109', 'Pineapple Chunks (200g)', 2, 1.99, 0, 'CR', 'I', 'g', 200, 5),
-(19, 'PF-BAN-110', 'Bananas (pack of 6)', 2, 0.00, 0, 'JM', 'II', 'g', 850, 15),
-(20, 'PF-BRY-111', 'Blueberries – Sunshine Blue Punnet (300 g)', 2, 0.00, 0, 'ZA', 'II', 'g', 300, 5),
-(21, 'LF-PIN-009', 'Pineapple (loose)', 1, 0.00, 0, 'ES', 'I', 'each', NULL, 10);
+(19, 'PF-BAN-110', 'Bananas (pack of 6)', 2, 1.80, 0, 'JM', 'II', 'g', 850, 15),
+(20, 'PF-BRY-111', 'Blueberries – Sunshine Blue Punnet (300 g)', 2, 3.40, 0, 'ZA', 'II', 'g', 300, 10),
+(21, 'LF-PIN-009', 'Pineapple (loose)', 1, 1.89, 0, 'ES', 'I', 'each', NULL, 10);
 
 -- --------------------------------------------------------
 
@@ -1307,55 +1306,55 @@ CREATE TABLE `stock_take_lines` (
 -- Dumping data for table `stock_take_lines`
 --
 
-INSERT INTO `stock_take_lines` (`id`, `stock_take_id`, `product_id`, `counted_qty`) VALUES
-(17, 3, 1, 450),
-(18, 3, 2, 430),
-(19, 3, 9, 100),
-(20, 3, 10, 100),
-(21, 3, 5, 580),
-(22, 3, 11, 90),
-(23, 3, 16, 35),
-(24, 3, 14, 65),
-(25, 3, 13, 60),
-(26, 3, 6, 250),
-(27, 3, 7, 239),
-(28, 3, 12, 80),
-(29, 3, 3, 300),
-(30, 3, 8, 170),
-(31, 3, 4, 270),
-(32, 3, 15, 40),
-(33, 4, 1, 450),
-(34, 4, 2, 450),
-(35, 4, 9, 100),
-(36, 4, 10, 100),
-(37, 4, 5, 580),
-(38, 4, 11, 85),
-(39, 4, 16, 35),
-(40, 4, 14, 65),
-(41, 4, 13, 60),
-(42, 4, 6, 250),
-(43, 4, 7, 240),
-(44, 4, 12, 75),
-(45, 4, 3, 300),
-(46, 4, 8, 170),
-(47, 4, 4, 270),
-(48, 4, 15, 40),
-(49, 5, 1, 450),
-(50, 5, 2, 450),
-(51, 5, 9, 100),
-(52, 5, 10, 100),
-(53, 5, 5, 550),
-(54, 5, 11, 90),
-(55, 5, 16, 35),
-(56, 5, 14, 65),
-(57, 5, 13, 60),
-(58, 5, 6, 50),
-(59, 5, 7, 240),
-(60, 5, 12, 74),
-(61, 5, 3, 310),
-(62, 5, 8, 170),
-(63, 5, 4, 270),
-(64, 5, 15, 40);
+INSERT INTO `stock_take_lines` (`id`, `stock_take_id`, `product_id`, `counted_qty`, `theoretical_qty`, `reconciled_at`, `posted_delta`) VALUES
+(17, 3, 1, 450, NULL, NULL, NULL),
+(18, 3, 2, 430, NULL, NULL, NULL),
+(19, 3, 9, 100, NULL, NULL, NULL),
+(20, 3, 10, 100, NULL, NULL, NULL),
+(21, 3, 5, 580, NULL, NULL, NULL),
+(22, 3, 11, 90, NULL, NULL, NULL),
+(23, 3, 16, 35, NULL, NULL, NULL),
+(24, 3, 14, 65, NULL, NULL, NULL),
+(25, 3, 13, 60, NULL, NULL, NULL),
+(26, 3, 6, 250, NULL, NULL, NULL),
+(27, 3, 7, 239, NULL, NULL, NULL),
+(28, 3, 12, 80, NULL, NULL, NULL),
+(29, 3, 3, 300, NULL, NULL, NULL),
+(30, 3, 8, 170, NULL, NULL, NULL),
+(31, 3, 4, 270, NULL, NULL, NULL),
+(32, 3, 15, 40, NULL, NULL, NULL),
+(33, 4, 1, 450, NULL, NULL, NULL),
+(34, 4, 2, 450, NULL, NULL, NULL),
+(35, 4, 9, 100, NULL, NULL, NULL),
+(36, 4, 10, 100, NULL, NULL, NULL),
+(37, 4, 5, 580, NULL, NULL, NULL),
+(38, 4, 11, 85, NULL, NULL, NULL),
+(39, 4, 16, 35, NULL, NULL, NULL),
+(40, 4, 14, 65, NULL, NULL, NULL),
+(41, 4, 13, 60, NULL, NULL, NULL),
+(42, 4, 6, 250, NULL, NULL, NULL),
+(43, 4, 7, 240, NULL, NULL, NULL),
+(44, 4, 12, 75, NULL, NULL, NULL),
+(45, 4, 3, 300, NULL, NULL, NULL),
+(46, 4, 8, 170, NULL, NULL, NULL),
+(47, 4, 4, 270, NULL, NULL, NULL),
+(48, 4, 15, 40, NULL, NULL, NULL),
+(49, 5, 1, 450, NULL, NULL, NULL),
+(50, 5, 2, 450, NULL, NULL, NULL),
+(51, 5, 9, 100, NULL, NULL, NULL),
+(52, 5, 10, 100, NULL, NULL, NULL),
+(53, 5, 5, 550, NULL, NULL, NULL),
+(54, 5, 11, 90, NULL, NULL, NULL),
+(55, 5, 16, 35, NULL, NULL, NULL),
+(56, 5, 14, 65, NULL, NULL, NULL),
+(57, 5, 13, 60, NULL, NULL, NULL),
+(58, 5, 6, 50, NULL, NULL, NULL),
+(59, 5, 7, 240, NULL, NULL, NULL),
+(60, 5, 12, 74, NULL, NULL, NULL),
+(61, 5, 3, 310, NULL, NULL, NULL),
+(62, 5, 8, 170, NULL, NULL, NULL),
+(63, 5, 4, 270, NULL, NULL, NULL),
+(64, 5, 15, 40, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1410,7 +1409,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
-(1, 'admin', '$2y$10$80jlEzEHJs6exZwsF6XDF.naIgQT2TPBx0EfEOouHdOWMMfeInQQ2', 'admin');
+(1, 'admin', '$2y$10$80jlEzEHJs6exZwsF6XDF.naIgQT2TPBx0EfEOouHdOWMMfeInQQ2', 'admin'),
+(2, 'jlearner', '$2y$10$wcFxHG1Sw4UEj9Od6Hl9Eue/acnGPNtgQLXedSwwz6iqv2qk6yH9a', 'clerk'),
+(3, 'bwilson', '$2y$10$AL9GTFJKX/p5asPwDGLQgeX8CswtfzOprwGj7PPBLvq.3n/bg3Lgi', 'clerk'),
+(4, 'gfalsom', '$2y$10$fy.eugSmpQFevKA8rouLyeI6vIGznjA32NNGpuEIEdagwdRWvfeRO', 'clerk'),
+(5, 'cdodds', '$2y$10$uyrhBfNMsz8WqBB2pV6F0e2PKL4aRtQZMoG7.hb/FZxYTskl5GqF2', 'admin'),
+(6, 'ksmedry', '$2y$10$HAmDiRzauQkPnL8raPCHz.yiB0NoOkzPNrkk./MfdD7d6m89OPHDe', 'clerk'),
+(7, 'mimtiaz', '$2y$10$tsBrY5ae8xKUUPiv3dx6X.u67oRz5G6v8QBLEJMZXR65fFNMd.him', 'clerk');
 
 -- --------------------------------------------------------
 
@@ -1430,9 +1435,14 @@ CREATE TABLE `wh_users` (
 --
 
 INSERT INTO `wh_users` (`id`, `username`, `password`, `role`) VALUES
-(7, 'wh_manager', '$2y$10$ajLikjQK5yOWRXrRC5re9uubuW9Qa8eKx6ciNS/NN8DaiQ6hzBi9e', 'manager'),
-(8, 'wh_clerk', '$2y$10$WNOqFHr/ycQooVCXOIrxUecevKzgvxjKryL6zFk/L9fAu1T0sD3vq', 'clerk'),
-(9, 'qa_tech', '$2y$10$IamvF4oMZDt2P6yQMTlQauIOeZfz3wi2QUTrHcP7ZZPsJ9jKfCeZ6', 'qa');
+(7, 'wh_manager', '$2y$10$Cruk9Wkox.VXjIPkU8vSFu6KNDdRfPkhaeYSqFxpRAN/Fp9.qPrMO', 'manager'),
+(8, 'wh_clerk', '$2y$10$5ohQBkFFVVYa8kWbGsyExOV7L5tNJQsHn0ylpwqTpFb6KDJSUdeZK', 'clerk'),
+(9, 'qa_tech', '$2y$10$VgDP0I37RtqL4xnCEymcOOIA0ZLnAXwP3dpZvwqI9QCsf4S4QfJVa', 'qa'),
+(10, 'bflowers', '$2y$10$IcR7irk0kwuK411bjqtsC.tI.ALpqD7fs9Vtstp4.lrtj/94ILsiS', 'manager'),
+(11, 'schilds', '$2y$10$j8MeNv5PnJIVDCBBlzdvUO9p3Q34HLbRCEdzdsN2qKi/yCh5rYisi', 'qa'),
+(12, 'fali', '$2y$10$TRThWb/UdGLRJREOSAQ0i.FzQe6acLmAVv6IQXSPjCxg9OBO.6DOq', 'qa'),
+(13, 'jbellows', '$2y$10$YDXsMwZoloNA.U6mOfAZs.FQ.vxIe36JSMkC5gft3oLEaPH5ib7YW', 'clerk'),
+(14, 'pbroniewski', '$2y$10$xGDetkfIi5Was0cIYgiZxu7ByD6AfwH0L5vVzQ3ubMyM5ikB/RsfC', 'clerk');
 
 --
 -- Indexes for dumped tables
@@ -1443,6 +1453,7 @@ INSERT INTO `wh_users` (`id`, `username`, `password`, `role`) VALUES
 --
 ALTER TABLE `adjustments`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_ref_id` (`ref_id`),
   ADD KEY `product_id` (`product_id`),
   ADD KEY `approved_by` (`approved_by`);
 
@@ -1632,13 +1643,13 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `wh_users`
 --
 ALTER TABLE `wh_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
