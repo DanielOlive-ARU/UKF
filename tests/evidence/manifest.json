@@ -1,0 +1,25 @@
+{
+  "generated_on": "2025-12-11T00:00:00Z",
+  "branch_created": "evidence/auto-fix-2025-12-11",
+  "phpcbf_executed": false,
+  "notes": "phpcbf PHAR not found (vendor\\bin\\phpcbf.phar); PHPCBF auto-fix was not applied. PHPCS, PHPStan, and PHPUnit were run and outputs saved. Commit created with current artifacts.",
+  "files": {
+    "phpcs_full_before": "tests/evidence/phpcs_full.txt",
+    "phpcs_full_after": "tests/evidence/phpcs_full_after_phpcbf.txt",
+    "phpstan_before": "tests/evidence/phpstan_report.txt",
+    "phpstan_after": "tests/evidence/phpstan_report_after_phpcbf.txt",
+    "phpunit_before": "tests/evidence/phpunit_output.txt",
+    "phpunit_after": "tests/evidence/phpunit_output_after_phpcbf.txt",
+    "git_commit_after": "tests/evidence/git_commit_after.txt",
+    "git_branch_after": "tests/evidence/git_branch_after.txt",
+    "git_status_after": "tests/evidence/git_status_after.txt"
+  },
+  "commands_run": [
+    "git checkout -b evidence/auto-fix-2025-12-11",
+    "php vendor/bin/phpcbf.phar --standard=phpcs.xml --extensions=php includes StockTrackProLite WarehouseProLite",
+    "php vendor/bin/phpcs.phar --standard=phpcs.xml --extensions=php --report=full --report-file=tests/evidence/phpcs_full_after_phpcbf.txt includes StockTrackProLite WarehouseProLite",
+    "php vendor/bin/phpstan.phar analyse --configuration=phpstan.neon.dist includes StockTrackProLite WarehouseProLite > tests/evidence/phpstan_report_after_phpcbf.txt 2>&1",
+    "php vendor/bin/phpunit.phar --configuration phpunit.xml > tests/evidence/phpunit_output_after_phpcbf.txt 2>&1",
+    "git add -A; git commit -m 'Apply PHPCBF fixes and update evidence'"
+  ]
+}
