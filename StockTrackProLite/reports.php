@@ -159,45 +159,77 @@ foreach ($monthly as $row) {
 </form>
 
 <h3>Monthly Sales (last 12 months)</h3>
-<canvas id="salesChart" height="120"></canvas>
+<div style="position: relative; height: 400px; width: 100%;">
+    <canvas id="salesChart"></canvas>
+</div>
 
-<!-- Chart.js v1.0.2 (HTTPS) — TODO: upgrade to v4.x and add SRI (see BACKLOG.md) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<!-- Chart.js v4.4.7 (local copy) -->
+<script src="assets/js/chart.umd.min.js"></script>
 <script>
-var ctx  = document.getElementById('salesChart').getContext('2d');
-var labels = <?php echo json_encode($labels); ?>;
+(function() {
+    var ctx = document.getElementById('salesChart').getContext('2d');
+    var labels = <?php echo json_encode($labels); ?>;
 
-<?php if ($selectedProductId): ?>
-// product view: show monthly quantities for the selected product
-var data = {
-    labels: labels,
-    datasets: [{
-        label: "<?php echo addslashes($selectedProductName); ?> — Qty Sold",
-        fillColor   : "#2e86de",
-        strokeColor : "#1f5fa6",
-        data        : <?php echo json_encode($monthlyProductSales); ?>
-    }]
-};
-new Chart(ctx).Bar(data, {
-    responsive: true,
-    scaleLabel: "<%=value%> units"
-});
-<?php else: ?>
-// overall revenue view (existing behaviour)
-var data = {
-    labels: labels,
-    datasets: [{
-        label: "Revenue £",
-        fillColor   : "#2e8b57",
-        strokeColor : "#256b44",
-        data        : <?php echo json_encode($revenues); ?>
-    }]
-};
-new Chart(ctx).Bar(data, {
-    responsive: true,
-    scaleLabel: "£<%=value%>"
-});
-<?php endif; ?>
+    <?php if ($selectedProductId): ?>
+    // product view: show monthly quantities for the selected product
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: <?php echo json_encode($selectedProductName . ' — Qty Sold'); ?>,
+                backgroundColor: '#2e86de',
+                borderColor: '#1f5fa6',
+                borderWidth: 1,
+                data: <?php echo json_encode($monthlyProductSales); ?>
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return value + ' units';
+                        }
+                    }
+                }
+            }
+        }
+    });
+    <?php else: ?>
+    // overall revenue view (existing behaviour)
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Revenue £',
+                backgroundColor: '#2e8b57',
+                borderColor: '#256b44',
+                borderWidth: 1,
+                data: <?php echo json_encode($revenues); ?>
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return '£' + value.toLocaleString();
+                        }
+                    }
+                }
+            }
+        }
+    });
+    <?php endif; ?>
+})();
 </script>
 
 <h3>Top 5 Customers (last 12 months)</h3>
