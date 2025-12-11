@@ -19,11 +19,7 @@ try {
   $printerStatement = Database::query(
     'SELECT DISTINCT printer_name FROM print_log ORDER BY printer_name ASC'
   );
-  if ($printerStatement instanceof PDOStatement) {
-      $printerOptions = $printerStatement->fetchAll(PDO::FETCH_COLUMN);
-  } else {
-      $printerOptions = array();
-  }
+    $printerOptions = $printerStatement->fetchAll(PDO::FETCH_COLUMN);
 } catch (Exception $printerException) {
   $printerOptions = array();
 }
