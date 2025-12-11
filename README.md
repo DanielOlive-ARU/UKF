@@ -2,7 +2,15 @@
 Team project UK Fruit
 
 ## Database configuration
-- Copy `config/database.php` to `config/database.local.php` if you need to override credentials locally (the `.local` file is git-ignored).
+- Copy `config/database.php` to `config/database.local.php` if you need to override credentials locally. Use Environment variables in production. You would setup the least privlege user with this SQL. Not performed as would lock assesors out.
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+GRANT SELECT, INSERT, UPDATE, DELETE 
+    ON stocktrackpro.* 
+    TO 'user'@'localhost';
+FLUSH PRIVILEGES;
+
 - The shared PDO helper lives in `includes/database.php`. Pages can include it with `require_once dirname(__DIR__) . '/includes/database.php';` and call `Database::query()` / `Database::transaction()`; the legacy `mysql_*` shim has been removed.
 
 ## Local runtime (XAMPP 3.3, PHP 8.2)
@@ -15,7 +23,7 @@ Team project UK Fruit
 	robocopy "$repo\includes" "C:\xampp\htdocs\includes" /MIR
 	robocopy "$repo\config" "C:\xampp\htdocs\config" /MIR
 	```
-3. Browse to `http://localhost/StockTrackProLite` or `http://localhost/WarehouseProLite` after importing `UKF.sql` into MariaDB.
+3. Browse to `http://localhost/StockTrackProLite` or `http://localhost/WarehouseProLite` after importing `stocktrackpro.sql`. HTTPS not used as no way to transfer certificate.
 
 ### Label printing prerequisites
 - Warehouse label previews now render QR codes via PHP GD. The XAMPP build must have GD enabled or no QR will appear.
@@ -32,6 +40,7 @@ Team project UK Fruit
 - A simple session-scoped throttle blocks login attempts for one minute after 5 consecutive failures. Reuse the helper in `includes/login_throttle.php` if new authentication surfaces are added.
 - CSRF tokens are issued per form via `includes/security.php`; each successful submission invalidates that token and logout clears the session cache. Always embed tokens using `Csrf::field()` when adding forms or POST endpoints.
 - Logout scripts regenerate the session ID, clear data with `session_unset()`/`session_destroy()`, and explicitly expire the session cookie. Reuse that sequence (`session_start()`, `session_regenerate_id(true)`, `session_unset()`, `session_destroy()`, expire cookie, redirect) for any future logout or impersonation flows to prevent fixation and leave no residual session data.
+- User Authentication is now by bcrypt() and cryptographically secure.
 
 ## Manual smoke tests
 Run these flows after significant changes to confirm both apps behave:
