@@ -1199,11 +1199,11 @@ CREATE TABLE `products` (
   `category_id` int(11) DEFAULT NULL,
   `price` decimal(10,2) NOT NULL,
   `stock` int(11) NOT NULL DEFAULT 0,
-  `country_iso` char(2) DEFAULT NULL,
-  `class` enum('I','II') DEFAULT NULL,
-  `pack_uom` enum('each','g') NOT NULL DEFAULT 'each',
+  `country_iso` char(2) NOT NULL,
+  `class` enum('X','I','II') NOT NULL,
+  `pack_uom` enum('each','g','varies') NOT NULL DEFAULT 'each',
   `default_pack_weight_g` int(11) DEFAULT NULL,
-  `best_before_days` int(11) DEFAULT NULL
+  `best_before_days` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --

@@ -185,7 +185,7 @@ if (isset($_GET['msg'])) {
 <?php echo $flash; ?>
 
 <p>
-    <a href="add_product.php" class="btn">+ Add Product</a>
+    <a href="product_add.php" class="btn">+ Add Product</a>
 </p>
 
 <!-- Search Form -->

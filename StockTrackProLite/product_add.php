@@ -3,11 +3,9 @@ include 'includes/db.php';
 require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-
-/* ---------- save ---------- */
+/* ---------- Handle INSERT ---------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'stock_product_edit')) {
+    if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'stock_product_add')) {
         header('Location: products.php?msg=csrf');
         exit();
     }
@@ -29,10 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Server-side validation
     $errors = array();
 
-    // Check SKU uniqueness (exclude current product)
+    // Check SKU uniqueness
     $existing = Database::fetchOne(
-        "SELECT id FROM products WHERE sku = :sku AND id != :id",
-        array(':sku' => $sku, ':id' => $id)
+        "SELECT id FROM products WHERE sku = :sku",
+        array(':sku' => $sku)
     );
     if ($existing) {
         $errors[] = 'SKU already exists. Please use a unique SKU.';
@@ -54,18 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } else {
         Database::query(
-            "UPDATE products SET
-                sku = :sku,
-                name = :name,
-                category_id = :category_id,
-                price = :price,
-                stock = :stock,
-                country_iso = :country_iso,
-                class = :class,
-                pack_uom = :pack_uom,
-                default_pack_weight_g = :default_pack_weight_g,
-                best_before_days = :best_before_days
-             WHERE id = :id",
+            "INSERT INTO products (sku, name, category_id, price, stock, country_iso, class, pack_uom, default_pack_weight_g, best_before_days)
+             VALUES (:sku, :name, :category_id, :price, :stock, :country_iso, :class, :pack_uom, :default_pack_weight_g, :best_before_days)",
             array(
                 ':sku' => $sku,
                 ':name' => $name,
@@ -76,45 +64,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':class' => $class,
                 ':pack_uom' => $pack_uom,
                 ':default_pack_weight_g' => $default_pack_weight_g,
-                ':best_before_days' => $best_before_days,
-                ':id' => $id
+                ':best_before_days' => $best_before_days
             )
         );
 
-        header('Location: products.php?msg=updated');
+        header('Location: products.php?msg=added');
         exit();
     }
 }
 
-/* load row */
-$row = Database::fetchOne("SELECT * FROM products WHERE id = :id", array(':id' => $id));
-if (!$row) { echo "<p class='notice'>Product not found.</p>"; include 'includes/footer.php'; exit; }
-
-/* categories for dropdown */
+/* ------- Load categories for drop-down ------- */
 $cats = Database::query("SELECT id, name FROM categories ORDER BY name")->fetchAll();
 ?>
-<h2>Edit Product</h2>
-
-<form action="product_edit.php?id=<?php echo $id; ?>" method="post">
-    <?php echo Csrf::field('stock_product_edit'); ?>
+<h2>Add Product</h2>
+<form action="product_add.php" method="post">
+    <?php echo Csrf::field('stock_product_add'); ?>
     <label>SKU
         <input type="text" name="sku" required
-               value="<?php echo htmlspecialchars($row['sku']); ?>"
                pattern="[A-Za-z]{2}-[A-Za-z]{3}-[0-9]{3}"
                style="text-transform:uppercase"
                title="Format: XX-XXX-### (e.g. LF-APL-001)">
     </label>
 
     <label>Name
-        <input type="text" name="name" value="<?php echo htmlspecialchars($row['name']); ?>" required>
+        <input type="text" name="name" required>
     </label>
 
     <label>Category
         <select name="category_id">
             <option value="">- none -</option>
             <?php foreach ($cats as $c): ?>
-                <option value="<?php echo $c['id']; ?>"
-                    <?php if ($c['id']==$row['category_id']) echo 'selected'; ?>>
+                <option value="<?php echo $c['id']; ?>">
                     <?php echo htmlspecialchars($c['name']); ?>
                 </option>
             <?php endforeach; ?>
@@ -123,18 +103,16 @@ $cats = Database::query("SELECT id, name FROM categories ORDER BY name")->fetchA
 
     <label>Price (£)
         <input type="text" name="price" required
-               value="<?php echo number_format($row['price'],2,'.',''); ?>"
                pattern="\d{1,2}\.\d{2}"
                title="Price must be in format X.XX or XX.XX (e.g. 1.30, 0.20, 10.10)">
     </label>
 
     <label>Stock
-        <input type="number" name="stock" value="<?php echo $row['stock']; ?>" required>
+        <input type="number" name="stock" value="0" required>
     </label>
 
     <label>Country of Origin <small>(ISO 3166-2 Country Code)</small>
         <input type="text" name="country_iso" required maxlength="2"
-               value="<?php echo htmlspecialchars($row['country_iso']); ?>"
                pattern="[A-Za-z]{2}" style="text-transform:uppercase"
                title="Enter a 2-letter ISO 3166-2 country code, e.g. GB, ES, ZA.">
     </label>
@@ -142,36 +120,34 @@ $cats = Database::query("SELECT id, name FROM categories ORDER BY name")->fetchA
     <label>Class
         <select name="class" required title="Select the produce grade classification.">
             <option value="">- select -</option>
-            <option value="X" <?php if ($row['class']==='X') echo 'selected'; ?>>X (Extra)</option>
-            <option value="I" <?php if ($row['class']==='I') echo 'selected'; ?>>I</option>
-            <option value="II" <?php if ($row['class']==='II') echo 'selected'; ?>>II</option>
+            <option value="X">X (Extra)</option>
+            <option value="I">I</option>
+            <option value="II">II</option>
         </select>
     </label>
 
     <label>Pack Unit of Measure
         <select name="pack_uom" id="pack_uom" required title="Select how this product is packaged.">
-            <option value="each" <?php if ($row['pack_uom']==='each') echo 'selected'; ?>>Each</option>
-            <option value="g" <?php if ($row['pack_uom']==='g') echo 'selected'; ?>>Grams (g)</option>
-            <option value="varies" <?php if ($row['pack_uom']==='varies') echo 'selected'; ?>>Varies</option>
+            <option value="each">Each</option>
+            <option value="g">Grams (g)</option>
+            <option value="varies">Varies</option>
         </select>
     </label>
 
     <div id="weight-field" style="display:none;">
         <label>Pack Weight (g)
             <input type="number" name="default_pack_weight_g" id="default_pack_weight_g" min="1"
-                   value="<?php echo $row['default_pack_weight_g'] !== null ? $row['default_pack_weight_g'] : ''; ?>"
                    title="Enter the pack weight in grams for pre-packaged fruit.">
         </label>
     </div>
 
     <label>Best Before Days <small>(after shipping)</small>
         <input type="number" name="best_before_days" required min="1"
-               value="<?php echo $row['best_before_days']; ?>"
                title="Enter the number of days until best-before after shipping.">
     </label>
 
     <p>
-        <input type="submit" value="Save">
+        <input type="submit" value="Add Product">
         <a href="products.php">Cancel</a>
     </p>
 </form>
