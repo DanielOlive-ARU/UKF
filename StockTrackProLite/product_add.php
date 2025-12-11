@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $cats = Database::query("SELECT id, name FROM categories ORDER BY name")->fetchAll();
 ?>
 <h2>Add Product</h2>
-<form action="add_product.php" method="post">
+<form action="product_add.php" method="post">
     <?php echo Csrf::field('stock_product_add'); ?>
     <label>SKU
         <input type="text" name="sku" required
