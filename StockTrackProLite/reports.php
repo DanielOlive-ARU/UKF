@@ -161,8 +161,8 @@ foreach ($monthly as $row) {
 <h3>Monthly Sales (last 12 months)</h3>
 <canvas id="salesChart" height="120"></canvas>
 
-<!-- ⚠ LEGACY/INSECURE CDN – Chart.js v1.0.2 (HTTP, no SRI) -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<!-- Chart.js v1.0.2 (HTTPS) — TODO: upgrade to v4.x and add SRI (see BACKLOG.md) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 <script>
 var ctx  = document.getElementById('salesChart').getContext('2d');
 var labels = <?php echo json_encode($labels); ?>;
