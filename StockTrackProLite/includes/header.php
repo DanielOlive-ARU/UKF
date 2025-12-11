@@ -22,6 +22,10 @@ require_once dirname(__DIR__) . '/../includes/security.php';
         <a href="orders.php">Orders</a>
         <a href="customers.php">Customers</a>
         <a href="reports.php">Reports</a>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+        <a href="users.php">Users</a>
+        <a href="wh_users.php">WH Users</a>
+        <?php endif; ?>
         <a href="logout.php" class="right">Logout</a>
     </nav>
 </header>
