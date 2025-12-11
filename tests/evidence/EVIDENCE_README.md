@@ -1,38 +1,56 @@
-# Evidence Bundle — UKF Modernization (captured 2025-12-11)
+﻿``markdown
+# Evidence Bundle  UKF Modernization (captured 2025-12-11)
 
-This folder contains test and static-analysis artifacts collected for assignment evidence. Use these files when preparing your submission.
+This folder contains test and static-analysis artifacts captured during the automated modernization work. Use these files to review what was run, reproduce results locally, and present submission evidence.
 
-Files included:
-- `phpcs_full.txt` — full PHPCS report (style errors/warnings)
-- `phpcs_report.txt` — PHPCS summary (if present)
-- `phpstan_report.txt` — PHPStan static analysis output
-- `phpunit_output.txt` — PHPUnit run output
-- `git_commit.txt` — current commit short SHA
-- `git_branch.txt` — current branch name
-- `git_status.txt` — working tree status (porcelain)
-- `manifest.json` — high-level metrics and commands (generated)
+Files you will find (examples from this run):
+- phpcs_full_after_phpcbf_final1.txt  phpcs_full_after_phpcbf_final6.txt  iterative PHPCS full reports after PHPCBF runs
+- phpcbf_output_YYYYMMDDHHMMSS.txt  PHPCBF stdout for loop iterations
+- phpstan_report_after_final5.txt / phpstan_report_after_finalX.txt  PHPStan outputs
+- phpunit_output_after_final5.txt / phpunit_output_after_finalX.txt  PHPUnit run outputs
+- git_commit_after_phpcbf_finalX.txt, git_branch_after_phpcbf_finalX.txt, git_status_after_phpcbf_finalX.txt  git metadata captured after runs
+- manifest.json  generated manifest summarising evidence files and commands
 
-Key commands used to produce these files (run from repo root):
+Repro steps (Windows, from repo root):
 
-```powershell
-# PHPCS full report
-C:\xampp\php\php.exe vendor\bin\phpcs.phar --standard=phpcs.xml --extensions=php includes StockTrackProLite WarehouseProLite --report=full --report-file=tests\evidence\phpcs_full.txt
+`powershell
+# Run PHPCBF (auto-fix) once
+C:\xampp\php\php.exe vendor\bin\phpcbf.phar --standard=phpcs.xml --extensions=php includes StockTrackProLite WarehouseProLite
+
+# Full PHPCS report
+C:\xampp\php\php.exe vendor\bin\phpcs.phar --standard=phpcs.xml --extensions=php includes StockTrackProLite WarehouseProLite --report=full --report-file=tests\evidence\phpcs_full_after_phpcbf_YYYYMMDDHHMMSS.txt
 
 # PHPStan
-C:\xampp\php\php.exe vendor\bin\phpstan.phar analyse --configuration=phpstan.neon.dist includes StockTrackProLite WarehouseProLite > tests\evidence\phpstan_report.txt 2>&1
+C:\xampp\php\php.exe vendor\bin\phpstan.phar analyse --configuration=phpstan.neon.dist includes StockTrackProLite WarehouseProLite > tests\evidence\phpstan_report_after_YYYYMMDDHHMMSS.txt 2>&1
 
 # PHPUnit
-C:\xampp\php\php.exe vendor\bin\phpunit.phar --configuration phpunit.xml > tests\evidence\phpunit_output.txt 2>&1
+C:\xampp\php\php.exe vendor\bin\phpunit.phar --configuration phpunit.xml > tests\evidence\phpunit_output_after_YYYYMMDDHHMMSS.txt 2>&1
 
-# Git info
-git rev-parse --short HEAD > tests\evidence\git_commit.txt
-git rev-parse --abbrev-ref HEAD > tests\evidence\git_branch.txt
-git status --porcelain > tests\evidence\git_status.txt
-```
+# Capture git metadata
+git rev-parse --short HEAD > tests\evidence\git_commit_after_YYYYMMDDHHMMSS.txt
+git rev-parse --abbrev-ref HEAD > tests\evidence\git_branch_after_YYYYMMDDHHMMSS.txt
+git status --porcelain > tests\evidence\git_status_after_YYYYMMDDHHMMSS.txt
+`
 
-Notes and recommendations:
-- Run `phpcbf` to auto-fix many PHPCS issues, then re-run PHPCS and PHPStan.
-- Address PHPStan errors next (likely logic issues) before large refactors.
-- Keep `tests/evidence/` out of commits if you prefer, or tag the repository state with `git tag evidence-<date>` and push.
+Automated loop used during evidence collection:
+
+`powershell
+# runs PHPCBF repeatedly for ~25 minutes or until no auto-fixable issues
+tests\scripts\phpcbf_loop.ps1
+`
+
+Key notes and recommendations:
+- The branch used for evidence: evidence/auto-fix-2025-12-11 (commits pushed).
+- PHPCBF can fix many style issues automatically; iterative runs reduced auto-fixable violations.
+- PHPCS still reports non-fixable issues in several large files (notably WarehouseProLite/reports.php, label_print.php, stocktake_*.php)  these require manual fixes.
+- After code edits, always re-run PHPStan and PHPUnit to catch semantic regressions.
+
+Suggested next steps to finalise evidence:
+1. Run PHPCBF until it reports no auto-fixable violations.
+2. Re-run PHPCS, PHPStan, and PHPUnit and save outputs to 	ests/evidence/ with timestamps.
+3. Manually fix remaining PHPCS issues in priority files and re-run static analysis.
+4. Update manifest.json with the final filenames and exact commands executed.
 
 Generated: 2025-12-11
+
+``
