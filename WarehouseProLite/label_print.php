@@ -134,7 +134,7 @@ $productRows = Database::query(
     $params
 )->fetchAll();
 
-function pagerUrl($pageNumber, $filters)
+function pagerUrlLabel($pageNumber, $filters)
 {
     $query = array();
     foreach ($filters as $key => $value) {
@@ -210,7 +210,7 @@ function pagerUrl($pageNumber, $filters)
   <?php if ($maxPage > 1): ?>
   <div class="pager">
     <?php if ($page > 1): ?>
-        <a href="<?php echo htmlspecialchars(pagerUrl($page - 1, $filters)); ?>">&laquo; Prev</a>
+      <a href="<?php echo htmlspecialchars(pagerUrlLabel($page - 1, $filters)); ?>">&laquo; Prev</a>
     <?php else: ?>
         <span class="disabled">&laquo; Prev</span>
     <?php endif; ?>
@@ -219,12 +219,12 @@ function pagerUrl($pageNumber, $filters)
         <?php if ($i == $page): ?>
             <span class="current"><?php echo $i; ?></span>
         <?php else: ?>
-            <a href="<?php echo htmlspecialchars(pagerUrl($i, $filters)); ?>"><?php echo $i; ?></a>
+            <a href="<?php echo htmlspecialchars(pagerUrlLabel($i, $filters)); ?>"><?php echo $i; ?></a>
         <?php endif; ?>
     <?php endfor; ?>
 
     <?php if ($page < $maxPage): ?>
-        <a href="<?php echo htmlspecialchars(pagerUrl($page + 1, $filters)); ?>">Next &raquo;</a>
+        <a href="<?php echo htmlspecialchars(pagerUrlLabel($page + 1, $filters)); ?>">Next &raquo;</a>
     <?php else: ?>
         <span class="disabled">Next &raquo;</span>
     <?php endif; ?>
@@ -232,7 +232,7 @@ function pagerUrl($pageNumber, $filters)
   <?php endif; ?>
 
   <label>Copies to Print (1-99)
-    <input type="number" name="copies" min="1" max="99" value="<?php echo htmlspecialchars($copiesInput); ?>" required>
+    <input type="number" name="copies" min="1" max="99" value="<?php echo htmlspecialchars((string)$copiesInput); ?>" required>
   </label>
 
   <p>

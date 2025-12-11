@@ -77,7 +77,7 @@ class Csrf
 
     /**
      * Validate a submitted token for the given context.
-     * @param string $value
+    * @param mixed $value
      * @param string $context
      * @return bool
      */

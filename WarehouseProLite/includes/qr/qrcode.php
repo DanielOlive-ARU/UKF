@@ -1303,7 +1303,7 @@ class QRKanji extends QRData {
     }
 
     function getLength() {
-        return floor(strlen($this->getData() ) / 2);
+        return intdiv(strlen($this->getData()), 2);
     }
 }
 

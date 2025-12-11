@@ -83,7 +83,7 @@ class Database
     /**
      * Execute a callback inside a database transaction.
      * Rolls back automatically if the callback throws.
-     * @param callable $callback
+     * @param mixed $callback
      * @return mixed
      * @throws Exception
      */

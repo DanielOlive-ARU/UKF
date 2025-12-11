@@ -15,6 +15,9 @@ if ($_SESSION['role'] !== 'admin') {
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : (isset($_POST['id']) ? (int)$_POST['id'] : 0);
 $errors = array();
+/* Ensure form variables are defined for template rendering */
+$username = '';
+$role = 'clerk';
 
 /* Handle POST */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
