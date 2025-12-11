@@ -4,6 +4,12 @@ include 'includes/db.php';
 require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
+/* Flash message for access denied */
+$flash = '';
+if (isset($_GET['msg']) && $_GET['msg'] === 'denied') {
+    $flash = '<p class="notice">Access denied. Manager privileges required.</p>';
+}
+
 function kpiCount($sql, $params = array())
 {
   $row = Database::fetchOne($sql, $params);
@@ -31,6 +37,8 @@ $recentQAFails = kpiCount(
 );
 ?>
 <h2>Dashboard</h2>
+
+<?php echo $flash; ?>
 
 <div class="cards">
   <div class="card"><span class="big"><?php echo $totalDeliveries; ?></span>Total&nbsp;Deliveries</div>

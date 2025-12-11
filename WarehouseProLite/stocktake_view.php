@@ -8,7 +8,10 @@ $notice = '';
 
 /* ---------- Final-approve handler ---------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['finalise'])) {
-  if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'wh_stocktake_finalise')) {
+  /* Manager-only action */
+  if ($_SESSION['wh_role'] !== 'manager') {
+    $notice = 'Only managers can approve stock-take variances.';
+  } elseif (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'wh_stocktake_finalise')) {
     $notice = 'Session expired. Please resubmit the form.';
   } else {
     try {
@@ -98,7 +101,8 @@ foreach ($lineRows as $r):
 </tbody>
 </table>
 
-<!-- Final-approve form -->
+<!-- Final-approve form (manager only) -->
+<?php if (isset($_SESSION['wh_role']) && $_SESSION['wh_role'] === 'manager'): ?>
 <form method="post" style="margin-top:1rem;">
   <?php echo Csrf::field('wh_stocktake_finalise'); ?>
   <input type="hidden" name="finalise" value="1">
@@ -111,6 +115,7 @@ foreach ($lineRows as $r):
     </span>
   <?php endif; ?>
 </form>
+<?php endif; ?>
 
 <p>
   <a href="stocktake_new.php">← New Stock-Take</a> |

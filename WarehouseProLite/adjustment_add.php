@@ -7,6 +7,12 @@ include 'includes/db.php';
 require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
+/* Manager-only access */
+if ($_SESSION['wh_role'] !== 'manager') {
+    header('Location: dashboard.php?msg=denied');
+    exit();
+}
+
 $notice = '';
 $supportsRefId = false;
 
