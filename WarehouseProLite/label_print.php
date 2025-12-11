@@ -1,7 +1,9 @@
 <?php
 /* label_print.php – generate barcode labels for warehouse products */
 include 'includes/db.php';
-require_once dirname(__DIR__) . '/includes/database.php';
+if (!defined('USE_DATABASE_STUB')) {
+    require_once dirname(__DIR__) . '/includes/database.php';
+}
 require_once __DIR__ . '/includes/qr_helper.php';
 include 'includes/header.php';
 
@@ -134,16 +136,18 @@ $productRows = Database::query(
     $params
 )->fetchAll();
 
-function pagerUrlLabel($pageNumber, $filters)
-{
-    $query = array();
-    foreach ($filters as $key => $value) {
-        if ($value !== '') {
-            $query[$key] = $value;
+if (!function_exists('pagerUrlLabel')) {
+    function pagerUrlLabel($pageNumber, $filters)
+    {
+        $query = array();
+        foreach ($filters as $key => $value) {
+            if ($value !== '') {
+                $query[$key] = $value;
+            }
         }
+        $query['page'] = $pageNumber;
+        return 'label_print.php?' . http_build_query($query);
     }
-    $query['page'] = $pageNumber;
-    return 'label_print.php?' . http_build_query($query);
 }
 ?>
 <div class="screen-only label-intro">

@@ -11,6 +11,13 @@ use PHPUnit\Framework\TestCase;
 
 class DatabaseTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        if (defined('USE_DATABASE_STUB') && USE_DATABASE_STUB) {
+            $this->markTestSkipped('Database stub active');
+        }
+    }
+
     /**
      * Test that connection returns a PDO instance.
      */

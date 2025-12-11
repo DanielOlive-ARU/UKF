@@ -132,4 +132,18 @@ class LoginThrottleTest extends TestCase
         $this->assertEquals(1, $_SESSION['_login_attempts']['failures']);
         $this->assertEquals(0, $_SESSION['_login_attempts']['lockout_until']);
     }
+
+    /**
+     * Already locked state should not extend lockout on additional failures.
+     */
+    public function testRegisterFailureDoesNotExtendActiveLockout(): void
+    {
+        $future = time() + 30;
+        $_SESSION['_login_attempts'] = array('failures' => 5, 'lockout_until' => $future);
+
+        LoginThrottle::registerFailure($this->testKey);
+
+        $this->assertGreaterThanOrEqual($future, $_SESSION['_login_attempts']['lockout_until']);
+        $this->assertGreaterThanOrEqual(5, $_SESSION['_login_attempts']['failures']);
+    }
 }

@@ -216,4 +216,30 @@ class CsrfTest extends TestCase
 
         $this->assertFalse(Csrf::validate('anything', 'missing_ctx'));
     }
+
+    /**
+     * Valid tokens are consumed; other tokens in the same context remain.
+     */
+    public function testValidateConsumesOnlyMatchedToken(): void
+    {
+        $tokenA = Csrf::token('multi_ctx');
+        $tokenB = Csrf::token('multi_ctx');
+
+        $this->assertTrue(Csrf::validate($tokenA, 'multi_ctx'));
+        $this->assertTrue(Csrf::validate($tokenB, 'multi_ctx'));
+    }
+
+    /**
+     * When more than MAX_TOKENS_PER_CONTEXT are created, the oldest is dropped.
+     */
+    public function testOldestTokenDroppedWhenOverLimit(): void
+    {
+        $first = Csrf::token('cap_limit');
+        for ($i = 0; $i < 25; $i++) {
+            Csrf::token('cap_limit');
+        }
+
+        $this->assertLessThanOrEqual(20, count($_SESSION['_csrf_tokens']['cap_limit']));
+        $this->assertFalse(Csrf::validate($first, 'cap_limit'));
+    }
 }

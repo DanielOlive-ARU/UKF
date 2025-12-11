@@ -16,6 +16,9 @@ class AuthenticationTest extends TestCase
 
     protected function setUp(): void
     {
+        if (defined('USE_DATABASE_STUB') && USE_DATABASE_STUB) {
+            $this->markTestSkipped('Database stub active');
+        }
         $this->testUsername = 'phpunit_test_' . uniqid();
         $this->testPassword = 'TestPassword123!';
         

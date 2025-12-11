@@ -1,4 +1,12 @@
 <?php
+// Test bypass hook to avoid redirects during automated tests.
+if (defined('TEST_BYPASS_AUTH') && TEST_BYPASS_AUTH) {
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
+    return;
+}
+
 if (session_status() !== PHP_SESSION_ACTIVE) {
 	session_start();
 }

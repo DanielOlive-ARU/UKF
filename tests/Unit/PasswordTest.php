@@ -157,4 +157,26 @@ class PasswordTest extends TestCase
         $this->assertFalse($result['valid']);
         $this->assertFalse($result['needs_rehash']);
     }
+
+    /**
+     * Malformed bcrypt-like strings are rejected cleanly.
+     */
+    public function testMalformedBcryptStringIsRejected(): void
+    {
+        $result = verifyPassword('pw', '$2y$invalidhashstring');
+
+        $this->assertFalse($result['valid']);
+        $this->assertFalse($result['needs_rehash']);
+    }
+
+    /**
+     * Null inputs should not cause notices and should fail validation.
+     */
+    public function testNullInputsAreRejected(): void
+    {
+        $result = verifyPassword(null, null);
+
+        $this->assertFalse($result['valid']);
+        $this->assertFalse($result['needs_rehash']);
+    }
 }
