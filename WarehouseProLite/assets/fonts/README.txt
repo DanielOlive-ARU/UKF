@@ -1,0 +1,1 @@
+Libre Barcode 39 webfont lives in this folder. Drop the 300px `LibreBarcode39-Regular.ttf` and the accompanying OFL license text before deploying to XAMPP so barcode labels can render without relying on client fonts. The CSS only references the TTF source now, so there is no need to ship a matching `.woff2` until we generate a high-resolution variant.

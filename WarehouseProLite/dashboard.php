@@ -41,6 +41,7 @@ $recentQAFails = kpiCount(
 
 <h3>Quick Links</h3>
 <ul>
+  <li><a href="label_print.php">Print Labels</a></li>
   <li><a href="deliveries.php">Record Deliveries</a></li>
   <li><a href="stocktake_new.php">Start Stock-Take</a></li>
   <li><a href="adjustments.php">Add Adjustment</a></li>

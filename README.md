@@ -17,6 +17,11 @@ Team project UK Fruit
 	```
 3. Browse to `http://localhost/StockTrackProLite` or `http://localhost/WarehouseProLite` after importing `UKF.sql` into MariaDB.
 
+### Label printing prerequisites
+- Warehouse label previews now render QR codes via PHP GD. The XAMPP build must have GD enabled or no QR will appear.
+- To enable it, open `<xampp install>\php\php.ini`, find the line `;extension=gd`, and remove the leading semicolon so it reads `extension=gd`, then restart Apache.
+- After GD is active, `WarehouseProLite/label_print.php` will embed QR + barcode images directly in the preview/print output. Without it, the page shows a warning banner.
+
 ## Linting & tooling
 - PHP is not on the global `PATH`. Invoke the XAMPP binary directly when linting, e.g. `"C:\xampp\php\php.exe" -l WarehouseProLite/qa_edit.php`.
 - Alternatively install a PHP-aware VS Code extension (Intelephense, PHP IntelelliSense) or project-local Composer tools (`phpcs`, `phpstan`) and document any new commands here.

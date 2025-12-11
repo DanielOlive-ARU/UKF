@@ -20,6 +20,15 @@ body {
     flex-direction: column;
 }
 
+@font-face {
+    font-family: 'LibreBarcode39';
+    src: url('fonts/LibreBarcode39-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 /* ========== Colour & Spacing Constants ========== */
 :root {
     --primary: #1e6fa1;
@@ -357,8 +366,228 @@ footer,
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
 }
 
+/* === Label page: filter + pager + controls (functional only) === */
+
+.filter-card {
+    /* structure */
+    padding: 0.8rem;
+    margin-bottom: 1.2rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: #fff;
+}
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.8rem;
+}
+
+.label-form label {
+    max-width: 220px;
+}
+
+.pager {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.pager a,
+.pager span {
+    padding: 0.35rem 0.65rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    text-decoration: none;
+}
+
+.pager .current {
+    /* keep visible, colour specifics don't matter */
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
+
+.pager .disabled {
+    opacity: 0.6;
+}
+
+/* Print action bar / controls */
+
+.print-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.print-controls {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.print-controls label {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+}
+
+.print-controls label span {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+    opacity: 0.8;
+}
+
+.print-controls select,
+.print-controls input {
+    min-width: 200px;
+}
+
+.printer-custom {
+    display: none;
+}
+
+.printer-custom.visible {
+    display: flex;
+}
+
+#print-log-message {
+    margin: 0.25rem 0 1rem;
+    font-size: 0.95rem;
+}
+
+/* === Label layout === */
+
+.label-preview {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin: 2rem 0;
+}
+
+.label-intro {
+    margin: 1.2rem 0 0.8rem;
+}
+
+.label-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.label-card {
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem 3rem;
+    background: #fff;
+    min-height: 620px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.label-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+}
+
+.label-title {
+    font-size: 2.6rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.label-meta,
+.label-details {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.25rem;
+    margin-bottom: 1.2rem;
+    gap: 0.35rem;
+    line-height: 1.35;
+}
+
+.label-meta span,
+.label-details span {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.label-term {
+    font-weight: 600;
+    min-width: 180px;
+    display: inline-block;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.label-body {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.label-info {
+    flex: 1 1 auto;
+}
+
+.label-qr {
+    flex: 0 0 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0;
+}
+
+.qr-code {
+    width: 192px;
+    height: 192px;
+    object-fit: contain;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 0.4rem;
+    background: #fff;
+}
+
+.label-barcode {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.barcode {
+    font-family: 'LibreBarcode39', monospace;
+    font-size: 72px;
+    letter-spacing: 0.12em;
+    text-align: left;
+    margin: 0;
+    width: 70%;
+    max-width: 560px;
+}
+
+.qr-warning {
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    margin: 0 0 1rem;
+    font-size: 0.95rem;
+}
+
 /* ========== Print Styles ========== */
 @media print {
+    /* keep Ray's behaviour */
     body {
         background: #fff;
     }
@@ -370,10 +599,47 @@ footer,
         display: none;
     }
 
+    /* Dan's label-specific print behaviour */
+    @page {
+        size: A4 landscape;
+        margin: 10mm;
+    }
+
+    header.topbar,
+    .filter-card,
+    .label-form,
+    .print-actions button,
+    .print-actions .btn,
+    .notice,
+    .screen-only {
+        display: none !important;
+    }
+    .pager {
+        display: none !important;
+    }
+
+
     main.container,
     .container {
         max-width: 100%;
         margin: 0;
+        padding: 0;
+    }
+
+    .label-preview {
+        box-shadow: none;
+        border: none;
+        margin: 0;
+    }
+
+    .label-card {
+        page-break-after: always;
+        box-shadow: none;
+        border: 2px solid #000; /* just to keep a visible box on paper */
+    }
+
+    .label-card:last-child {
+        page-break-after: auto;
     }
 
     a {
@@ -381,3 +647,4 @@ footer,
         text-decoration: underline;
     }
 }
+
