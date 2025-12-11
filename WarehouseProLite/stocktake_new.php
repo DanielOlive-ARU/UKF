@@ -45,22 +45,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_lines'])) {
         $notice = 'Invalid stock-take reference. Please start again.';
     } else {
         try {
-            Database::transaction(function () use ($counts, $takeId) {
+            /* Pre-fetch all products with current stock for snapshot */
+            $productRows = Database::query("SELECT id, stock FROM products")->fetchAll();
+            $stockLookup = array();
+            foreach ($productRows as $row) {
+                $stockLookup[(int)$row['id']] = (int)$row['stock'];
+            }
+
+            Database::transaction(function () use ($counts, $takeId, $stockLookup) {
                 foreach ($counts as $pid => $qty) {
                     $productId = (int)$pid;
-                    $quantity  = (int)$qty;
-                    if ($quantity === 0) {
-                        continue;   // skip blanks
+                    /* Skip only truly empty inputs; allow zero counts */
+                    if ($qty === '' || $qty === null) {
+                        continue;
                     }
+                    $quantity = (int)$qty;
+                    $theoretical = isset($stockLookup[$productId]) ? $stockLookup[$productId] : 0;
                     Database::query(
-                        "INSERT INTO stock_take_lines (stock_take_id, product_id, counted_qty)
-                         VALUES (:take_id, :product_id, :qty_insert)
-                         ON DUPLICATE KEY UPDATE counted_qty = :qty_update",
+                        "INSERT INTO stock_take_lines (stock_take_id, product_id, counted_qty, theoretical_qty)
+                         VALUES (:take_id, :product_id, :qty_insert, :theo_insert)
+                         ON DUPLICATE KEY UPDATE counted_qty = :qty_update, theoretical_qty = :theo_update",
                         array(
                             ':take_id' => $takeId,
                             ':product_id' => $productId,
                             ':qty_insert' => $quantity,
-                            ':qty_update' => $quantity
+                            ':theo_insert' => $theoretical,
+                            ':qty_update' => $quantity,
+                            ':theo_update' => $theoretical
                         )
                     );
                 }

@@ -27,9 +27,11 @@ try {
     "SELECT p.id   AS pid,
         p.sku,
         p.name,
-        p.stock              AS theoretical,
+        l.theoretical_qty    AS theoretical,
         l.counted_qty,
-        (l.counted_qty - p.stock) AS variance
+        (l.counted_qty - l.theoretical_qty) AS variance,
+        l.reconciled_at,
+        l.posted_delta
      FROM stock_take_lines l
      JOIN products p ON p.id = l.product_id
      WHERE l.stock_take_id = :take
@@ -55,18 +57,35 @@ try {
 <?php
 $outstanding = 0;
 foreach ($lineRows as $r):
-  $absVar = abs($r['variance']);
-  $rowStyle = ($absVar > 10) ? "style='background:#ffecec;color:#a00;'" : "";
-  if ($r['variance'] != 0) $outstanding++;
+  $isReconciled = !empty($r['reconciled_at']);
+  $hasVariance = ($r['variance'] != 0);
+  /* Red: has variance and not yet reconciled */
+  /* Green: reconciled (regardless of variance) */
+  if ($isReconciled) {
+    $rowStyle = "style='background:#e6ffe6;color:#060;'";
+  } elseif ($hasVariance) {
+    $rowStyle = "style='background:#ffecec;color:#a00;'";
+    $outstanding++;
+  } else {
+    $rowStyle = "";
+  }
 ?>
   <tr <?php echo $rowStyle; ?>>
     <td><?php echo $r['sku']; ?></td>
     <td><?php echo htmlspecialchars($r['name']); ?></td>
     <td><?php echo $r['theoretical']; ?></td>
     <td><?php echo $r['counted_qty']; ?></td>
-    <td><?php echo $r['variance']; ?></td>
     <td>
-      <?php if ($r['variance'] != 0): ?>
+      <?php if ($isReconciled && $r['posted_delta'] !== null): ?>
+        <?php echo $r['variance']; ?> → <strong><?php echo ($r['posted_delta'] >= 0 ? '+' : '') . $r['posted_delta']; ?></strong>
+      <?php else: ?>
+        <?php echo $r['variance']; ?>
+      <?php endif; ?>
+    </td>
+    <td>
+      <?php if ($isReconciled): ?>
+        <span style="color:#060;">✓ Reconciled</span>
+      <?php elseif ($hasVariance): ?>
         <a href="adjustment_add.php?pid=<?php echo $r['pid']; ?>&delta=<?php echo $r['variance']; ?>&ref_id=<?php echo $takeId; ?>">
           Post Adjustment
         </a>

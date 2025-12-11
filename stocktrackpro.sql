@@ -35,7 +35,9 @@ CREATE TABLE `adjustments` (
   `qty_delta` int(11) DEFAULT NULL,
   `reason` enum('damage','writeoff','correction','qa_sample') NOT NULL,
   `approved_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL
+  `created_at` datetime NOT NULL,
+  `ref_id` int(11) DEFAULT NULL,
+  KEY `idx_ref_id` (`ref_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1295,7 +1297,10 @@ CREATE TABLE `stock_take_lines` (
   `id` int(11) NOT NULL,
   `stock_take_id` int(11) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
-  `counted_qty` int(11) DEFAULT NULL
+  `counted_qty` int(11) DEFAULT NULL,
+  `theoretical_qty` int(11) DEFAULT NULL,
+  `reconciled_at` datetime DEFAULT NULL,
+  `posted_delta` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
