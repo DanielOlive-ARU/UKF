@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    $sku               = trim($_POST['sku']);
+    $sku               = strtoupper(trim($_POST['sku']));
     $name              = trim($_POST['name']);
     $cat               = ($_POST['category_id'] === '' ? null : (int)$_POST['category_id']);
     $price_raw         = trim($_POST['price']);
@@ -98,7 +98,11 @@ $cats = Database::query("SELECT id, name FROM categories ORDER BY name")->fetchA
 <form action="product_edit.php?id=<?php echo $id; ?>" method="post">
     <?php echo Csrf::field('stock_product_edit'); ?>
     <label>SKU
-        <input type="text" name="sku" value="<?php echo htmlspecialchars($row['sku']); ?>" required>
+        <input type="text" name="sku" required
+               value="<?php echo htmlspecialchars($row['sku']); ?>"
+               pattern="[A-Za-z]{2}-[A-Za-z]{3}-[0-9]{3}"
+               style="text-transform:uppercase"
+               title="Format: XX-XXX-### (e.g. LF-APL-001)">
     </label>
 
     <label>Name

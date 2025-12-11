@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    $sku               = trim($_POST['sku']);
+    $sku               = strtoupper(trim($_POST['sku']));
     $name              = trim($_POST['name']);
     $cat               = ($_POST['category_id'] === '' ? null : (int)$_POST['category_id']);
     $price_raw         = trim($_POST['price']);
@@ -77,13 +77,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $cats = Database::query("SELECT id, name FROM categories ORDER BY name")->fetchAll();
 ?>
 <h2>Add Product</h2>
-<!-- Formats SKU user input to force a specific pattern -->
 <form action="add_product.php" method="post">
     <?php echo Csrf::field('stock_product_add'); ?>
     <label>SKU
         <input type="text" name="sku" required
-               pattern="[A-Z]{2}[._%+\-][A-Z]{3}[._%+\-][0-9]{3,}"
-               title="Format: AA-XAAA-X### (uppercase, separators ., _, %, +, -)">
+               pattern="[A-Za-z]{2}-[A-Za-z]{3}-[0-9]{3}"
+               style="text-transform:uppercase"
+               title="Format: XX-XXX-### (e.g. LF-APL-001)">
     </label>
 
     <label>Name
