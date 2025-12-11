@@ -57,6 +57,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     array(':delta' => $delta, ':id' => $pid)
                 );
             }
+
+            /* Mark stock_take_line as reconciled with the posted delta */
+            if ($refId) {
+                Database::query(
+                    "UPDATE stock_take_lines 
+                     SET reconciled_at = NOW(), posted_delta = :delta 
+                     WHERE stock_take_id = :ref_id AND product_id = :pid",
+                    array(':delta' => $delta, ':ref_id' => $refId, ':pid' => $pid)
+                );
+            }
         });
 
         if ($refId) {
