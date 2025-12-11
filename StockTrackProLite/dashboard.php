@@ -4,6 +4,12 @@ include 'includes/db.php';
 require_once dirname(__DIR__) . '/includes/database.php';
 include 'includes/header.php';
 
+/* Flash message for access denied */
+$flash = '';
+if (isset($_GET['msg']) && $_GET['msg'] === 'denied') {
+    $flash = '<p class="notice">Access denied. Admin privileges required.</p>';
+}
+
 /* --- Quick KPIs --- */
 function fetchCount($sql)
 {
@@ -36,6 +42,8 @@ $recent = Database::query(
 )->fetchAll();
 ?>
 <h2>Dashboard</h2>
+
+<?php echo $flash; ?>
 
 <div class="cards">
     <div class="card kpi"><span class="big"><?php echo $totCust; ?></span>Customers</div>

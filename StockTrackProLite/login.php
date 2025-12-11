@@ -1,13 +1,15 @@
 <?php
 /**
  * Handles office login submissions.
- * Authenticates against the legacy `users` table via the PDO helper.
+ * Authenticates against the `users` table via the PDO helper.
+ * Supports opportunistic rehashing from legacy MD5 to bcrypt.
  */
 session_start();
 include 'includes/db.php';
 require_once dirname(__DIR__) . '/includes/database.php';
 require_once dirname(__DIR__) . '/includes/security.php';
 require_once dirname(__DIR__) . '/includes/login_throttle.php';
+require_once dirname(__DIR__) . '/includes/password.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'stock_login')) {
@@ -26,27 +28,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($username !== '' && $password !== '') {
         try {
+            // Fetch user by username only - verify password in PHP
             $user = Database::fetchOne(
-                "SELECT id, username, role
+                "SELECT id, username, password, role
                  FROM users
-                 WHERE username = :username AND password = :password
+                 WHERE username = :username
                  LIMIT 1",
-                array(
-                    ':username' => $username,
-                    // TODO(§Language compatibility sweep, LegacyBusinessCase.docx): Migrate to password_hash()/password_verify() during PHP 8 transition. MD5 is insecure and preserved here only for legacy compatibility.
-                    ':password' => md5($password)
-                )
+                array(':username' => $username)
             );
 
             if ($user) {
-                session_regenerate_id(true);
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user']    = $user['username'];
-                $_SESSION['role']    = $user['role'];
-                LoginThrottle::clear($throttleKey);
+                $result = verifyPassword($password, $user['password']);
 
-                header('Location: dashboard.php');
-                exit();
+                if ($result['valid']) {
+                    // Opportunistic rehash: upgrade MD5 to bcrypt on successful login
+                    if ($result['needs_rehash']) {
+                        $newHash = hashPassword($password);
+                        Database::query(
+                            "UPDATE users SET password = :password WHERE id = :id",
+                            array(':password' => $newHash, ':id' => $user['id'])
+                        );
+                    }
+
+                    session_regenerate_id(true);
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['user']    = $user['username'];
+                    $_SESSION['role']    = $user['role'];
+                    LoginThrottle::clear($throttleKey);
+
+                    header('Location: dashboard.php');
+                    exit();
+                }
             }
         } catch (Exception $exception) {
             // Optional logging hook; fall through to the error flag.

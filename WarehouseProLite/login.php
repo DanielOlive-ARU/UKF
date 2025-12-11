@@ -1,9 +1,15 @@
 <?php
+/**
+ * Handles warehouse login submissions.
+ * Authenticates against the `wh_users` table via the PDO helper.
+ * Supports opportunistic rehashing from legacy MD5 to bcrypt.
+ */
 session_start();
 include 'includes/db.php';
 require_once dirname(__DIR__) . '/includes/database.php';
 require_once dirname(__DIR__) . '/includes/security.php';
 require_once dirname(__DIR__) . '/includes/login_throttle.php';
+require_once dirname(__DIR__) . '/includes/password.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!Csrf::validate(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '', 'wh_login')) {
@@ -22,26 +28,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($username !== '' && $password !== '') {
         try {
+            // Fetch user by username only - verify password in PHP
             $row = Database::fetchOne(
-                "SELECT id, username, role
+                "SELECT id, username, password, role
                  FROM wh_users
-                 WHERE username = :username AND password = :password
+                 WHERE username = :username
                  LIMIT 1",
-                array(
-                    ':username' => $username,
-                    ':password' => md5($password) // legacy hash retained
-                )
+                array(':username' => $username)
             );
 
             if ($row) {
-                session_regenerate_id(true);
-                $_SESSION['wh_user_id'] = $row['id'];
-                $_SESSION['wh_user']    = $row['username'];
-                $_SESSION['wh_role']    = $row['role'];
-                LoginThrottle::clear($throttleKey);
+                $result = verifyPassword($password, $row['password']);
 
-                header('Location: dashboard.php');
-                exit();
+                if ($result['valid']) {
+                    // Opportunistic rehash: upgrade MD5 to bcrypt on successful login
+                    if ($result['needs_rehash']) {
+                        $newHash = hashPassword($password);
+                        Database::query(
+                            "UPDATE wh_users SET password = :password WHERE id = :id",
+                            array(':password' => $newHash, ':id' => $row['id'])
+                        );
+                    }
+
+                    session_regenerate_id(true);
+                    $_SESSION['wh_user_id'] = $row['id'];
+                    $_SESSION['wh_user']    = $row['username'];
+                    $_SESSION['wh_role']    = $row['role'];
+                    LoginThrottle::clear($throttleKey);
+
+                    header('Location: dashboard.php');
+                    exit();
+                }
             }
         } catch (Exception $exception) {
             // fall through to error flag; optional logging could go here

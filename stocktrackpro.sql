@@ -1401,7 +1401,7 @@ INSERT INTO `suppliers` (`id`, `code`, `name`, `description`, `active`) VALUES
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` char(32) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `role` enum('admin','clerk') NOT NULL DEFAULT 'clerk'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1410,7 +1410,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+(1, 'admin', '$2y$10$80jlEzEHJs6exZwsF6XDF.naIgQT2TPBx0EfEOouHdOWMMfeInQQ2', 'admin');
 
 -- --------------------------------------------------------
 
@@ -1421,7 +1421,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
 CREATE TABLE `wh_users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) DEFAULT NULL,
-  `password` char(32) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `role` enum('manager','clerk','qa') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1430,9 +1430,9 @@ CREATE TABLE `wh_users` (
 --
 
 INSERT INTO `wh_users` (`id`, `username`, `password`, `role`) VALUES
-(7, 'wh_manager', '1d0258c2440a8d19e716292b231e3190', 'manager'),
-(8, 'wh_clerk', '34776981fa47aa6cf3f2915d11bae051', 'clerk'),
-(9, 'qa_tech', '8264ee52f589f4c0191aa94f87aa1aeb', 'qa');
+(7, 'wh_manager', '$2y$10$ajLikjQK5yOWRXrRC5re9uubuW9Qa8eKx6ciNS/NN8DaiQ6hzBi9e', 'manager'),
+(8, 'wh_clerk', '$2y$10$WNOqFHr/ycQooVCXOIrxUecevKzgvxjKryL6zFk/L9fAu1T0sD3vq', 'clerk'),
+(9, 'qa_tech', '$2y$10$IamvF4oMZDt2P6yQMTlQauIOeZfz3wi2QUTrHcP7ZZPsJ9jKfCeZ6', 'qa');
 
 --
 -- Indexes for dumped tables
