@@ -1,0 +1,3274 @@
+
+FILE: ...\Users\DanoI\AppData\Local\Development\UKF\includes\database.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 1 | ERROR | [x] Header blocks must be separated by a single blank
+   |       |     line
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+ 6 | ERROR | [ ] Each class must be in a namespace of at least one
+   |       |     level (a top-level vendor name)
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\DanoI\AppData\Local\Development\UKF\includes\login_throttle.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 1 | ERROR | [x] Header blocks must be separated by a single blank
+   |       |     line
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+ 6 | ERROR | [ ] Each class must be in a namespace of at least one
+   |       |     level (a top-level vendor name)
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\Users\DanoI\AppData\Local\Development\UKF\includes\password.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 1 | ERROR | [x] Header blocks must be separated by a single blank
+   |       |     line
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\Users\DanoI\AppData\Local\Development\UKF\includes\security.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 1 | ERROR | [x] Header blocks must be separated by a single blank
+   |       |     line
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+ 6 | ERROR | [ ] Each class must be in a namespace of at least one
+   |       |     level (a top-level vendor name)
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...oI\AppData\Local\Development\UKF\StockTrackProLite\customers.php
+----------------------------------------------------------------------
+FOUND 4 ERRORS AND 2 WARNINGS AFFECTING 6 LINES
+----------------------------------------------------------------------
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+ 58 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 59 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 67 | WARNING | [ ] Line exceeds 120 characters; contains 145
+    |         |     characters
+ 70 | WARNING | [ ] Line exceeds 120 characters; contains 161
+    |         |     characters
+ 76 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 4 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...AppData\Local\Development\UKF\StockTrackProLite\customer_add.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...Data\Local\Development\UKF\StockTrackProLite\customer_delete.php
+----------------------------------------------------------------------
+FOUND 11 ERRORS AFFECTING 10 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] Header blocks must be separated by a single blank
+    |       |     line
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 18 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 19 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 20 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 21 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 22 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 23 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 24 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 25 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 26 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 11 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...ppData\Local\Development\UKF\StockTrackProLite\customer_edit.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...ppData\Local\Development\UKF\StockTrackProLite\customer_view.php
+----------------------------------------------------------------------
+FOUND 14 ERRORS AND 3 WARNINGS AFFECTING 14 LINES
+----------------------------------------------------------------------
+   1 | ERROR   | [x] End of line character is invalid; expected "\n"
+     |         |     but found "\r\n"
+  56 | ERROR   | [x] Whitespace found at end of line
+ 110 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 115 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 127 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 134 | WARNING | [ ] Line exceeds 120 characters; contains 142
+     |         |     characters
+ 141 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 145 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 150 | WARNING | [ ] Line exceeds 120 characters; contains 160
+     |         |     characters
+ 154 | WARNING | [ ] Line exceeds 120 characters; contains 160
+     |         |     characters
+ 161 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 168 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 170 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 170 | ERROR   | [x] Newline required after opening brace
+ 170 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 177 | ERROR   | [x] Closing brace must be on a line by itself
+ 177 | ERROR   | [x] Each PHP statement must be on a line by itself
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 14 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...oI\AppData\Local\Development\UKF\StockTrackProLite\dashboard.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AND 1 WARNING AFFECTING 3 LINES
+----------------------------------------------------------------------
+  1 | WARNING | [ ] A file should declare new symbols (classes,
+    |         |     functions, constants, etc.) and cause no other
+    |         |     side effects, or it should execute logic with
+    |         |     side effects, but should not do both. The first
+    |         |     symbol is defined on line 14 and the first side
+    |         |     effect is on line 3.
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+ 29 | ERROR   | [x] Multi-line function call not indented correctly;
+    |         |     expected 4 spaces but found 8
+ 60 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 3 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...ppData\Local\Development\UKF\StockTrackProLite\includes\auth.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 1 | ERROR | [x] Header blocks must be separated by a single blank
+   |       |     line
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+ 5 | ERROR | [x] Header blocks must be separated by a single blank
+   |       |     line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 3 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\AppData\Local\Development\UKF\StockTrackProLite\includes\db.php
+----------------------------------------------------------------------
+FOUND 4 ERRORS AFFECTING 3 LINES
+----------------------------------------------------------------------
+ 1 | ERROR | [x] Header blocks must be separated by a single blank
+   |       |     line
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+ 5 | ERROR | [x] Header blocks must be separated by a single blank
+   |       |     line
+ 7 | ERROR | [x] A closing tag is not permitted at the end of a PHP
+   |       |     file
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 4 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...Data\Local\Development\UKF\StockTrackProLite\includes\footer.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...Data\Local\Development\UKF\StockTrackProLite\includes\header.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 25 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+    |       |     found 0
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\DanoI\AppData\Local\Development\UKF\StockTrackProLite\index.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 37 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+    |       |     found 0
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\DanoI\AppData\Local\Development\UKF\StockTrackProLite\login.php
+----------------------------------------------------------------------
+FOUND 4 ERRORS AFFECTING 3 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] Header blocks must be separated by a single blank
+    |       |     line
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+  6 | ERROR | [x] Header blocks must be separated by a single blank
+    |       |     line
+ 75 | ERROR | [x] A closing tag is not permitted at the end of a PHP
+    |       |     file
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 4 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...DanoI\AppData\Local\Development\UKF\StockTrackProLite\logout.php
+----------------------------------------------------------------------
+FOUND 4 ERRORS AND 1 WARNING AFFECTING 3 LINES
+----------------------------------------------------------------------
+  1 | ERROR   | [x] Header blocks must be separated by a single blank
+    |         |     line
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+ 13 | ERROR   | [x] Spaces must be used to indent lines; tabs are not
+    |         |     allowed
+ 14 | ERROR   | [x] Spaces must be used to indent lines; tabs are not
+    |         |     allowed
+ 14 | WARNING | [ ] Line exceeds 120 characters; contains 126
+    |         |     characters
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 4 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...DanoI\AppData\Local\Development\UKF\StockTrackProLite\orders.php
+----------------------------------------------------------------------
+FOUND 19 ERRORS AND 14 WARNINGS AFFECTING 29 LINES
+----------------------------------------------------------------------
+   1 | ERROR   | [x] End of line character is invalid; expected "\n"
+     |         |     but found "\r\n"
+  81 | WARNING | [ ] Line exceeds 120 characters; contains 130
+     |         |     characters
+  84 | WARNING | [ ] Line exceeds 120 characters; contains 183
+     |         |     characters
+  88 | WARNING | [ ] Line exceeds 120 characters; contains 195
+     |         |     characters
+  92 | WARNING | [ ] Line exceeds 120 characters; contains 173
+     |         |     characters
+  96 | WARNING | [ ] Line exceeds 120 characters; contains 169
+     |         |     characters
+ 107 | WARNING | [ ] Line exceeds 120 characters; contains 148
+     |         |     characters
+ 122 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 124 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 125 | ERROR   | [x] Line indented incorrectly; expected 4 spaces,
+     |         |     found 6
+ 125 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 133 | ERROR   | [x] Closing brace indented incorrectly; expected 6
+     |         |     spaces, found 0
+ 133 | ERROR   | [x] Closing brace must be on a line by itself
+ 133 | ERROR   | [x] Each PHP statement must be on a line by itself
+ 137 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 146 | WARNING | [ ] Line exceeds 120 characters; contains 128
+     |         |     characters
+ 152 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 153 | ERROR   | [x] Inline control structures are not allowed
+ 153 | WARNING | [ ] Line exceeds 120 characters; contains 131
+     |         |     characters
+ 161 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 167 | WARNING | [ ] Line exceeds 120 characters; contains 121
+     |         |     characters
+ 174 | ERROR   | [x] Whitespace found at end of line
+ 181 | ERROR   | [x] Whitespace found at end of line
+ 184 | WARNING | [ ] Line exceeds 120 characters; contains 132
+     |         |     characters
+ 186 | ERROR   | [x] Whitespace found at end of line
+ 190 | ERROR   | [x] Whitespace found at end of line
+ 197 | ERROR   | [x] Whitespace found at end of line
+ 202 | WARNING | [ ] Line exceeds 120 characters; contains 127
+     |         |     characters
+ 205 | ERROR   | [x] Whitespace found at end of line
+ 210 | WARNING | [ ] Line exceeds 120 characters; contains 143
+     |         |     characters
+ 212 | ERROR   | [x] Whitespace found at end of line
+ 215 | WARNING | [ ] Line exceeds 120 characters; contains 127
+     |         |     characters
+ 219 | WARNING | [ ] Line exceeds 120 characters; contains 209
+     |         |     characters
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 19 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...oI\AppData\Local\Development\UKF\StockTrackProLite\order_new.php
+----------------------------------------------------------------------
+FOUND 60 ERRORS AFFECTING 60 LINES
+----------------------------------------------------------------------
+   1 | ERROR | [x] End of line character is invalid; expected "\n"
+     |       |     but found "\r\n"
+  18 | ERROR | [x] Line indented incorrectly; expected at least 8
+     |       |     spaces, found 4
+  19 | ERROR | [x] Line indented incorrectly; expected 8 spaces,
+     |       |     found 4
+  20 | ERROR | [x] Line indented incorrectly; expected at least 12
+     |       |     spaces, found 8
+  21 | ERROR | [x] Line indented incorrectly; expected at least 12
+     |       |     spaces, found 8
+  22 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+     |       |     found 8
+  23 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  24 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+     |       |     found 8
+  25 | ERROR | [x] Line indented incorrectly; expected 8 spaces,
+     |       |     found 4
+  28 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+     |       |     found 8
+  29 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  30 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  31 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  34 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  37 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  39 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  40 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+     |       |     found 16
+  41 | ERROR | [x] Line indented incorrectly; expected at least 24
+     |       |     spaces, found 20
+  42 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+     |       |     found 16
+  44 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+     |       |     found 16
+  45 | ERROR | [x] Line indented incorrectly; expected at least 24
+     |       |     spaces, found 20
+  46 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+     |       |     found 16
+  48 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  49 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  50 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+     |       |     found 16
+  51 | ERROR | [x] Line indented incorrectly; expected at least 24
+     |       |     spaces, found 20
+  52 | ERROR | [x] Line indented incorrectly; expected 24 spaces,
+     |       |     found 20
+  53 | ERROR | [x] Line indented incorrectly; expected at least 28
+     |       |     spaces, found 24
+  54 | ERROR | [x] Line indented incorrectly; expected 24 spaces,
+     |       |     found 20
+  56 | ERROR | [x] Line indented incorrectly; expected at least 24
+     |       |     spaces, found 20
+  57 | ERROR | [x] Line indented incorrectly; expected at least 24
+     |       |     spaces, found 20
+  58 | ERROR | [x] Line indented incorrectly; expected at least 24
+     |       |     spaces, found 20
+  62 | ERROR | [x] Line indented incorrectly; expected at least 28
+     |       |     spaces, found 20
+  64 | ERROR | [x] Line indented incorrectly; expected at least 28
+     |       |     spaces, found 20
+  65 | ERROR | [x] Line indented incorrectly; expected at least 28
+     |       |     spaces, found 24
+  66 | ERROR | [x] Line indented incorrectly; expected at least 28
+     |       |     spaces, found 24
+  67 | ERROR | [x] Line indented incorrectly; expected at least 28
+     |       |     spaces, found 20
+  68 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+     |       |     found 16
+  70 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+     |       |     found 16
+  71 | ERROR | [x] Line indented incorrectly; expected at least 24
+     |       |     spaces, found 20
+  72 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+     |       |     found 16
+  74 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  80 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  82 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  84 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+     |       |     found 16
+  85 | ERROR | [x] Line indented incorrectly; expected at least 24
+     |       |     spaces, found 20
+  94 | ERROR | [x] Line indented incorrectly; expected at least 28
+     |       |     spaces, found 20
+  95 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+     |       |     found 16
+  97 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  98 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+     |       |     found 12
+ 100 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 12
+ 101 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 12
+ 102 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+     |       |     found 8
+ 103 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+ 104 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+     |       |     found 8
+ 105 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+ 106 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+     |       |     found 8
+ 119 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+ 128 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+ 138 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 60 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...I\AppData\Local\Development\UKF\StockTrackProLite\order_view.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 39 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+    |       |     found 0
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...noI\AppData\Local\Development\UKF\StockTrackProLite\products.php
+----------------------------------------------------------------------
+FOUND 21 ERRORS AND 19 WARNINGS AFFECTING 35 LINES
+----------------------------------------------------------------------
+   1 | WARNING | [ ] A file should declare new symbols (classes,
+     |         |     functions, constants, etc.) and cause no other
+     |         |     side effects, or it should execute logic with
+     |         |     side effects, but should not do both. The first
+     |         |     symbol is defined on line 88 and the first side
+     |         |     effect is on line 2.
+   1 | ERROR   | [x] End of line character is invalid; expected "\n"
+     |         |     but found "\r\n"
+  88 | ERROR   | [x] Opening brace should be on a new line
+ 193 | WARNING | [ ] Line exceeds 120 characters; contains 130
+     |         |     characters
+ 196 | WARNING | [ ] Line exceeds 120 characters; contains 182
+     |         |     characters
+ 200 | WARNING | [ ] Line exceeds 120 characters; contains 188
+     |         |     characters
+ 204 | WARNING | [ ] Line exceeds 120 characters; contains 188
+     |         |     characters
+ 208 | WARNING | [ ] Line exceeds 120 characters; contains 196
+     |         |     characters
+ 219 | WARNING | [ ] Line exceeds 120 characters; contains 154
+     |         |     characters
+ 236 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 238 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 238 | ERROR   | [x] Newline required after opening brace
+ 238 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 241 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 242 | WARNING | [ ] Line exceeds 120 characters; contains 222
+     |         |     characters
+ 243 | WARNING | [ ] Line exceeds 120 characters; contains 210
+     |         |     characters
+ 245 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 246 | WARNING | [ ] Line exceeds 120 characters; contains 212
+     |         |     characters
+ 257 | WARNING | [ ] Line exceeds 120 characters; contains 138
+     |         |     characters
+ 260 | WARNING | [ ] Line exceeds 120 characters; contains 156
+     |         |     characters
+ 264 | ERROR   | [x] Closing brace must be on a line by itself
+ 264 | ERROR   | [x] Each PHP statement must be on a line by itself
+ 268 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 277 | WARNING | [ ] Line exceeds 120 characters; contains 128
+     |         |     characters
+ 283 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 284 | ERROR   | [x] Inline control structures are not allowed
+ 284 | WARNING | [ ] Line exceeds 120 characters; contains 131
+     |         |     characters
+ 292 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 305 | ERROR   | [x] Whitespace found at end of line
+ 312 | ERROR   | [x] Whitespace found at end of line
+ 315 | WARNING | [ ] Line exceeds 120 characters; contains 132
+     |         |     characters
+ 317 | ERROR   | [x] Whitespace found at end of line
+ 321 | ERROR   | [x] Whitespace found at end of line
+ 328 | ERROR   | [x] Whitespace found at end of line
+ 333 | WARNING | [ ] Line exceeds 120 characters; contains 127
+     |         |     characters
+ 336 | ERROR   | [x] Whitespace found at end of line
+ 341 | WARNING | [ ] Line exceeds 120 characters; contains 143
+     |         |     characters
+ 343 | ERROR   | [x] Whitespace found at end of line
+ 346 | WARNING | [ ] Line exceeds 120 characters; contains 127
+     |         |     characters
+ 350 | WARNING | [ ] Line exceeds 120 characters; contains 215
+     |         |     characters
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 21 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\AppData\Local\Development\UKF\StockTrackProLite\product_add.php
+----------------------------------------------------------------------
+FOUND 4 ERRORS AND 2 WARNINGS AFFECTING 6 LINES
+----------------------------------------------------------------------
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+ 22 | ERROR   | [x] Whitespace found at end of line
+ 23 | ERROR   | [x] Whitespace found at end of line
+ 55 | WARNING | [ ] Line exceeds 120 characters; contains 143
+    |         |     characters
+ 56 | WARNING | [ ] Line exceeds 120 characters; contains 141
+    |         |     characters
+ 96 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 4 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...pData\Local\Development\UKF\StockTrackProLite\product_delete.php
+----------------------------------------------------------------------
+FOUND 18 ERRORS AFFECTING 16 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] Header blocks must be separated by a single blank
+    |       |     line
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+  8 | ERROR | [x] The first expression of a multi-line control
+    |       |     structure must be on the line after the opening
+    |       |     parenthesis
+  9 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+  9 | ERROR | [x] The closing parenthesis of a multi-line control
+    |       |     structure must be on the line after the last
+    |       |     expression
+ 10 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 14 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 15 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 16 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 17 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 18 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 19 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 20 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 21 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 22 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 23 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 24 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 26 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 18 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...AppData\Local\Development\UKF\StockTrackProLite\product_edit.php
+----------------------------------------------------------------------
+FOUND 32 ERRORS AFFECTING 13 LINES
+----------------------------------------------------------------------
+   1 | ERROR | [x] End of line character is invalid; expected "\n"
+     |       |     but found "\r\n"
+  24 | ERROR | [x] Whitespace found at end of line
+  25 | ERROR | [x] Whitespace found at end of line
+  91 | ERROR | [x] Newline required after opening brace
+  91 | ERROR | [x] Each PHP statement must be on a line by itself
+  91 | ERROR | [x] Each PHP statement must be on a line by itself
+  91 | ERROR | [x] Closing brace must be on a line by itself
+ 115 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+ 117 | ERROR | [x] Inline control structures are not allowed
+ 117 | ERROR | [x] Expected at least 1 space before "=="; 0 found
+ 117 | ERROR | [x] Expected at least 1 space after "=="; 0 found
+ 126 | ERROR | [x] No space found after comma in argument list
+ 126 | ERROR | [x] No space found after comma in argument list
+ 126 | ERROR | [x] No space found after comma in argument list
+ 145 | ERROR | [x] Inline control structures are not allowed
+ 145 | ERROR | [x] Expected at least 1 space before "==="; 0 found
+ 145 | ERROR | [x] Expected at least 1 space after "==="; 0 found
+ 146 | ERROR | [x] Inline control structures are not allowed
+ 146 | ERROR | [x] Expected at least 1 space before "==="; 0 found
+ 146 | ERROR | [x] Expected at least 1 space after "==="; 0 found
+ 147 | ERROR | [x] Inline control structures are not allowed
+ 147 | ERROR | [x] Expected at least 1 space before "==="; 0 found
+ 147 | ERROR | [x] Expected at least 1 space after "==="; 0 found
+ 153 | ERROR | [x] Inline control structures are not allowed
+ 153 | ERROR | [x] Expected at least 1 space before "==="; 0 found
+ 153 | ERROR | [x] Expected at least 1 space after "==="; 0 found
+ 154 | ERROR | [x] Inline control structures are not allowed
+ 154 | ERROR | [x] Expected at least 1 space before "==="; 0 found
+ 154 | ERROR | [x] Expected at least 1 space after "==="; 0 found
+ 155 | ERROR | [x] Inline control structures are not allowed
+ 155 | ERROR | [x] Expected at least 1 space before "==="; 0 found
+ 155 | ERROR | [x] Expected at least 1 space after "==="; 0 found
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 32 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...AppData\Local\Development\UKF\StockTrackProLite\product_view.php
+----------------------------------------------------------------------
+FOUND 7 ERRORS AND 2 WARNINGS AFFECTING 6 LINES
+----------------------------------------------------------------------
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+ 39 | WARNING | [ ] Line exceeds 120 characters; contains 140
+    |         |     characters
+ 61 | WARNING | [ ] Line exceeds 120 characters; contains 184
+    |         |     characters
+ 66 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 68 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 68 | ERROR   | [x] Newline required after opening brace
+ 68 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 77 | ERROR   | [x] Closing brace must be on a line by itself
+ 77 | ERROR   | [x] Each PHP statement must be on a line by itself
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 7 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...anoI\AppData\Local\Development\UKF\StockTrackProLite\reports.php
+----------------------------------------------------------------------
+FOUND 42 ERRORS AND 1 WARNING AFFECTING 24 LINES
+----------------------------------------------------------------------
+   1 | ERROR   | [x] End of line character is invalid; expected "\n"
+     |         |     but found "\r\n"
+  30 | ERROR   | [x] Expected at least 1 space before "."; 0 found
+  30 | ERROR   | [x] Expected at least 1 space after "."; 0 found
+  30 | ERROR   | [x] Expected at least 1 space before "."; 0 found
+  30 | ERROR   | [x] Expected at least 1 space after "."; 0 found
+ 148 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 149 | ERROR   | [x] Inline control structures are not allowed
+ 149 | WARNING | [ ] Line exceeds 120 characters; contains 123
+     |         |     characters
+ 150 | ERROR   | [x] Expected at least 1 space before "."; 0 found
+ 150 | ERROR   | [x] Expected at least 1 space after "."; 0 found
+ 150 | ERROR   | [x] Expected at least 1 space before "."; 0 found
+ 150 | ERROR   | [x] Expected at least 1 space after "."; 0 found
+ 156 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 173 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 202 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 239 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 241 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 241 | ERROR   | [x] Newline required after opening brace
+ 241 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 247 | ERROR   | [x] Closing brace must be on a line by itself
+ 247 | ERROR   | [x] Each PHP statement must be on a line by itself
+ 255 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 257 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 257 | ERROR   | [x] Newline required after opening brace
+ 257 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 263 | ERROR   | [x] Closing brace must be on a line by itself
+ 263 | ERROR   | [x] Each PHP statement must be on a line by itself
+ 271 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 273 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 273 | ERROR   | [x] Newline required after opening brace
+ 273 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 280 | ERROR   | [x] Closing brace must be on a line by itself
+ 280 | ERROR   | [x] Each PHP statement must be on a line by itself
+ 290 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 292 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 292 | ERROR   | [x] Newline required after opening brace
+ 292 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 293 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 8
+ 298 | ERROR   | [x] Expected 1 space after FUNCTION keyword; 0 found
+ 299 | ERROR   | [x] Inline control structures are not allowed
+ 302 | ERROR   | [x] Line indented incorrectly; expected 4 spaces,
+     |         |     found 8
+ 312 | ERROR   | [x] Closing brace must be on a line by itself
+ 312 | ERROR   | [x] Each PHP statement must be on a line by itself
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 42 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\DanoI\AppData\Local\Development\UKF\StockTrackProLite\users.php
+----------------------------------------------------------------------
+FOUND 6 ERRORS AND 2 WARNINGS AFFECTING 7 LINES
+----------------------------------------------------------------------
+  1 | ERROR   | [x] Header blocks must be separated by a single blank
+    |         |     line
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+  4 | ERROR   | [x] Header blocks must be separated by a single blank
+    |         |     line
+ 64 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 65 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 71 | WARNING | [ ] Line exceeds 120 characters; contains 132
+    |         |     characters
+ 74 | WARNING | [ ] Line exceeds 120 characters; contains 156
+    |         |     characters
+ 79 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 6 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...noI\AppData\Local\Development\UKF\StockTrackProLite\user_add.php
+----------------------------------------------------------------------
+FOUND 5 ERRORS AFFECTING 4 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] Header blocks must be separated by a single blank
+    |       |     line
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+  4 | ERROR | [x] Header blocks must be separated by a single blank
+    |       |     line
+ 71 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+    |       |     found 0
+ 72 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+    |       |     found 0
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 5 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\AppData\Local\Development\UKF\StockTrackProLite\user_delete.php
+----------------------------------------------------------------------
+FOUND 5 ERRORS AFFECTING 4 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] Header blocks must be separated by a single blank
+    |       |     line
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+  4 | ERROR | [x] Header blocks must be separated by a single blank
+    |       |     line
+ 19 | ERROR | [x] The first expression of a multi-line control
+    |       |     structure must be on the line after the opening
+    |       |     parenthesis
+ 20 | ERROR | [x] The closing parenthesis of a multi-line control
+    |       |     structure must be on the line after the last
+    |       |     expression
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 5 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...oI\AppData\Local\Development\UKF\StockTrackProLite\user_edit.php
+----------------------------------------------------------------------
+FOUND 5 ERRORS AFFECTING 4 LINES
+----------------------------------------------------------------------
+   1 | ERROR | [x] Header blocks must be separated by a single blank
+     |       |     line
+   1 | ERROR | [x] End of line character is invalid; expected "\n"
+     |       |     but found "\r\n"
+   4 | ERROR | [x] Header blocks must be separated by a single blank
+     |       |     line
+ 105 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+ 106 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 5 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...noI\AppData\Local\Development\UKF\StockTrackProLite\wh_users.php
+----------------------------------------------------------------------
+FOUND 6 ERRORS AND 2 WARNINGS AFFECTING 7 LINES
+----------------------------------------------------------------------
+  1 | ERROR   | [x] Header blocks must be separated by a single blank
+    |         |     line
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+  4 | ERROR   | [x] Header blocks must be separated by a single blank
+    |         |     line
+ 64 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 65 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 71 | WARNING | [ ] Line exceeds 120 characters; contains 145
+    |         |     characters
+ 74 | WARNING | [ ] Line exceeds 120 characters; contains 156
+    |         |     characters
+ 79 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 6 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\AppData\Local\Development\UKF\StockTrackProLite\wh_user_add.php
+----------------------------------------------------------------------
+FOUND 5 ERRORS AND 1 WARNING AFFECTING 5 LINES
+----------------------------------------------------------------------
+  1 | ERROR   | [x] Header blocks must be separated by a single blank
+    |         |     line
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+  4 | ERROR   | [x] Header blocks must be separated by a single blank
+    |         |     line
+ 71 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 72 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 96 | WARNING | [ ] Line exceeds 120 characters; contains 123
+    |         |     characters
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 5 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...pData\Local\Development\UKF\StockTrackProLite\wh_user_delete.php
+----------------------------------------------------------------------
+FOUND 5 ERRORS AFFECTING 4 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] Header blocks must be separated by a single blank
+    |       |     line
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+  4 | ERROR | [x] Header blocks must be separated by a single blank
+    |       |     line
+ 19 | ERROR | [x] The first expression of a multi-line control
+    |       |     structure must be on the line after the opening
+    |       |     parenthesis
+ 20 | ERROR | [x] The closing parenthesis of a multi-line control
+    |       |     structure must be on the line after the last
+    |       |     expression
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 5 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...AppData\Local\Development\UKF\StockTrackProLite\wh_user_edit.php
+----------------------------------------------------------------------
+FOUND 5 ERRORS AFFECTING 4 LINES
+----------------------------------------------------------------------
+   1 | ERROR | [x] Header blocks must be separated by a single blank
+     |       |     line
+   1 | ERROR | [x] End of line character is invalid; expected "\n"
+     |       |     but found "\r\n"
+   4 | ERROR | [x] Header blocks must be separated by a single blank
+     |       |     line
+ 105 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+ 106 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 5 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...I\AppData\Local\Development\UKF\WarehouseProLite\adjustments.php
+----------------------------------------------------------------------
+FOUND 7 ERRORS AND 2 WARNINGS AFFECTING 6 LINES
+----------------------------------------------------------------------
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+ 48 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 50 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 50 | ERROR   | [x] Newline required after opening brace
+ 50 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 59 | WARNING | [ ] Line exceeds 120 characters; contains 144
+    |         |     characters
+ 62 | WARNING | [ ] Line exceeds 120 characters; contains 156
+    |         |     characters
+ 66 | ERROR   | [x] Closing brace must be on a line by itself
+ 66 | ERROR   | [x] Each PHP statement must be on a line by itself
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 7 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...ppData\Local\Development\UKF\WarehouseProLite\adjustment_add.php
+----------------------------------------------------------------------
+FOUND 37 ERRORS AFFECTING 34 LINES
+----------------------------------------------------------------------
+   1 | ERROR | [x] End of line character is invalid; expected "\n"
+     |       |     but found "\r\n"
+  33 | ERROR | [x] Expected at least 1 space before "="; 0 found
+  39 | ERROR | [x] Line indented incorrectly; expected at least 12
+     |       |     spaces, found 8
+  40 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  41 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  42 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  47 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  49 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+     |       |     found 12
+  50 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  51 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  52 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  53 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+     |       |     found 12
+  55 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  58 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  60 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+     |       |     found 12
+  61 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  64 | ERROR | [x] Line indented incorrectly; expected at least 24
+     |       |     spaces, found 16
+  65 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+     |       |     found 12
+  68 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+     |       |     found 12
+  69 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  74 | ERROR | [x] Line indented incorrectly; expected at least 24
+     |       |     spaces, found 16
+  75 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+     |       |     found 12
+  76 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+     |       |     found 8
+  78 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+     |       |     found 8
+  79 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  80 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+     |       |     found 8
+  81 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  82 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+     |       |     found 8
+  83 | ERROR | [x] Line indented incorrectly; expected at least 12
+     |       |     spaces, found 8
+ 102 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+ 108 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+ 110 | ERROR | [x] Inline control structures are not allowed
+ 111 | ERROR | [x] Expected at least 1 space before "."; 0 found
+ 111 | ERROR | [x] Expected at least 1 space after "."; 0 found
+ 111 | ERROR | [x] Expected at least 1 space before "."; 0 found
+ 111 | ERROR | [x] Expected at least 1 space after "."; 0 found
+ 133 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 37 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...ata\Local\Development\UKF\WarehouseProLite\adjustment_delete.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AND 1 WARNING AFFECTING 2 LINES
+----------------------------------------------------------------------
+  1 | ERROR   | [x] Header blocks must be separated by a single blank
+    |         |     line
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+ 10 | WARNING | [ ] Line exceeds 120 characters; contains 144
+    |         |     characters
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...noI\AppData\Local\Development\UKF\WarehouseProLite\dashboard.php
+----------------------------------------------------------------------
+FOUND 10 ERRORS AND 1 WARNING AFFECTING 10 LINES
+----------------------------------------------------------------------
+  1 | WARNING | [ ] A file should declare new symbols (classes,
+    |         |     functions, constants, etc.) and cause no other
+    |         |     side effects, or it should execute logic with
+    |         |     side effects, but should not do both. The first
+    |         |     symbol is defined on line 13 and the first side
+    |         |     effect is on line 3.
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+ 15 | ERROR   | [x] Line indented incorrectly; expected at least 4
+    |         |     spaces, found 2
+ 16 | ERROR   | [x] Line indented incorrectly; expected 4 spaces,
+    |         |     found 2
+ 17 | ERROR   | [x] Line indented incorrectly; expected at least 8
+    |         |     spaces, found 4
+ 18 | ERROR   | [x] Line indented incorrectly; expected 4 spaces,
+    |         |     found 2
+ 19 | ERROR   | [x] Line indented incorrectly; expected at least 4
+    |         |     spaces, found 2
+ 20 | ERROR   | [x] Line indented incorrectly; expected at least 4
+    |         |     spaces, found 2
+ 26 | ERROR   | [x] Multi-line function call not indented correctly;
+    |         |     expected 4 spaces but found 2
+ 30 | ERROR   | [x] Multi-line function call not indented correctly;
+    |         |     expected 4 spaces but found 2
+ 34 | ERROR   | [x] Multi-line function call not indented correctly;
+    |         |     expected 4 spaces but found 2
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 10 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...oI\AppData\Local\Development\UKF\WarehouseProLite\deliveries.php
+----------------------------------------------------------------------
+FOUND 18 ERRORS AND 2 WARNINGS AFFECTING 12 LINES
+----------------------------------------------------------------------
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+  9 | ERROR   | [x] Line indented incorrectly; expected at least 4
+    |         |     spaces, found 2
+  9 | ERROR   | [x] Inline control structures are not allowed
+ 10 | ERROR   | [x] Line indented incorrectly; expected at least 4
+    |         |     spaces, found 2
+ 10 | ERROR   | [x] Inline control structures are not allowed
+ 11 | ERROR   | [x] Line indented incorrectly; expected at least 4
+    |         |     spaces, found 2
+ 11 | ERROR   | [x] Inline control structures are not allowed
+ 12 | ERROR   | [x] Line indented incorrectly; expected at least 4
+    |         |     spaces, found 2
+ 12 | ERROR   | [x] Inline control structures are not allowed
+ 13 | ERROR   | [x] Line indented incorrectly; expected at least 4
+    |         |     spaces, found 2
+ 13 | ERROR   | [x] Inline control structures are not allowed
+ 20 | ERROR   | [x] Multi-line function call not indented correctly;
+    |         |     expected 4 spaces but found 2
+ 44 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 46 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 46 | ERROR   | [x] Newline required after opening brace
+ 46 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 56 | WARNING | [ ] Line exceeds 120 characters; contains 136
+    |         |     characters
+ 59 | WARNING | [ ] Line exceeds 120 characters; contains 150
+    |         |     characters
+ 63 | ERROR   | [x] Closing brace must be on a line by itself
+ 63 | ERROR   | [x] Each PHP statement must be on a line by itself
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 18 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\AppData\Local\Development\UKF\WarehouseProLite\delivery_add.php
+----------------------------------------------------------------------
+FOUND 27 ERRORS AFFECTING 24 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 19 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+    |       |     found 8
+ 20 | ERROR | [x] Line indented incorrectly; expected at least 16
+    |       |     spaces, found 12
+ 22 | ERROR | [x] Line indented incorrectly; expected at least 20
+    |       |     spaces, found 16
+ 25 | ERROR | [x] Line indented incorrectly; expected at least 20
+    |       |     spaces, found 16
+ 27 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+    |       |     found 16
+ 28 | ERROR | [x] Line indented incorrectly; expected at least 24
+    |       |     spaces, found 20
+ 29 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+    |       |     found 16
+ 31 | ERROR | [x] Line indented incorrectly; expected at least 20
+    |       |     spaces, found 16
+ 39 | ERROR | [x] Line indented incorrectly; expected at least 20
+    |       |     spaces, found 16
+ 41 | ERROR | [x] Line indented incorrectly; expected at least 20
+    |       |     spaces, found 16
+ 44 | ERROR | [x] Line indented incorrectly; expected at least 20
+    |       |     spaces, found 16
+ 45 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+    |       |     found 12
+ 47 | ERROR | [x] Line indented incorrectly; expected at least 20
+    |       |     spaces, found 12
+ 48 | ERROR | [x] Line indented incorrectly; expected at least 20
+    |       |     spaces, found 12
+ 49 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+    |       |     found 8
+ 50 | ERROR | [x] Line indented incorrectly; expected at least 16
+    |       |     spaces, found 12
+ 51 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+    |       |     found 8
+ 52 | ERROR | [x] Line indented incorrectly; expected at least 16
+    |       |     spaces, found 12
+ 53 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+    |       |     found 8
+ 68 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+    |       |     found 0
+ 77 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+    |       |     found 0
+ 79 | ERROR | [x] Expected at least 1 space before "."; 0 found
+ 79 | ERROR | [x] Expected at least 1 space after "."; 0 found
+ 79 | ERROR | [x] Expected at least 1 space before "."; 0 found
+ 79 | ERROR | [x] Expected at least 1 space after "."; 0 found
+ 92 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+    |       |     found 0
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 27 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...pData\Local\Development\UKF\WarehouseProLite\delivery_delete.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AND 1 WARNING AFFECTING 3 LINES
+----------------------------------------------------------------------
+  1 | ERROR   | [x] Header blocks must be separated by a single blank
+    |         |     line
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+ 11 | WARNING | [ ] Line exceeds 120 characters; contains 142
+    |         |     characters
+ 46 | ERROR   | [x] A closing tag is not permitted at the end of a
+    |         |     PHP file
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 3 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...AppData\Local\Development\UKF\WarehouseProLite\delivery_edit.php
+----------------------------------------------------------------------
+FOUND 31 ERRORS AFFECTING 28 LINES
+----------------------------------------------------------------------
+   1 | ERROR | [x] End of line character is invalid; expected "\n"
+     |       |     but found "\r\n"
+  20 | ERROR | [x] Line indented incorrectly; expected at least 12
+     |       |     spaces, found 8
+  21 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  24 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  26 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+     |       |     found 12
+  27 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  28 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+     |       |     found 12
+  30 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  42 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  44 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+     |       |     found 12
+  45 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  46 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+     |       |     found 16
+  47 | ERROR | [x] Line indented incorrectly; expected at least 24
+     |       |     spaces, found 20
+  50 | ERROR | [x] Line indented incorrectly; expected at least 28
+     |       |     spaces, found 20
+  51 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+     |       |     found 16
+  52 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+     |       |     found 12
+  53 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  56 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  57 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  60 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  61 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+     |       |     found 12
+  62 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+     |       |     found 8
+  64 | ERROR | [x] Line indented incorrectly; expected at least 12
+     |       |     spaces, found 8
+  65 | ERROR | [x] Line indented incorrectly; expected at least 12
+     |       |     spaces, found 8
+  93 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+ 101 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+ 103 | ERROR | [x] Inline control structures are not allowed
+ 104 | ERROR | [x] Expected at least 1 space before "."; 0 found
+ 104 | ERROR | [x] Expected at least 1 space after "."; 0 found
+ 104 | ERROR | [x] Expected at least 1 space before "."; 0 found
+ 104 | ERROR | [x] Expected at least 1 space after "."; 0 found
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 31 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...AppData\Local\Development\UKF\WarehouseProLite\includes\auth.php
+----------------------------------------------------------------------
+FOUND 7 ERRORS AFFECTING 5 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] Header blocks must be separated by a single blank
+    |       |     line
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+  3 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+  7 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+  8 | ERROR | [x] Spaces must be used to indent lines; tabs are not
+    |       |     allowed
+ 10 | ERROR | [x] Expected 1 newline at end of file; 0 found
+ 10 | ERROR | [x] A closing tag is not permitted at the end of a PHP
+    |       |     file
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 7 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...I\AppData\Local\Development\UKF\WarehouseProLite\includes\db.php
+----------------------------------------------------------------------
+FOUND 4 ERRORS AFFECTING 3 LINES
+----------------------------------------------------------------------
+ 1 | ERROR | [x] Header blocks must be separated by a single blank
+   |       |     line
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+ 5 | ERROR | [x] Header blocks must be separated by a single blank
+   |       |     line
+ 7 | ERROR | [x] A closing tag is not permitted at the end of a PHP
+   |       |     file
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 4 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...pData\Local\Development\UKF\WarehouseProLite\includes\footer.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 1 | WARNING | No PHP code was found in this file and short open tags
+   |         | are not allowed by this install of PHP. This file may
+   |         | be using short open tags but PHP does not allow them.
+----------------------------------------------------------------------
+
+
+FILE: ...pData\Local\Development\UKF\WarehouseProLite\includes\header.php
+----------------------------------------------------------------------
+FOUND 30 ERRORS AND 8 WARNINGS AFFECTING 10 LINES
+----------------------------------------------------------------------
+  1 | ERROR   | [x] Header blocks must be separated by a single blank
+    |         |     line
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+  4 | ERROR   | [x] Header blocks must be separated by a single blank
+    |         |     line
+ 21 | ERROR   | [x] Expected at least 1 space before "=="; 0 found
+ 21 | ERROR   | [x] Expected at least 1 space after "=="; 0 found
+ 21 | ERROR   | [x] Expected at least 1 space after ":"; 0 found
+ 21 | WARNING | [ ] Line exceeds 120 characters; contains 130
+    |         |     characters
+ 22 | ERROR   | [x] Expected at least 1 space before "=="; 0 found
+ 22 | ERROR   | [x] Expected at least 1 space after "=="; 0 found
+ 22 | ERROR   | [x] Expected at least 1 space after ":"; 0 found
+ 22 | WARNING | [ ] Line exceeds 120 characters; contains 131
+    |         |     characters
+ 23 | ERROR   | [x] Expected at least 1 space before "=="; 0 found
+ 23 | ERROR   | [x] Expected at least 1 space after "=="; 0 found
+ 23 | ERROR   | [x] Expected at least 1 space after ":"; 0 found
+ 23 | WARNING | [ ] Line exceeds 120 characters; contains 135
+    |         |     characters
+ 24 | ERROR   | [x] Expected at least 1 space before "=="; 0 found
+ 24 | ERROR   | [x] Expected at least 1 space after "=="; 0 found
+ 24 | ERROR   | [x] Expected at least 1 space before "?"; 0 found
+ 24 | ERROR   | [x] Expected at least 1 space after "?"; 0 found
+ 24 | ERROR   | [x] Expected at least 1 space before ":"; 0 found
+ 24 | ERROR   | [x] Expected at least 1 space after ":"; 0 found
+ 24 | WARNING | [ ] Line exceeds 120 characters; contains 128
+    |         |     characters
+ 25 | ERROR   | [x] Expected at least 1 space before "=="; 0 found
+ 25 | ERROR   | [x] Expected at least 1 space after "=="; 0 found
+ 25 | ERROR   | [x] Expected at least 1 space after ":"; 0 found
+ 25 | WARNING | [ ] Line exceeds 120 characters; contains 132
+    |         |     characters
+ 26 | ERROR   | [x] Expected at least 1 space before "=="; 0 found
+ 26 | ERROR   | [x] Expected at least 1 space after "=="; 0 found
+ 26 | ERROR   | [x] Expected at least 1 space after ":"; 0 found
+ 26 | WARNING | [ ] Line exceeds 120 characters; contains 131
+    |         |     characters
+ 27 | ERROR   | [x] Expected at least 1 space before "=="; 0 found
+ 27 | ERROR   | [x] Expected at least 1 space after "=="; 0 found
+ 27 | ERROR   | [x] Expected at least 1 space after ":"; 0 found
+ 27 | WARNING | [ ] Line exceeds 120 characters; contains 127
+    |         |     characters
+ 28 | ERROR   | [x] Expected at least 1 space before "=="; 0 found
+ 28 | ERROR   | [x] Expected at least 1 space after "=="; 0 found
+ 28 | ERROR   | [x] Expected at least 1 space after ":"; 0 found
+ 28 | WARNING | [ ] Line exceeds 120 characters; contains 128
+    |         |     characters
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 30 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...Local\Development\UKF\WarehouseProLite\includes\qr\phpqrcode.php
+----------------------------------------------------------------------
+FOUND 11 ERRORS AND 1 WARNING AFFECTING 10 LINES
+----------------------------------------------------------------------
+  1 | WARNING | [ ] A file should declare new symbols (classes,
+    |         |     functions, constants, etc.) and cause no other
+    |         |     side effects, or it should execute logic with
+    |         |     side effects, but should not do both. The first
+    |         |     symbol is defined on line 10 and the first side
+    |         |     effect is on line 32.
+  1 | ERROR   | [x] Header blocks must be separated by a single blank
+    |         |     line
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+ 32 | ERROR   | [x] Inline control structures are not allowed
+ 33 | ERROR   | [x] Inline control structures are not allowed
+ 34 | ERROR   | [x] Inline control structures are not allowed
+ 35 | ERROR   | [x] Inline control structures are not allowed
+ 38 | ERROR   | [x] Inline control structures are not allowed
+ 39 | ERROR   | [x] Inline control structures are not allowed
+ 40 | ERROR   | [x] Inline control structures are not allowed
+ 41 | ERROR   | [x] Inline control structures are not allowed
+ 43 | ERROR   | [x] Inline control structures are not allowed
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 11 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...ta\Local\Development\UKF\WarehouseProLite\includes\qr\qrcode.php
+----------------------------------------------------------------------
+FOUND 610 ERRORS AND 21 WARNINGS AFFECTING 306 LINES
+----------------------------------------------------------------------
+    1 | WARNING | [ ] A file should declare new symbols (classes,
+      |         |     functions, constants, etc.) and cause no other
+      |         |     side effects, or it should execute logic with
+      |         |     side effects, but should not do both. The first
+      |         |     symbol is defined on line 23 and the first side
+      |         |     effect is on line 1529.
+    1 | ERROR   | [x] End of line character is invalid; expected "\n"
+      |         |     but found "\r\n"
+   26 | ERROR   | [ ] Each class must be in a namespace of at least
+      |         |     one level (a top-level vendor name)
+   26 | ERROR   | [x] Opening brace must not be followed by a blank
+      |         |     line
+   26 | ERROR   | [x] Opening brace of a class must be on the line
+      |         |     after the definition
+   28 | ERROR   | [ ] The var keyword must not be used to declare a
+      |         |     property
+   28 | ERROR   | [ ] Visibility must be declared on property
+      |         |     "$typeNumber"
+   30 | ERROR   | [ ] The var keyword must not be used to declare a
+      |         |     property
+   30 | ERROR   | [ ] Visibility must be declared on property
+      |         |     "$modules"
+   32 | ERROR   | [ ] The var keyword must not be used to declare a
+      |         |     property
+   32 | ERROR   | [ ] Visibility must be declared on property
+      |         |     "$moduleCount"
+   34 | ERROR   | [ ] The var keyword must not be used to declare a
+      |         |     property
+   34 | ERROR   | [ ] Visibility must be declared on property
+      |         |     "$errorCorrectLevel"
+   36 | ERROR   | [ ] The var keyword must not be used to declare a
+      |         |     property
+   36 | ERROR   | [ ] Visibility must be declared on property
+      |         |     "$qrDataList"
+   38 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "__construct"
+   38 | ERROR   | [x] Opening brace should be on a new line
+   44 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getTypeNumber"
+   44 | ERROR   | [x] Opening brace should be on a new line
+   48 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "setTypeNumber"
+   48 | ERROR   | [x] Opening brace should be on a new line
+   52 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getErrorCorrectLevel"
+   52 | ERROR   | [x] Opening brace should be on a new line
+   56 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "setErrorCorrectLevel"
+   56 | ERROR   | [x] Opening brace should be on a new line
+   60 | ERROR   | [ ] Visibility must be declared on method "addData"
+   60 | ERROR   | [x] Opening brace should be on a new line
+   66 | ERROR   | [x] Expected 1 space(s) after SWITCH keyword; 0
+      |         |     found
+   66 | ERROR   | [x] Blank line found at start of control structure
+   68 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+   68 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+   69 | ERROR   | [x] Line indented incorrectly; expected at least 16
+      |         |     spaces, found 12
+   69 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+   72 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+   72 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+   73 | ERROR   | [x] Line indented incorrectly; expected at least 16
+      |         |     spaces, found 12
+   73 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+   76 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+   76 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+   77 | ERROR   | [x] Line indented incorrectly; expected at least 16
+      |         |     spaces, found 12
+   77 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+   80 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+   80 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+   81 | ERROR   | [x] Line indented incorrectly; expected at least 16
+      |         |     spaces, found 12
+   81 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+   84 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+   84 | ERROR   | [x] There must be no space before the colon in a
+      |         |     DEFAULT statement
+   85 | ERROR   | [x] Line indented incorrectly; expected at least 16
+      |         |     spaces, found 12
+   89 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "clearData"
+   89 | ERROR   | [x] Opening brace should be on a new line
+   93 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "addDataImpl"
+   93 | ERROR   | [x] Opening brace should be on a new line
+   97 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getDataCount"
+   97 | ERROR   | [x] Opening brace should be on a new line
+  101 | ERROR   | [ ] Visibility must be declared on method "getData"
+  101 | ERROR   | [x] Opening brace should be on a new line
+  105 | ERROR   | [ ] Visibility must be declared on method "isDark"
+  105 | ERROR   | [x] Opening brace should be on a new line
+  113 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getModuleCount"
+  113 | ERROR   | [x] Opening brace should be on a new line
+  119 | ERROR   | [ ] Visibility must be declared on method "hex2rgb"
+  119 | ERROR   | [x] Opening brace should be on a new line
+  127 | ERROR   | [ ] Visibility must be declared on method "make"
+  127 | ERROR   | [x] Opening brace should be on a new line
+  128 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+  131 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getBestMaskPattern"
+  131 | ERROR   | [x] Opening brace should be on a new line
+  136 | ERROR   | [x] Blank line found at start of control structure
+  151 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "createNullArray"
+  151 | ERROR   | [x] Opening brace should be on a new line
+  159 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "makeImpl"
+  159 | ERROR   | [x] Opening brace should be on a new line
+  188 | ERROR   | [ ] Visibility must be declared on method "mapData"
+  188 | ERROR   | [x] Opening brace should be on a new line
+  195 | ERROR   | [x] Blank line found at start of control structure
+  197 | ERROR   | [x] Inline control structures are not allowed
+  199 | ERROR   | [x] Blank line found at start of control structure
+  201 | ERROR   | [x] Blank line found at start of control structure
+  203 | ERROR   | [x] Blank line found at start of control structure
+  207 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  236 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "setupPositionAdjustPattern"
+  236 | ERROR   | [x] Opening brace should be on a new line
+  240 | ERROR   | [x] Blank line found at start of control structure
+  242 | ERROR   | [x] Blank line found at start of control structure
+  251 | ERROR   | [x] Blank line found at start of control structure
+  262 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "setupPositionProbePattern"
+  262 | ERROR   | [x] Opening brace should be on a new line
+  264 | ERROR   | [x] Blank line found at start of control structure
+  266 | ERROR   | [x] Blank line found at start of control structure
+  268 | ERROR   | [x] The first expression of a multi-line control
+      |         |     structure must be on the line after the opening
+      |         |     parenthesis
+  269 | ERROR   | [x] The closing parenthesis of a multi-line control
+      |         |     structure must be on the line after the last
+      |         |     expression
+  281 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "setupTimingPattern"
+  281 | ERROR   | [x] Opening brace should be on a new line
+  283 | ERROR   | [x] Blank line found at start of control structure
+  294 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "setupTypeNumber"
+  294 | ERROR   | [x] Opening brace should be on a new line
+  305 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "setupTypeInfo"
+  305 | ERROR   | [x] Opening brace should be on a new line
+  310 | ERROR   | [x] Blank line found at start of control structure
+  316 | WARNING | [x] Usage of ELSE IF is discouraged; use ELSEIF
+      |         |     instead
+  324 | WARNING | [x] Usage of ELSE IF is discouraged; use ELSEIF
+      |         |     instead
+  334 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "createData"
+  334 | ERROR   | [x] Opening brace should be on a new line
+  344 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+  372 | ERROR   | [x] Blank line found at start of control structure
+  394 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "createBytes"
+  394 | ERROR   | [x] Opening brace should be on a new line
+  401 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+  402 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+  405 | ERROR   | [x] Blank line found at start of control structure
+  430 | ERROR   | [x] Expected at least 1 space before "?"; 0 found
+  445 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  453 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  462 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getMinimumQRCode"
+  462 | ERROR   | [x] Opening brace should be on a new line
+  474 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  488 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "createImage"
+  488 | ERROR   | [x] Opening brace should be on a new line
+  491 | ERROR   | [x] Inline control structures are not allowed
+  492 | ERROR   | [x] Inline control structures are not allowed
+  493 | ERROR   | [x] Inline control structures are not allowed
+  494 | ERROR   | [x] Inline control structures are not allowed
+  501 | ERROR   | [x] Inline control structures are not allowed
+  502 | ERROR   | [x] Inline control structures are not allowed
+  511 | ERROR   | [x] Inline control structures are not allowed
+  518 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  518 | ERROR   | [x] Blank line found at start of control structure
+  521 | ERROR   | [x] Opening parenthesis of a multi-line function
+      |         |     call must be the last content on the line
+  526 | ERROR   | [x] Multi-line function call not indented
+      |         |     correctly; expected 20 spaces but found 24
+  526 | ERROR   | [x] Closing parenthesis of a multi-line function
+      |         |     call must be on a line by itself
+  534 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "printHTML"
+  534 | ERROR   | [x] Opening brace should be on a new line
+  540 | ERROR   | [x] Blank line found at start of control structure
+  545 | ERROR   | [x] Expected at least 1 space before "?"; 0 found
+  559 | WARNING | [ ] Line exceeds 120 characters; contains 151
+      |         |     characters
+  564 | WARNING | [ ] Line exceeds 120 characters; contains 179
+      |         |     characters
+  577 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+  580 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+  583 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+  585 | ERROR   | [ ] Each class must be in a file by itself
+  585 | ERROR   | [ ] Each class must be in a namespace of at least
+      |         |     one level (a top-level vendor name)
+  585 | ERROR   | [x] Opening brace must not be followed by a blank
+      |         |     line
+  585 | ERROR   | [x] Opening brace of a class must be on the line
+      |         |     after the definition
+  587 | ERROR   | [ ] Visibility must be declared on property
+      |         |     "$QR_MAX_LENGTH"
+  588 | WARNING | [ ] Line exceeds 120 characters; contains 121
+      |         |     characters
+  589 | WARNING | [ ] Line exceeds 120 characters; contains 121
+      |         |     characters
+  590 | WARNING | [ ] Line exceeds 120 characters; contains 122
+      |         |     characters
+  591 | WARNING | [ ] Line exceeds 120 characters; contains 122
+      |         |     characters
+  592 | WARNING | [ ] Line exceeds 120 characters; contains 122
+      |         |     characters
+  593 | WARNING | [ ] Line exceeds 120 characters; contains 122
+      |         |     characters
+  594 | WARNING | [ ] Line exceeds 120 characters; contains 122
+      |         |     characters
+  595 | WARNING | [ ] Line exceeds 120 characters; contains 122
+      |         |     characters
+  596 | WARNING | [ ] Line exceeds 120 characters; contains 122
+      |         |     characters
+  597 | WARNING | [ ] Line exceeds 120 characters; contains 121
+      |         |     characters
+  600 | ERROR   | [ ] Visibility must be declared on property
+      |         |     "$QR_PATTERN_POSITION_TABLE"
+  643 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getPatternPosition"
+  643 | ERROR   | [x] Opening brace should be on a new line
+  647 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getMaxLength"
+  647 | ERROR   | [x] Opening brace should be on a new line
+  653 | ERROR   | [x] Expected 1 space(s) after SWITCH keyword; 0
+      |         |     found
+  654 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  654 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  654 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  654 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  654 | ERROR   | [x] Closing brace must be on a line by itself
+  654 | ERROR   | [x] Each PHP statement must be on a line by itself
+  655 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  655 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  655 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  655 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  655 | ERROR   | [x] Closing brace must be on a line by itself
+  655 | ERROR   | [x] Each PHP statement must be on a line by itself
+  656 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  656 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  656 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  656 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  656 | ERROR   | [x] Closing brace must be on a line by itself
+  656 | ERROR   | [x] Each PHP statement must be on a line by itself
+  657 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  657 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  657 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  657 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  657 | ERROR   | [x] Closing brace must be on a line by itself
+  657 | ERROR   | [x] Each PHP statement must be on a line by itself
+  658 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  658 | ERROR   | [x] There must be no space before the colon in a
+      |         |     DEFAULT statement
+  659 | ERROR   | [x] Line indented incorrectly; expected at least 16
+      |         |     spaces, found 12
+  662 | ERROR   | [x] Expected 1 space(s) after SWITCH keyword; 0
+      |         |     found
+  663 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  663 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  663 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  663 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  663 | ERROR   | [x] Closing brace must be on a line by itself
+  663 | ERROR   | [x] Each PHP statement must be on a line by itself
+  664 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  664 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  664 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  664 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  664 | ERROR   | [x] Closing brace must be on a line by itself
+  664 | ERROR   | [x] Each PHP statement must be on a line by itself
+  665 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  665 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  665 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  665 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  665 | ERROR   | [x] Closing brace must be on a line by itself
+  665 | ERROR   | [x] Each PHP statement must be on a line by itself
+  666 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  666 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  666 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  666 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  666 | ERROR   | [x] Closing brace must be on a line by itself
+  666 | ERROR   | [x] Each PHP statement must be on a line by itself
+  667 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  667 | ERROR   | [x] There must be no space before the colon in a
+      |         |     DEFAULT statement
+  668 | ERROR   | [x] Line indented incorrectly; expected at least 16
+      |         |     spaces, found 12
+  674 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getErrorCorrectPolynomial"
+  674 | ERROR   | [x] Opening brace should be on a new line
+  676 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+  679 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+  679 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+  685 | ERROR   | [ ] Visibility must be declared on method "getMask"
+  685 | ERROR   | [x] Opening brace should be on a new line
+  687 | ERROR   | [x] Blank line found at start of control structure
+  689 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  689 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  689 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  689 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  689 | ERROR   | [x] Closing brace must be on a line by itself
+  690 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  690 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  690 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  690 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  690 | ERROR   | [x] Closing brace must be on a line by itself
+  691 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  691 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  691 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  691 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  691 | ERROR   | [x] Closing brace must be on a line by itself
+  692 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  692 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  692 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  692 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  692 | ERROR   | [x] Closing brace must be on a line by itself
+  693 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  693 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  693 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  693 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  693 | ERROR   | [x] Closing brace must be on a line by itself
+  694 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  694 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  694 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  694 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  694 | ERROR   | [x] Closing brace must be on a line by itself
+  695 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  695 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  695 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  695 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  695 | ERROR   | [x] Closing brace must be on a line by itself
+  696 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  696 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+  696 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+  696 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+  696 | ERROR   | [x] Closing brace must be on a line by itself
+  698 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+  698 | ERROR   | [x] There must be no space before the colon in a
+      |         |     DEFAULT statement
+  699 | ERROR   | [x] Line indented incorrectly; expected at least 16
+      |         |     spaces, found 12
+  708 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getLostPoint"
+  708 | ERROR   | [x] Opening brace should be on a new line
+  717 | ERROR   | [x] Blank line found at start of control structure
+  719 | ERROR   | [x] Blank line found at start of control structure
+  724 | ERROR   | [x] Blank line found at start of control structure
+  730 | ERROR   | [x] Blank line found at start of control structure
+  736 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  753 | ERROR   | [x] Inline control structures are not allowed
+  753 | ERROR   | [x] Expected 1 space after comma in argument list;
+      |         |     5 found
+  753 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 4
+      |         |     found
+  753 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  754 | ERROR   | [x] Inline control structures are not allowed
+  754 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 4
+      |         |     found
+  754 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  755 | ERROR   | [x] Inline control structures are not allowed
+  755 | ERROR   | [x] Expected 1 space after comma in argument list;
+      |         |     5 found
+  755 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  756 | ERROR   | [x] Inline control structures are not allowed
+  756 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  767 | ERROR   | [x] The first expression of a multi-line control
+      |         |     structure must be on the line after the opening
+      |         |     parenthesis
+  773 | ERROR   | [x] The closing parenthesis of a multi-line control
+      |         |     structure must be on the line after the last
+      |         |     expression
+  781 | ERROR   | [x] The first expression of a multi-line control
+      |         |     structure must be on the line after the opening
+      |         |     parenthesis
+  787 | ERROR   | [x] The closing parenthesis of a multi-line control
+      |         |     structure must be on the line after the last
+      |         |     expression
+  799 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  811 | ERROR   | [ ] Visibility must be declared on method "getMode"
+  811 | ERROR   | [x] Opening brace should be on a new line
+  812 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  813 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  817 | WARNING | [x] Usage of ELSE IF is discouraged; use ELSEIF
+      |         |     instead
+  817 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  824 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "isNumber"
+  824 | ERROR   | [x] Opening brace should be on a new line
+  827 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  834 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "isAlphaNum"
+  834 | ERROR   | [x] Opening brace should be on a new line
+  837 | ERROR   | [x] The first expression of a multi-line control
+      |         |     structure must be on the line after the opening
+      |         |     parenthesis
+  839 | ERROR   | [x] The closing parenthesis of a multi-line control
+      |         |     structure must be on the line after the last
+      |         |     expression
+  846 | ERROR   | [ ] Visibility must be declared on method "isKanji"
+  846 | ERROR   | [x] Opening brace should be on a new line
+  852 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  852 | ERROR   | [x] Blank line found at start of control structure
+  856 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  863 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+  870 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "toCharCode"
+  870 | ERROR   | [x] Opening brace should be on a new line
+  874 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getBCHTypeInfo"
+  874 | ERROR   | [x] Opening brace should be on a new line
+  882 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getBCHTypeNumber"
+  882 | ERROR   | [x] Opening brace should be on a new line
+  890 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getBCHDigit"
+  890 | ERROR   | [x] Opening brace should be on a new line
+  907 | ERROR   | [ ] Each class must be in a file by itself
+  907 | ERROR   | [ ] Each class must be in a namespace of at least
+      |         |     one level (a top-level vendor name)
+  907 | ERROR   | [x] Opening brace must not be followed by a blank
+      |         |     line
+  907 | ERROR   | [x] Opening brace of a class must be on the line
+      |         |     after the definition
+  909 | ERROR   | [ ] The var keyword must not be used to declare a
+      |         |     property
+  909 | ERROR   | [ ] Visibility must be declared on property
+      |         |     "$totalCount"
+  910 | ERROR   | [ ] The var keyword must not be used to declare a
+      |         |     property
+  910 | ERROR   | [ ] Visibility must be declared on property
+      |         |     "$dataCount"
+  912 | ERROR   | [ ] Visibility must be declared on property
+      |         |     "$QR_RS_BLOCK_TABLE"
+ 1161 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "__construct"
+ 1161 | ERROR   | [x] Opening brace should be on a new line
+ 1166 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getDataCount"
+ 1166 | ERROR   | [x] Opening brace should be on a new line
+ 1170 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getTotalCount"
+ 1170 | ERROR   | [x] Opening brace should be on a new line
+ 1174 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getRSBlocks"
+ 1174 | ERROR   | [x] Opening brace should be on a new line
+ 1181 | ERROR   | [x] Blank line found at start of control structure
+ 1195 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getRsBlockTable"
+ 1195 | ERROR   | [x] Opening brace should be on a new line
+ 1197 | ERROR   | [x] Expected 1 space(s) after SWITCH keyword; 0
+      |         |     found
+ 1198 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+ 1198 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1200 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+ 1200 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1202 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+ 1202 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1204 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+ 1204 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1206 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+      |         |     found 8
+ 1206 | ERROR   | [x] There must be no space before the colon in a
+      |         |     DEFAULT statement
+ 1207 | ERROR   | [x] Line indented incorrectly; expected at least 16
+      |         |     spaces, found 12
+ 1216 | ERROR   | [ ] Each class must be in a file by itself
+ 1216 | ERROR   | [ ] Each class must be in a namespace of at least
+      |         |     one level (a top-level vendor name)
+ 1216 | ERROR   | [x] Opening brace must not be followed by a blank
+      |         |     line
+ 1216 | ERROR   | [x] Opening brace of a class must be on the line
+      |         |     after the definition
+ 1218 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "__construct"
+ 1218 | ERROR   | [x] Opening brace should be on a new line
+ 1222 | ERROR   | [ ] Visibility must be declared on method "write"
+ 1222 | ERROR   | [x] Opening brace should be on a new line
+ 1228 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+ 1229 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+ 1234 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+ 1234 | ERROR   | [x] Blank line found at start of control structure
+ 1237 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+ 1239 | WARNING | [x] Usage of ELSE IF is discouraged; use ELSEIF
+      |         |     instead
+ 1240 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+ 1246 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "parseInt"
+ 1246 | ERROR   | [x] Opening brace should be on a new line
+ 1250 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+ 1255 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "parseIntAt"
+ 1255 | ERROR   | [x] Opening brace should be on a new line
+ 1257 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+ 1269 | ERROR   | [ ] Each class must be in a file by itself
+ 1269 | ERROR   | [ ] Each class must be in a namespace of at least
+      |         |     one level (a top-level vendor name)
+ 1269 | ERROR   | [x] Opening brace must not be followed by a blank
+      |         |     line
+ 1269 | ERROR   | [x] Opening brace of a class must be on the line
+      |         |     after the definition
+ 1271 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "__construct"
+ 1271 | ERROR   | [x] Opening brace should be on a new line
+ 1275 | ERROR   | [ ] Visibility must be declared on method "write"
+ 1275 | ERROR   | [x] Opening brace should be on a new line
+ 1281 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+ 1281 | ERROR   | [x] Blank line found at start of control structure
+ 1287 | WARNING | [x] Usage of ELSE IF is discouraged; use ELSEIF
+      |         |     instead
+ 1300 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+ 1305 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getLength"
+ 1305 | ERROR   | [x] Opening brace should be on a new line
+ 1314 | ERROR   | [ ] Each class must be in a file by itself
+ 1314 | ERROR   | [ ] Each class must be in a namespace of at least
+      |         |     one level (a top-level vendor name)
+ 1314 | ERROR   | [x] Opening brace must not be followed by a blank
+      |         |     line
+ 1314 | ERROR   | [x] Opening brace of a class must be on the line
+      |         |     after the definition
+ 1316 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "__construct"
+ 1316 | ERROR   | [x] Opening brace should be on a new line
+ 1320 | ERROR   | [ ] Visibility must be declared on method "write"
+ 1320 | ERROR   | [x] Opening brace should be on a new line
+ 1325 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+ 1326 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+ 1327 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+ 1331 | ERROR   | [x] Expected 0 spaces before closing bracket; 1
+      |         |     found
+ 1336 | ERROR   | [ ] Visibility must be declared on method "getCode"
+ 1336 | ERROR   | [x] Opening brace should be on a new line
+ 1338 | ERROR   | [x] The first expression of a multi-line control
+      |         |     structure must be on the line after the opening
+      |         |     parenthesis
+ 1339 | ERROR   | [x] The closing parenthesis of a multi-line control
+      |         |     structure must be on the line after the last
+      |         |     expression
+ 1341 | WARNING | [x] Usage of ELSE IF is discouraged; use ELSEIF
+      |         |     instead
+ 1341 | ERROR   | [x] The first expression of a multi-line control
+      |         |     structure must be on the line after the opening
+      |         |     parenthesis
+ 1342 | ERROR   | [x] The closing parenthesis of a multi-line control
+      |         |     structure must be on the line after the last
+      |         |     expression
+ 1346 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1346 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1346 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1346 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1346 | ERROR   | [x] Closing brace must be on a line by itself
+ 1347 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1347 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1347 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1347 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1347 | ERROR   | [x] Closing brace must be on a line by itself
+ 1348 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1348 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1348 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1348 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1348 | ERROR   | [x] Closing brace must be on a line by itself
+ 1349 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1349 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1349 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1349 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1349 | ERROR   | [x] Closing brace must be on a line by itself
+ 1350 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1350 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1350 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1350 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1350 | ERROR   | [x] Closing brace must be on a line by itself
+ 1351 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1351 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1351 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1351 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1351 | ERROR   | [x] Closing brace must be on a line by itself
+ 1352 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1352 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1352 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1352 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1352 | ERROR   | [x] Closing brace must be on a line by itself
+ 1353 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1353 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1353 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1353 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1353 | ERROR   | [x] Closing brace must be on a line by itself
+ 1354 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1354 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1354 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1354 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1354 | ERROR   | [x] Closing brace must be on a line by itself
+ 1355 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1355 | ERROR   | [x] There must be no space before the colon in a
+      |         |     DEFAULT statement
+ 1356 | ERROR   | [x] Line indented incorrectly; expected at least 20
+      |         |     spaces, found 16
+ 1360 | ERROR   | [x] Function closing brace must go on the next line
+      |         |     following the body; found 1 blank lines before
+      |         |     brace
+ 1367 | ERROR   | [ ] Each class must be in a file by itself
+ 1367 | ERROR   | [ ] Each class must be in a namespace of at least
+      |         |     one level (a top-level vendor name)
+ 1367 | ERROR   | [x] Opening brace must not be followed by a blank
+      |         |     line
+ 1367 | ERROR   | [x] Opening brace of a class must be on the line
+      |         |     after the definition
+ 1369 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "__construct"
+ 1369 | ERROR   | [x] Opening brace should be on a new line
+ 1373 | ERROR   | [ ] Visibility must be declared on method "write"
+ 1373 | ERROR   | [x] Opening brace should be on a new line
+ 1381 | ERROR   | [x] The closing brace for the class must go on the
+      |         |     next line after the body
+ 1387 | ERROR   | [ ] Each class must be in a file by itself
+ 1387 | ERROR   | [ ] Each class must be in a namespace of at least
+      |         |     one level (a top-level vendor name)
+ 1387 | ERROR   | [x] Opening brace must not be followed by a blank
+      |         |     line
+ 1387 | ERROR   | [x] Opening brace of a class must be on the line
+      |         |     after the definition
+ 1389 | ERROR   | [ ] The var keyword must not be used to declare a
+      |         |     property
+ 1389 | ERROR   | [ ] Visibility must be declared on property "$mode"
+ 1391 | ERROR   | [ ] The var keyword must not be used to declare a
+      |         |     property
+ 1391 | ERROR   | [ ] Visibility must be declared on property "$data"
+ 1393 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "__construct"
+ 1393 | ERROR   | [x] Opening brace should be on a new line
+ 1398 | ERROR   | [ ] Visibility must be declared on method "getMode"
+ 1398 | ERROR   | [x] Opening brace should be on a new line
+ 1402 | ERROR   | [ ] Visibility must be declared on method "getData"
+ 1402 | ERROR   | [x] Opening brace should be on a new line
+ 1409 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getLength"
+ 1409 | ERROR   | [x] Opening brace should be on a new line
+ 1410 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+ 1416 | ERROR   | [ ] Visibility must be declared on method "write"
+ 1418 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getLengthInBits"
+ 1418 | ERROR   | [x] Opening brace should be on a new line
+ 1420 | ERROR   | [x] Blank line found at start of control structure
+ 1424 | ERROR   | [x] Expected 1 space(s) after SWITCH keyword; 0
+      |         |     found
+ 1425 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1425 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1425 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1425 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1425 | ERROR   | [x] Closing brace must be on a line by itself
+ 1426 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1426 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1426 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1426 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1426 | ERROR   | [x] Closing brace must be on a line by itself
+ 1427 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1427 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1427 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1427 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1427 | ERROR   | [x] Closing brace must be on a line by itself
+ 1428 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1428 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1428 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1428 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1428 | ERROR   | [x] Closing brace must be on a line by itself
+ 1429 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1429 | ERROR   | [x] There must be no space before the colon in a
+      |         |     DEFAULT statement
+ 1430 | ERROR   | [x] Line indented incorrectly; expected at least 20
+      |         |     spaces, found 16
+ 1432 | ERROR   | [x] Blank line found at end of control structure
+ 1433 | WARNING | [x] Usage of ELSE IF is discouraged; use ELSEIF
+      |         |     instead
+ 1433 | ERROR   | [x] Blank line found at start of control structure
+ 1437 | ERROR   | [x] Expected 1 space(s) after SWITCH keyword; 0
+      |         |     found
+ 1438 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1438 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1438 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1438 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1438 | ERROR   | [x] Closing brace must be on a line by itself
+ 1439 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1439 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1439 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1439 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1439 | ERROR   | [x] Closing brace must be on a line by itself
+ 1440 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1440 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1440 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1440 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1440 | ERROR   | [x] Closing brace must be on a line by itself
+ 1441 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1441 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1441 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1441 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1441 | ERROR   | [x] Closing brace must be on a line by itself
+ 1442 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1442 | ERROR   | [x] There must be no space before the colon in a
+      |         |     DEFAULT statement
+ 1443 | ERROR   | [x] Line indented incorrectly; expected at least 20
+      |         |     spaces, found 16
+ 1445 | ERROR   | [x] Blank line found at end of control structure
+ 1446 | WARNING | [x] Usage of ELSE IF is discouraged; use ELSEIF
+      |         |     instead
+ 1446 | ERROR   | [x] Blank line found at start of control structure
+ 1450 | ERROR   | [x] Expected 1 space(s) after SWITCH keyword; 0
+      |         |     found
+ 1451 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1451 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1451 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1451 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1451 | ERROR   | [x] Closing brace must be on a line by itself
+ 1452 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1452 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1452 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1452 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1452 | ERROR   | [x] Closing brace must be on a line by itself
+ 1453 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1453 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1453 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1453 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1453 | ERROR   | [x] Closing brace must be on a line by itself
+ 1454 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1454 | ERROR   | [x] There must be no space before the colon in a
+      |         |     CASE statement
+ 1454 | ERROR   | [x] The CASE body must start on the line following
+      |         |     the statement
+ 1454 | ERROR   | [x] Terminating statement must be on a line by
+      |         |     itself
+ 1454 | ERROR   | [x] Closing brace must be on a line by itself
+ 1455 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+      |         |     found 12
+ 1455 | ERROR   | [x] There must be no space before the colon in a
+      |         |     DEFAULT statement
+ 1456 | ERROR   | [x] Line indented incorrectly; expected at least 20
+      |         |     spaces, found 16
+ 1458 | ERROR   | [x] Blank line found at end of control structure
+ 1464 | ERROR   | [x] The closing brace for the class must go on the
+      |         |     next line after the body
+ 1470 | ERROR   | [ ] Each class must be in a file by itself
+ 1470 | ERROR   | [ ] Each class must be in a namespace of at least
+      |         |     one level (a top-level vendor name)
+ 1470 | ERROR   | [x] Opening brace must not be followed by a blank
+      |         |     line
+ 1470 | ERROR   | [x] Opening brace of a class must be on the line
+      |         |     after the definition
+ 1472 | ERROR   | [ ] Visibility must be declared on property
+      |         |     "$QR_MATH_EXP_TABLE"
+ 1473 | ERROR   | [ ] Visibility must be declared on property
+      |         |     "$QR_MATH_LOG_TABLE"
+ 1475 | ERROR   | [ ] Visibility must be declared on method "init"
+ 1475 | ERROR   | [x] Opening brace should be on a new line
+ 1497 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "createNumArray"
+ 1497 | ERROR   | [x] Opening brace should be on a new line
+ 1505 | ERROR   | [ ] Visibility must be declared on method "glog"
+ 1505 | ERROR   | [x] Opening brace should be on a new line
+ 1514 | ERROR   | [ ] Visibility must be declared on method "gexp"
+ 1514 | ERROR   | [x] Opening brace should be on a new line
+ 1535 | ERROR   | [ ] Each class must be in a file by itself
+ 1535 | ERROR   | [ ] Each class must be in a namespace of at least
+      |         |     one level (a top-level vendor name)
+ 1535 | ERROR   | [x] Opening brace must not be followed by a blank
+      |         |     line
+ 1535 | ERROR   | [x] Opening brace of a class must be on the line
+      |         |     after the definition
+ 1537 | ERROR   | [ ] The var keyword must not be used to declare a
+      |         |     property
+ 1537 | ERROR   | [ ] Visibility must be declared on property "$num"
+ 1539 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "__construct"
+ 1539 | ERROR   | [x] Opening brace should be on a new line
+ 1553 | ERROR   | [ ] Visibility must be declared on method "get"
+ 1553 | ERROR   | [x] Opening brace should be on a new line
+ 1557 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getLength"
+ 1557 | ERROR   | [x] Opening brace should be on a new line
+ 1562 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "__toString"
+ 1562 | ERROR   | [x] Opening brace should be on a new line
+ 1566 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "toString"
+ 1566 | ERROR   | [x] Opening brace should be on a new line
+ 1580 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "toLogString"
+ 1580 | ERROR   | [x] Opening brace should be on a new line
+ 1588 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+ 1599 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "multiply"
+ 1599 | ERROR   | [x] Opening brace should be on a new line
+ 1604 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+ 1607 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+ 1607 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+ 1619 | ERROR   | [ ] Visibility must be declared on method "mod"
+ 1619 | ERROR   | [x] Opening brace should be on a new line
+ 1625 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+ 1625 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+ 1627 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+ 1633 | ERROR   | [x] Expected 0 spaces before closing parenthesis; 1
+      |         |     found
+ 1680 | ERROR   | [ ] Each class must be in a file by itself
+ 1680 | ERROR   | [ ] Each class must be in a namespace of at least
+      |         |     one level (a top-level vendor name)
+ 1680 | ERROR   | [x] Opening brace must not be followed by a blank
+      |         |     line
+ 1680 | ERROR   | [x] Opening brace of a class must be on the line
+      |         |     after the definition
+ 1682 | ERROR   | [ ] The var keyword must not be used to declare a
+      |         |     property
+ 1682 | ERROR   | [ ] Visibility must be declared on property
+      |         |     "$buffer"
+ 1683 | ERROR   | [ ] The var keyword must not be used to declare a
+      |         |     property
+ 1683 | ERROR   | [ ] Visibility must be declared on property
+      |         |     "$length"
+ 1685 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "__construct"
+ 1685 | ERROR   | [x] Opening brace should be on a new line
+ 1690 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getBuffer"
+ 1690 | ERROR   | [x] Opening brace should be on a new line
+ 1694 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "getLengthInBits"
+ 1694 | ERROR   | [x] Opening brace should be on a new line
+ 1698 | ERROR   | [ ] Visibility must be declared on method
+      |         |     "__toString"
+ 1698 | ERROR   | [x] Opening brace should be on a new line
+ 1701 | ERROR   | [x] Expected at least 1 space before "?"; 0 found
+ 1706 | ERROR   | [ ] Visibility must be declared on method "get"
+ 1706 | ERROR   | [x] Opening brace should be on a new line
+ 1711 | ERROR   | [ ] Visibility must be declared on method "put"
+ 1711 | ERROR   | [x] Opening brace should be on a new line
+ 1714 | ERROR   | [x] Space after opening parenthesis of function
+      |         |     call prohibited
+ 1718 | ERROR   | [ ] Visibility must be declared on method "putBit"
+ 1718 | ERROR   | [x] Opening brace should be on a new line
+ 1733 | ERROR   | [x] A closing tag is not permitted at the end of a
+      |         |     PHP file
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 485 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...ta\Local\Development\UKF\WarehouseProLite\includes\qr_helper.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AND 2 WARNINGS AFFECTING 3 LINES
+----------------------------------------------------------------------
+  1 | WARNING | [ ] A file should declare new symbols (classes,
+    |         |     functions, constants, etc.) and cause no other
+    |         |     side effects, or it should execute logic with
+    |         |     side effects, but should not do both. The first
+    |         |     symbol is defined on line 12 and the first side
+    |         |     effect is on line 10.
+  1 | ERROR   | [x] Header blocks must be separated by a single blank
+    |         |     line
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+ 12 | ERROR   | [ ] Each class must be in a namespace of at least one
+    |         |     level (a top-level vendor name)
+ 23 | WARNING | [ ] Line exceeds 120 characters; contains 142
+    |         |     characters
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...s\DanoI\AppData\Local\Development\UKF\WarehouseProLite\index.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 35 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+    |       |     found 0
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...I\AppData\Local\Development\UKF\WarehouseProLite\label_print.php
+----------------------------------------------------------------------
+FOUND 45 ERRORS AND 18 WARNINGS AFFECTING 44 LINES
+----------------------------------------------------------------------
+   1 | WARNING | [ ] A file should declare new symbols (classes,
+     |         |     functions, constants, etc.) and cause no other
+     |         |     side effects, or it should execute logic with
+     |         |     side effects, but should not do both. The first
+     |         |     symbol is defined on line 137 and the first side
+     |         |     effect is on line 3.
+   1 | ERROR   | [x] End of line character is invalid; expected "\n"
+     |         |     but found "\r\n"
+  19 | ERROR   | [x] Line indented incorrectly; expected at least 4
+     |         |     spaces, found 2
+  20 | ERROR   | [x] Multi-line function call not indented correctly;
+     |         |     expected 6 spaces but found 4
+  21 | ERROR   | [x] Line indented incorrectly; expected at least 4
+     |         |     spaces, found 2
+  24 | ERROR   | [x] Line indented incorrectly; expected at least 4
+     |         |     spaces, found 2
+ 153 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 161 | WARNING | [ ] Line exceeds 120 characters; contains 125
+     |         |     characters
+ 164 | WARNING | [ ] Line exceeds 120 characters; contains 124
+     |         |     characters
+ 167 | WARNING | [ ] Line exceeds 120 characters; contains 133
+     |         |     characters
+ 193 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 195 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 195 | ERROR   | [x] Newline required after opening brace
+ 195 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 197 | ERROR   | [x] Inline control structures are not allowed
+ 197 | WARNING | [ ] Line exceeds 120 characters; contains 158
+     |         |     characters
+ 206 | ERROR   | [x] Closing brace must be on a line by itself
+ 206 | ERROR   | [x] Each PHP statement must be on a line by itself
+ 210 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 212 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+ 212 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 214 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 218 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+ 218 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 219 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 8
+ 219 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 221 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 226 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+ 226 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 228 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 235 | WARNING | [ ] Line exceeds 120 characters; contains 127
+     |         |     characters
+ 243 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 247 | WARNING | [ ] Line exceeds 120 characters; contains 144
+     |         |     characters
+ 251 | WARNING | [ ] Line exceeds 120 characters; contains 121
+     |         |     characters
+ 252 | WARNING | [ ] Line exceeds 120 characters; contains 166
+     |         |     characters
+ 260 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 261 | ERROR   | [x] Line indented incorrectly; expected at least 16
+     |         |     spaces, found 12
+ 261 | ERROR   | [x] Newline required after opening brace
+ 261 | ERROR   | [x] Closing brace must be on a line by itself
+ 262 | WARNING | [ ] Line exceeds 120 characters; contains 128
+     |         |     characters
+ 275 | ERROR   | [x] Line indented incorrectly; expected at least 4
+     |         |     spaces, found 2
+ 275 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 280 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 293 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+     |         |     found 14
+ 294 | WARNING | [ ] Line exceeds 120 characters; contains 151
+     |         |     characters
+ 295 | WARNING | [ ] Line exceeds 120 characters; contains 143
+     |         |     characters
+ 297 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 297 | ERROR   | [x] Newline required after opening brace
+ 297 | ERROR   | [x] Closing brace must be on a line by itself
+ 298 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 298 | ERROR   | [x] Newline required after opening brace
+ 298 | ERROR   | [x] Closing brace must be on a line by itself
+ 299 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 299 | ERROR   | [x] Newline required after opening brace
+ 299 | ERROR   | [x] Closing brace must be on a line by itself
+ 299 | WARNING | [ ] Line exceeds 120 characters; contains 121
+     |         |     characters
+ 303 | WARNING | [ ] Line exceeds 120 characters; contains 144
+     |         |     characters
+ 304 | WARNING | [ ] Line exceeds 120 characters; contains 128
+     |         |     characters
+ 305 | WARNING | [ ] Line exceeds 120 characters; contains 139
+     |         |     characters
+ 309 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 318 | WARNING | [ ] Line exceeds 120 characters; contains 176
+     |         |     characters
+ 326 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 328 | WARNING | [ ] Line exceeds 120 characters; contains 122
+     |         |     characters
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 45 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...pData\Local\Development\UKF\WarehouseProLite\label_print_log.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 1 | WARNING | [ ] A file should declare new symbols (classes,
+   |         |     functions, constants, etc.) and cause no other
+   |         |     side effects, or it should execute logic with side
+   |         |     effects, but should not do both. The first symbol
+   |         |     is defined on line 15 and the first side effect is
+   |         |     on line 4.
+ 1 | ERROR   | [x] Header blocks must be separated by a single blank
+   |         |     line
+ 1 | ERROR   | [x] End of line character is invalid; expected "\n"
+   |         |     but found "\r\n"
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...s\DanoI\AppData\Local\Development\UKF\WarehouseProLite\login.php
+----------------------------------------------------------------------
+FOUND 4 ERRORS AFFECTING 3 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] Header blocks must be separated by a single blank
+    |       |     line
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+  6 | ERROR | [x] Header blocks must be separated by a single blank
+    |       |     line
+ 74 | ERROR | [x] A closing tag is not permitted at the end of a PHP
+    |       |     file
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 4 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\DanoI\AppData\Local\Development\UKF\WarehouseProLite\logout.php
+----------------------------------------------------------------------
+FOUND 6 ERRORS AND 1 WARNING AFFECTING 4 LINES
+----------------------------------------------------------------------
+  1 | ERROR   | [x] Header blocks must be separated by a single blank
+    |         |     line
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+ 10 | ERROR   | [x] Spaces must be used to indent lines; tabs are not
+    |         |     allowed
+ 11 | ERROR   | [x] Spaces must be used to indent lines; tabs are not
+    |         |     allowed
+ 11 | WARNING | [ ] Line exceeds 120 characters; contains 126
+    |         |     characters
+ 16 | ERROR   | [x] Expected 1 newline at end of file; 0 found
+ 16 | ERROR   | [x] A closing tag is not permitted at the end of a
+    |         |     PHP file
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 6 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\DanoI\AppData\Local\Development\UKF\WarehouseProLite\qa_add.php
+----------------------------------------------------------------------
+FOUND 17 ERRORS AND 2 WARNINGS AFFECTING 9 LINES
+----------------------------------------------------------------------
+   1 | ERROR   | [x] End of line character is invalid; expected "\n"
+     |         |     but found "\r\n"
+ 117 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 126 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 127 | ERROR   | [x] Inline control structures are not allowed
+ 127 | WARNING | [ ] Line exceeds 120 characters; contains 123
+     |         |     characters
+ 128 | ERROR   | [x] Expected at least 1 space before "."; 0 found
+ 128 | ERROR   | [x] Expected at least 1 space after "."; 0 found
+ 128 | ERROR   | [x] Expected at least 1 space before "."; 0 found
+ 128 | ERROR   | [x] Expected at least 1 space after "."; 0 found
+ 146 | ERROR   | [x] Inline control structures are not allowed
+ 146 | ERROR   | [x] Expected at least 1 space before "==="; 0 found
+ 146 | ERROR   | [x] Expected at least 1 space after "==="; 0 found
+ 147 | ERROR   | [x] Inline control structures are not allowed
+ 147 | ERROR   | [x] Expected at least 1 space before "==="; 0 found
+ 147 | ERROR   | [x] Expected at least 1 space after "==="; 0 found
+ 148 | ERROR   | [x] Inline control structures are not allowed
+ 148 | ERROR   | [x] Expected at least 1 space before "==="; 0 found
+ 148 | ERROR   | [x] Expected at least 1 space after "==="; 0 found
+ 153 | WARNING | [ ] Line exceeds 120 characters; contains 141
+     |         |     characters
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 17 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...noI\AppData\Local\Development\UKF\WarehouseProLite\qa_delete.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AND 1 WARNING AFFECTING 3 LINES
+----------------------------------------------------------------------
+  1 | ERROR   | [x] Header blocks must be separated by a single blank
+    |         |     line
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+ 11 | WARNING | [ ] Line exceeds 120 characters; contains 136
+    |         |     characters
+ 28 | ERROR   | [x] A closing tag is not permitted at the end of a
+    |         |     PHP file
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 3 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...DanoI\AppData\Local\Development\UKF\WarehouseProLite\qa_edit.php
+----------------------------------------------------------------------
+FOUND 36 ERRORS AND 1 WARNING AFFECTING 27 LINES
+----------------------------------------------------------------------
+   1 | ERROR   | [x] End of line character is invalid; expected "\n"
+     |         |     but found "\r\n"
+  49 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+  50 | ERROR   | [x] Line indented incorrectly; expected 8 spaces,
+     |         |     found 4
+  51 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 8
+  52 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 8
+  53 | ERROR   | [x] Line indented incorrectly; expected 8 spaces,
+     |         |     found 4
+  54 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 8
+  55 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 8
+  56 | ERROR   | [x] Line indented incorrectly; expected 8 spaces,
+     |         |     found 4
+  58 | ERROR   | [x] Line indented incorrectly; expected 8 spaces,
+     |         |     found 4
+  59 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 8
+  60 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 8
+  61 | ERROR   | [x] Line indented incorrectly; expected 8 spaces,
+     |         |     found 4
+  62 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 8
+  63 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 8
+  64 | ERROR   | [x] Line indented incorrectly; expected 8 spaces,
+     |         |     found 4
+  73 | ERROR   | [x] Line indented incorrectly; expected at least 16
+     |         |     spaces, found 12
+  89 | ERROR   | [x] Line indented incorrectly; expected at least 16
+     |         |     spaces, found 12
+  91 | ERROR   | [x] Line indented incorrectly; expected at least 16
+     |         |     spaces, found 12
+  92 | ERROR   | [x] Line indented incorrectly; expected at least 16
+     |         |     spaces, found 12
+ 104 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 112 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 113 | ERROR   | [x] Inline control structures are not allowed
+ 113 | WARNING | [ ] Line exceeds 120 characters; contains 123
+     |         |     characters
+ 114 | ERROR   | [x] Expected at least 1 space before "."; 0 found
+ 114 | ERROR   | [x] Expected at least 1 space after "."; 0 found
+ 114 | ERROR   | [x] Expected at least 1 space before "."; 0 found
+ 114 | ERROR   | [x] Expected at least 1 space after "."; 0 found
+ 132 | ERROR   | [x] Inline control structures are not allowed
+ 132 | ERROR   | [x] Expected at least 1 space before "=="; 0 found
+ 132 | ERROR   | [x] Expected at least 1 space after "=="; 0 found
+ 133 | ERROR   | [x] Inline control structures are not allowed
+ 133 | ERROR   | [x] Expected at least 1 space before "=="; 0 found
+ 133 | ERROR   | [x] Expected at least 1 space after "=="; 0 found
+ 134 | ERROR   | [x] Inline control structures are not allowed
+ 134 | ERROR   | [x] Expected at least 1 space before "=="; 0 found
+ 134 | ERROR   | [x] Expected at least 1 space after "=="; 0 found
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 36 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...oI\AppData\Local\Development\UKF\WarehouseProLite\qa_samples.php
+----------------------------------------------------------------------
+FOUND 24 ERRORS AND 2 WARNINGS AFFECTING 18 LINES
+----------------------------------------------------------------------
+  1 | ERROR   | [x] End of line character is invalid; expected "\n"
+    |         |     but found "\r\n"
+  9 | ERROR   | [x] Line indented incorrectly; expected at least 4
+    |         |     spaces, found 2
+  9 | ERROR   | [x] Inline control structures are not allowed
+ 10 | ERROR   | [x] Line indented incorrectly; expected at least 4
+    |         |     spaces, found 2
+ 10 | ERROR   | [x] Inline control structures are not allowed
+ 11 | ERROR   | [x] Line indented incorrectly; expected at least 4
+    |         |     spaces, found 2
+ 11 | ERROR   | [x] Inline control structures are not allowed
+ 12 | ERROR   | [x] Line indented incorrectly; expected at least 4
+    |         |     spaces, found 2
+ 12 | ERROR   | [x] Inline control structures are not allowed
+ 13 | ERROR   | [x] Line indented incorrectly; expected at least 4
+    |         |     spaces, found 2
+ 13 | ERROR   | [x] Inline control structures are not allowed
+ 21 | ERROR   | [x] Line indented incorrectly; expected at least 4
+    |         |     spaces, found 2
+ 34 | ERROR   | [x] Line indented incorrectly; expected at least 4
+    |         |     spaces, found 2
+ 40 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 54 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 56 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 56 | ERROR   | [x] Newline required after opening brace
+ 56 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+    |         |     found 0
+ 57 | ERROR   | [x] Line indented incorrectly; expected at least 10
+    |         |     spaces, found 6
+ 59 | ERROR   | [x] Line indented incorrectly; expected at least 12
+    |         |     spaces, found 8
+ 60 | ERROR   | [x] Line indented incorrectly; expected at least 12
+    |         |     spaces, found 8
+ 61 | ERROR   | [x] Line indented incorrectly; expected 12 spaces,
+    |         |     found 6
+ 72 | WARNING | [ ] Line exceeds 120 characters; contains 130
+    |         |     characters
+ 75 | WARNING | [ ] Line exceeds 120 characters; contains 149
+    |         |     characters
+ 79 | ERROR   | [x] Closing brace must be on a line by itself
+ 79 | ERROR   | [x] Each PHP statement must be on a line by itself
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 24 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...DanoI\AppData\Local\Development\UKF\WarehouseProLite\reports.php
+----------------------------------------------------------------------
+FOUND 71 ERRORS AND 11 WARNINGS AFFECTING 65 LINES
+----------------------------------------------------------------------
+   1 | WARNING | [ ] A file should declare new symbols (classes,
+     |         |     functions, constants, etc.) and cause no other
+     |         |     side effects, or it should execute logic with
+     |         |     side effects, but should not do both. The first
+     |         |     symbol is defined on line 44 and the first side
+     |         |     effect is on line 3.
+   1 | ERROR   | [x] End of line character is invalid; expected "\n"
+     |         |     but found "\r\n"
+  98 | ERROR   | [x] Blank line found at start of control structure
+ 114 | ERROR   | [x] Inline control structures are not allowed
+ 143 | ERROR   | [x] Inline control structures are not allowed
+ 173 | WARNING | [ ] Line exceeds 120 characters; contains 125
+     |         |     characters
+ 177 | ERROR   | [x] Inline control structures are not allowed
+ 217 | ERROR   | [x] Inline control structures are not allowed
+ 232 | ERROR   | [x] Inline control structures are not allowed
+ 233 | ERROR   | [x] Inline control structures are not allowed
+ 234 | ERROR   | [x] Inline control structures are not allowed
+ 235 | ERROR   | [x] Inline control structures are not allowed
+ 236 | ERROR   | [x] Inline control structures are not allowed
+ 237 | WARNING | [ ] Line exceeds 120 characters; contains 130
+     |         |     characters
+ 259 | ERROR   | [x] Inline control structures are not allowed
+ 287 | ERROR   | [x] Inline control structures are not allowed
+ 315 | ERROR   | [x] Inline control structures are not allowed
+ 343 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 362 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 371 | WARNING | [ ] Line exceeds 120 characters; contains 159
+     |         |     characters
+ 372 | WARNING | [ ] Line exceeds 120 characters; contains 159
+     |         |     characters
+ 373 | WARNING | [ ] Line exceeds 120 characters; contains 170
+     |         |     characters
+ 374 | WARNING | [ ] Line exceeds 120 characters; contains 156
+     |         |     characters
+ 375 | WARNING | [ ] Line exceeds 120 characters; contains 168
+     |         |     characters
+ 376 | WARNING | [ ] Line exceeds 120 characters; contains 167
+     |         |     characters
+ 377 | WARNING | [ ] Line exceeds 120 characters; contains 167
+     |         |     characters
+ 382 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 390 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 391 | WARNING | [ ] Line exceeds 120 characters; contains 131
+     |         |     characters
+ 392 | ERROR   | [x] Line indented incorrectly; expected at least 16
+     |         |     spaces, found 14
+ 397 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 412 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 420 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 426 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 428 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 429 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 6
+ 429 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 431 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 10
+ 431 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 432 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+     |         |     found 12
+ 432 | ERROR   | [x] The CASE body must start on the line following
+     |         |     the statement
+ 437 | ERROR   | [x] Terminating statement must be on a line by
+     |         |     itself
+ 439 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+     |         |     found 12
+ 439 | ERROR   | [x] The CASE body must start on the line following
+     |         |     the statement
+ 444 | ERROR   | [x] Terminating statement must be on a line by
+     |         |     itself
+ 446 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+     |         |     found 12
+ 446 | ERROR   | [x] The CASE body must start on the line following
+     |         |     the statement
+ 451 | ERROR   | [x] Terminating statement must be on a line by
+     |         |     itself
+ 453 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+     |         |     found 12
+ 453 | ERROR   | [x] The CASE body must start on the line following
+     |         |     the statement
+ 457 | ERROR   | [x] Terminating statement must be on a line by
+     |         |     itself
+ 459 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+     |         |     found 12
+ 459 | ERROR   | [x] The CASE body must start on the line following
+     |         |     the statement
+ 466 | ERROR   | [x] Terminating statement must be on a line by
+     |         |     itself
+ 468 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+     |         |     found 12
+ 468 | ERROR   | [x] The CASE body must start on the line following
+     |         |     the statement
+ 475 | ERROR   | [x] Terminating statement must be on a line by
+     |         |     itself
+ 477 | ERROR   | [x] Line indented incorrectly; expected 16 spaces,
+     |         |     found 12
+ 477 | ERROR   | [x] The CASE body must start on the line following
+     |         |     the statement
+ 484 | ERROR   | [x] Terminating statement must be on a line by
+     |         |     itself
+ 485 | ERROR   | [x] Blank line found at end of control structure
+ 494 | ERROR   | [x] Line indented incorrectly; expected at least 4
+     |         |     spaces, found 2
+ 494 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 496 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+ 496 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 498 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 502 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+ 504 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+ 505 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+ 506 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+ 506 | ERROR   | [x] Inline control structures are not allowed
+ 507 | ERROR   | [x] Line indented incorrectly; expected 8 spaces,
+     |         |     found 4
+ 507 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 508 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 6
+ 508 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 510 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 514 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+ 514 | ERROR   | [x] Inline control structures are not allowed
+ 515 | ERROR   | [x] Line indented incorrectly; expected 8 spaces,
+     |         |     found 4
+ 517 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+ 517 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 519 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 71 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...oI\AppData\Local\Development\UKF\WarehouseProLite\stocktakes.php
+----------------------------------------------------------------------
+FOUND 15 ERRORS AFFECTING 9 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 28 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+    |       |     found 0
+ 40 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+    |       |     found 0
+ 42 | ERROR | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 42 | ERROR | [x] Newline required after opening brace
+ 42 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+    |       |     found 0
+ 43 | ERROR | [x] Line indented incorrectly; expected at least 10
+    |       |     spaces, found 6
+ 44 | ERROR | [x] Line indented incorrectly; expected at least 12
+    |       |     spaces, found 8
+ 47 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+    |       |     found 6
+ 52 | ERROR | [x] Expected at least 1 space before "."; 0 found
+ 52 | ERROR | [x] Expected at least 1 space after "."; 0 found
+ 52 | ERROR | [x] Expected at least 1 space before "."; 0 found
+ 52 | ERROR | [x] Expected at least 1 space after "."; 0 found
+ 55 | ERROR | [x] Closing brace must be on a line by itself
+ 55 | ERROR | [x] Each PHP statement must be on a line by itself
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 15 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...AppData\Local\Development\UKF\WarehouseProLite\stocktake_new.php
+----------------------------------------------------------------------
+FOUND 50 ERRORS AFFECTING 49 LINES
+----------------------------------------------------------------------
+   1 | ERROR | [x] End of line character is invalid; expected "\n"
+     |       |     but found "\r\n"
+  14 | ERROR | [x] Blank line found at start of control structure
+  17 | ERROR | [x] Line indented incorrectly; expected at least 8
+     |       |     spaces, found 4
+  19 | ERROR | [x] Line indented incorrectly; expected 8 spaces,
+     |       |     found 4
+  20 | ERROR | [x] Line indented incorrectly; expected at least 12
+     |       |     spaces, found 8
+  24 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 8
+  26 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 8
+  27 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 8
+  28 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 8
+  29 | ERROR | [x] Line indented incorrectly; expected 8 spaces,
+     |       |     found 4
+  30 | ERROR | [x] Line indented incorrectly; expected at least 12
+     |       |     spaces, found 8
+  31 | ERROR | [x] Line indented incorrectly; expected 8 spaces,
+     |       |     found 4
+  41 | ERROR | [x] Line indented incorrectly; expected at least 8
+     |       |     spaces, found 4
+  42 | ERROR | [x] Line indented incorrectly; expected at least 8
+     |       |     spaces, found 4
+  44 | ERROR | [x] Line indented incorrectly; expected 8 spaces,
+     |       |     found 4
+  45 | ERROR | [x] Line indented incorrectly; expected at least 12
+     |       |     spaces, found 8
+  46 | ERROR | [x] Line indented incorrectly; expected 8 spaces,
+     |       |     found 4
+  47 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+     |       |     found 8
+  49 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  50 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  51 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+     |       |     found 12
+  52 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 16
+  53 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+     |       |     found 12
+  55 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  56 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+     |       |     found 16
+  57 | ERROR | [x] Line indented incorrectly; expected at least 24
+     |       |     spaces, found 20
+  59 | ERROR | [x] Line indented incorrectly; expected 24 spaces,
+     |       |     found 20
+  60 | ERROR | [x] Line indented incorrectly; expected at least 28
+     |       |     spaces, found 24
+  61 | ERROR | [x] Line indented incorrectly; expected 24 spaces,
+     |       |     found 20
+  62 | ERROR | [x] Line indented incorrectly; expected at least 24
+     |       |     spaces, found 20
+  63 | ERROR | [x] Line indented incorrectly; expected at least 24
+     |       |     spaces, found 20
+  64 | ERROR | [x] Line indented incorrectly; expected at least 24
+     |       |     spaces, found 20
+  76 | ERROR | [x] Line indented incorrectly; expected at least 28
+     |       |     spaces, found 20
+  77 | ERROR | [x] Line indented incorrectly; expected 20 spaces,
+     |       |     found 16
+  78 | ERROR | [x] Line indented incorrectly; expected 16 spaces,
+     |       |     found 12
+  80 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 12
+  81 | ERROR | [x] Line indented incorrectly; expected at least 20
+     |       |     spaces, found 12
+  82 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+     |       |     found 8
+  83 | ERROR | [x] Line indented incorrectly; expected at least 16
+     |       |     spaces, found 12
+  84 | ERROR | [x] Line indented incorrectly; expected 12 spaces,
+     |       |     found 8
+  85 | ERROR | [x] Line indented incorrectly; expected 8 spaces,
+     |       |     found 4
+  90 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+  91 | ERROR | [x] Line indented incorrectly; expected 4 spaces,
+     |       |     found 0
+  93 | ERROR | [x] Line indented incorrectly; expected at least 4
+     |       |     spaces, found 0
+  93 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+ 103 | ERROR | [x] Line indented incorrectly; expected at least 4
+     |       |     spaces, found 0
+ 104 | ERROR | [x] Line indented incorrectly; expected at least 4
+     |       |     spaces, found 0
+ 105 | ERROR | [x] Line indented incorrectly; expected at least 4
+     |       |     spaces, found 0
+ 112 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+ 121 | ERROR | [x] Expected 1 space(s) after closing parenthesis;
+     |       |     found 0
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 50 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...ppData\Local\Development\UKF\WarehouseProLite\stocktake_view.php
+----------------------------------------------------------------------
+FOUND 45 ERRORS AND 2 WARNINGS AFFECTING 45 LINES
+----------------------------------------------------------------------
+   1 | ERROR   | [x] End of line character is invalid; expected "\n"
+     |         |     but found "\r\n"
+  12 | ERROR   | [x] Line indented incorrectly; expected 4 spaces,
+     |         |     found 2
+  13 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+  14 | ERROR   | [x] Line indented incorrectly; expected 4 spaces,
+     |         |     found 2
+  15 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+  16 | ERROR   | [x] Line indented incorrectly; expected 4 spaces,
+     |         |     found 2
+  17 | ERROR   | [x] Line indented incorrectly; expected 8 spaces,
+     |         |     found 4
+  18 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 6
+  19 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 6
+  20 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 6
+  21 | ERROR   | [x] Line indented incorrectly; expected 8 spaces,
+     |         |     found 4
+  22 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 6
+  23 | ERROR   | [x] Line indented incorrectly; expected 8 spaces,
+     |         |     found 4
+  24 | ERROR   | [x] Line indented incorrectly; expected 4 spaces,
+     |         |     found 2
+  29 | ERROR   | [x] Line indented incorrectly; expected at least 4
+     |         |     spaces, found 2
+  30 | ERROR   | [x] Multi-line function call not indented correctly;
+     |         |     expected 6 spaces but found 4
+  42 | ERROR   | [x] Multi-line function call not indented correctly;
+     |         |     expected 6 spaces but found 4
+  43 | ERROR   | [x] Line indented incorrectly; expected at least 4
+     |         |     spaces, found 2
+  45 | ERROR   | [x] Line indented incorrectly; expected at least 4
+     |         |     spaces, found 2
+  46 | ERROR   | [x] Line indented incorrectly; expected at least 4
+     |         |     spaces, found 2
+  51 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+  62 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+  63 | ERROR   | [x] Line indented incorrectly; expected at least 4
+     |         |     spaces, found 2
+  64 | ERROR   | [x] Line indented incorrectly; expected at least 4
+     |         |     spaces, found 2
+  67 | ERROR   | [x] Line indented incorrectly; expected 4 spaces,
+     |         |     found 2
+  68 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+  69 | ERROR   | [x] Line indented incorrectly; expected 4 spaces,
+     |         |     found 2
+  70 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+  71 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+  72 | ERROR   | [x] Line indented incorrectly; expected 4 spaces,
+     |         |     found 2
+  73 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 4
+  74 | ERROR   | [x] Line indented incorrectly; expected 4 spaces,
+     |         |     found 2
+  75 | ERROR   | [x] Line indented incorrectly; expected 4 spaces,
+     |         |     found 0
+  82 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+  83 | ERROR   | [x] Line indented incorrectly; expected at least 12
+     |         |     spaces, found 8
+  83 | WARNING | [ ] Line exceeds 120 characters; contains 129
+     |         |     characters
+  84 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+  85 | ERROR   | [x] Line indented incorrectly; expected at least 10
+     |         |     spaces, found 8
+  89 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+  91 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+  92 | WARNING | [ ] Line exceeds 120 characters; contains 132
+     |         |     characters
+  95 | ERROR   | [x] Expected 1 space(s) after ELSE keyword; 0 found
+ 105 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 107 | ERROR   | [x] Line indented incorrectly; expected at least 4
+     |         |     spaces, found 2
+ 112 | ERROR   | [x] Line indented incorrectly; expected at least 4
+     |         |     spaces, found 2
+ 112 | ERROR   | [x] Expected 1 space(s) after closing parenthesis;
+     |         |     found 0
+ 114 | ERROR   | [x] Line indented incorrectly; expected at least 8
+     |         |     spaces, found 6
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 45 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
