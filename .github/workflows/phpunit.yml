@@ -1,0 +1,57 @@
+name: PHP Unit Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: stocktrackpro
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd "mysqladmin ping --silent"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo_mysql, openssl
+      - name: Install Composer
+        run: |
+          curl -sS https://getcomposer.org/installer | php
+          php composer.phar install --no-interaction
+      - name: Install static analysis tools
+        run: |
+          php composer.phar require --dev --no-interaction phpstan/phpstan:^1.11 squizlabs/php_codesniffer:^4.9 || true
+      - name: Import database schema
+        env:
+          MYSQL_PWD: root
+        run: |
+          mysql -h 127.0.0.1 -P 3306 -u root -e "CREATE DATABASE IF NOT EXISTS stocktrackpro;"
+          mysql -h 127.0.0.1 -P 3306 -u root stocktrackpro < stocktrackpro.sql
+      - name: Run static analysis (PHPCS)
+        run: |
+          php vendor/bin/phpcs --standard=phpcs.xml --extensions=php includes StockTrackProLite WarehouseProLite || true
+
+      - name: Run static analysis (PHPStan)
+        run: |
+          php vendor/bin/phpstan analyse --configuration=phpstan.neon.dist includes StockTrackProLite WarehouseProLite || true
+
+      - name: Run PHPUnit
+        run: |
+          php vendor/bin/phpunit --configuration phpunit.xml --colors=always

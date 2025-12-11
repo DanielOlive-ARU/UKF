@@ -52,3 +52,40 @@ Run these flows after significant changes to confirm both apps behave:
 - **Office orders** → create an order, review it on the orders list.
 
 Record the date, dataset used, and any anomalies in PR descriptions so teammates can replay the same sequence.
+
+## Automated testing (PHPUnit)
+
+Run the automated test suite locally using the XAMPP PHP binary and the bundled PHPUnit PHAR:
+
+```powershell
+# Run all tests
+C:\xampp\php\php.exe vendor\bin\phpunit.phar --configuration phpunit.xml
+
+# Run only unit tests
+C:\xampp\php\php.exe vendor\bin\phpunit.phar tests\Unit
+
+# Run only integration tests (requires local MariaDB with schema imported)
+C:\xampp\php\php.exe vendor\bin\phpunit.phar tests\Integration
+```
+
+CI: a GitHub Actions workflow is included at `.github/workflows/phpunit.yml` which runs PHPUnit on push/PR against `main`.
+
+Artifacts and evidence: keep screenshots and exported query results in `tests/evidence/` and record defects in `tests/DEFECTS.md`.
+
+## Static analysis
+
+This repo includes basic static analysis configuration:
+
+- `phpstan.neon.dist` — PHPStan configuration (level 5 by default)
+- `phpcs.xml` — PHPCS ruleset (PSR-12 base)
+
+CI will run PHPCS and PHPStan before PHPUnit. Locally you can run (after `composer install`):
+
+```powershell
+# Install dev tools if using composer
+C:\xampp\php\php.exe composer.phar require --dev phpstan/phpstan:^1.11 squizlabs/php_codesniffer:^4.9
+
+# Run linters
+C:\xampp\php\php.exe vendor\bin\phpcs --standard=phpcs.xml --extensions=php includes StockTrackProLite WarehouseProLite
+C:\xampp\php\php.exe vendor\bin\phpstan analyse --configuration=phpstan.neon.dist includes StockTrackProLite WarehouseProLite
+```

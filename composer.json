@@ -1,0 +1,25 @@
+{
+    "name": "ukf/stocktrackpro",
+    "description": "UK Fruit Stock Management System - Legacy Modernization Project",
+    "type": "project",
+    "require": {
+        "php": ">=8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5",
+        "phpstan/phpstan": "^1.11",
+        "squizlabs/php_codesniffer": "^4.9"
+    },
+    "autoload": {
+        "classmap": [
+            "includes/"
+        ]
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:unit": "phpunit tests/Unit",
+        "test:integration": "phpunit tests/Integration",
+        "lint": "phpcs --standard=phpcs.xml --extensions=php includes StockTrackProLite WarehouseProLite",
+        "analyse": "phpstan analyse --configuration=phpstan.neon.dist includes StockTrackProLite WarehouseProLite"
+    }
+}

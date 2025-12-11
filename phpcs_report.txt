@@ -1,0 +1,74 @@
+
+PHP CODE SNIFFER REPORT SUMMARY
+----------------------------------------------------------------------
+FILE                                                  ERRORS  WARNINGS
+----------------------------------------------------------------------
+...pData\Local\Development\UKF\includes\database.php  3       0
+...Local\Development\UKF\includes\login_throttle.php  3       0
+...pData\Local\Development\UKF\includes\password.php  2       0
+...pData\Local\Development\UKF\includes\security.php  3       0
+...evelopment\UKF\StockTrackProLite\customer_add.php  1       0
+...lopment\UKF\StockTrackProLite\customer_delete.php  11      0
+...velopment\UKF\StockTrackProLite\customer_edit.php  1       0
+...velopment\UKF\StockTrackProLite\customer_view.php  14      3
+...l\Development\UKF\StockTrackProLite\customers.php  4       2
+...l\Development\UKF\StockTrackProLite\dashboard.php  3       1
+...Local\Development\UKF\StockTrackProLite\index.php  2       0
+...Local\Development\UKF\StockTrackProLite\login.php  4       0
+...ocal\Development\UKF\StockTrackProLite\logout.php  4       1
+...l\Development\UKF\StockTrackProLite\order_new.php  60      0
+...\Development\UKF\StockTrackProLite\order_view.php  2       0
+...ocal\Development\UKF\StockTrackProLite\orders.php  19      14
+...Development\UKF\StockTrackProLite\product_add.php  4       2
+...elopment\UKF\StockTrackProLite\product_delete.php  18      0
+...evelopment\UKF\StockTrackProLite\product_edit.php  32      0
+...evelopment\UKF\StockTrackProLite\product_view.php  7       2
+...al\Development\UKF\StockTrackProLite\products.php  21      19
+...cal\Development\UKF\StockTrackProLite\reports.php  42      1
+...al\Development\UKF\StockTrackProLite\user_add.php  5       0
+...Development\UKF\StockTrackProLite\user_delete.php  5       0
+...l\Development\UKF\StockTrackProLite\user_edit.php  5       0
+...Local\Development\UKF\StockTrackProLite\users.php  6       2
+...Development\UKF\StockTrackProLite\wh_user_add.php  5       1
+...elopment\UKF\StockTrackProLite\wh_user_delete.php  5       0
+...evelopment\UKF\StockTrackProLite\wh_user_edit.php  5       0
+...al\Development\UKF\StockTrackProLite\wh_users.php  6       2
+...velopment\UKF\StockTrackProLite\includes\auth.php  3       0
+...Development\UKF\StockTrackProLite\includes\db.php  4       0
+...lopment\UKF\StockTrackProLite\includes\footer.php  1       0
+...lopment\UKF\StockTrackProLite\includes\header.php  2       0
+...velopment\UKF\WarehouseProLite\adjustment_add.php  37      0
+...opment\UKF\WarehouseProLite\adjustment_delete.php  2       1
+...\Development\UKF\WarehouseProLite\adjustments.php  7       2
+...al\Development\UKF\WarehouseProLite\dashboard.php  10      1
+...l\Development\UKF\WarehouseProLite\deliveries.php  18      2
+...Development\UKF\WarehouseProLite\delivery_add.php  27      0
+...elopment\UKF\WarehouseProLite\delivery_delete.php  3       1
+...evelopment\UKF\WarehouseProLite\delivery_edit.php  31      0
+...\Local\Development\UKF\WarehouseProLite\index.php  2       0
+...\Development\UKF\WarehouseProLite\label_print.php  46      17
+...elopment\UKF\WarehouseProLite\label_print_log.php  2       1
+...\Local\Development\UKF\WarehouseProLite\login.php  4       0
+...Local\Development\UKF\WarehouseProLite\logout.php  6       1
+...Local\Development\UKF\WarehouseProLite\qa_add.php  17      2
+...al\Development\UKF\WarehouseProLite\qa_delete.php  3       1
+...ocal\Development\UKF\WarehouseProLite\qa_edit.php  36      1
+...l\Development\UKF\WarehouseProLite\qa_samples.php  24      2
+...ocal\Development\UKF\WarehouseProLite\reports.php  71      11
+...evelopment\UKF\WarehouseProLite\stocktake_new.php  50      0
+...velopment\UKF\WarehouseProLite\stocktake_view.php  45      2
+...l\Development\UKF\WarehouseProLite\stocktakes.php  15      0
+...evelopment\UKF\WarehouseProLite\includes\auth.php  7       0
+...\Development\UKF\WarehouseProLite\includes\db.php  4       0
+...elopment\UKF\WarehouseProLite\includes\footer.php  0       1
+...elopment\UKF\WarehouseProLite\includes\header.php  30      8
+...pment\UKF\WarehouseProLite\includes\qr_helper.php  3       2
+...nt\UKF\WarehouseProLite\includes\qr\phpqrcode.php  11      1
+...pment\UKF\WarehouseProLite\includes\qr\qrcode.php  611     21
+----------------------------------------------------------------------
+A TOTAL OF 1434 ERRORS AND 128 WARNINGS WERE FOUND IN 62 FILES
+----------------------------------------------------------------------
+PHPCBF CAN FIX 1305 OF THESE SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
