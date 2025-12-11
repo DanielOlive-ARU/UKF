@@ -4,8 +4,8 @@
     &copy; <?php echo date('Y'); ?> StockTrack Inc.
 </footer>
 
-<!-- jQuery (HTTP, v1.11.3) -->
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- jQuery v1.11.3 (HTTPS) — TODO: upgrade to v3.x and add SRI (see BACKLOG.md) -->
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
 /* Highlight current page in the top nav */
 $(function () {
