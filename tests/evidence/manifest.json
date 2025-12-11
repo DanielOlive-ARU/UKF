@@ -1,28 +1,70 @@
 {
-  "generated_on": "2025-12-11T00:00:00Z",
-  "branch_created": "evidence/auto-fix-2025-12-11",
-  "phpcbf_attempted": true,
-  "phpcbf_success": false,
-  "phpcbf_error": "phpcs.phar reported 'The file \"phpcbf\" does not exist'",
+  "generated_on": "2025-12-11T19:12:00Z",
+  "branch": "evidence/auto-fix-2025-12-11",
+  "phpcbf_iterations": 6,
+  "phpcbf_loop_script": "tests/scripts/phpcbf_loop.ps1",
   "pushed_branch": true,
-  "notes": "Attempted to run PHPCBF via `phpcs.phar phpcbf` but the bundled phar did not expose the command. Outputs from PHPCS, PHPStan, and PHPUnit were saved; branch was pushed to origin.",
+  "notes": "Iterative PHPCBF runs were executed; many auto-fixable PHPCS violations were resolved automatically. Remaining PHPCS issues require manual fixes in several large files.",
   "files": {
-    "phpcs_full_before": "tests/evidence/phpcs_full.txt",
-    "phpcs_full_after": "tests/evidence/phpcs_full_after_phpcbf.txt",
-    "phpstan_before": "tests/evidence/phpstan_report.txt",
-    "phpstan_after": "tests/evidence/phpstan_report_after_phpcbf.txt",
-    "phpunit_before": "tests/evidence/phpunit_output.txt",
-    "phpunit_after": "tests/evidence/phpunit_output_after_phpcbf.txt",
-    "git_commit_after": "tests/evidence/git_commit_after.txt",
-    "git_branch_after": "tests/evidence/git_branch_after.txt",
-    "git_status_after": "tests/evidence/git_status_after.txt"
+    "phpcs_full_reports": [
+      "tests/evidence/phpcs_full.txt",
+      "tests/evidence/phpcs_full_after_final.txt",
+      "tests/evidence/phpcs_full_after_phpcbf.txt",
+      "tests/evidence/phpcs_full_after_phpcbf2.txt",
+      "tests/evidence/phpcs_full_after_phpcbf3.txt",
+      "tests/evidence/phpcs_full_after_phpcbf_20251211191132.txt",
+      "tests/evidence/phpcs_full_after_phpcbf_final2.txt",
+      "tests/evidence/phpcs_full_after_phpcbf_final3.txt",
+      "tests/evidence/phpcs_full_after_phpcbf_final4.txt",
+      "tests/evidence/phpcs_full_after_phpcbf_final5.txt",
+      "tests/evidence/phpcs_full_after_phpcbf_final6.txt"
+    ],
+    "phpcbf_logs": [
+      "tests/evidence/phpcbf_output_20251211191132.txt"
+    ],
+    "phpstan_reports": [
+      "tests/evidence/phpstan_report.txt",
+      "tests/evidence/phpstan_report_after_phpcbf.txt",
+      "tests/evidence/phpstan_report_after_phpcbf2.txt",
+      "tests/evidence/phpstan_report_after_phpcbf3.txt",
+      "tests/evidence/phpstan_report_after_final5.txt",
+      "tests/evidence/phpstan_report_after_fixes.txt",
+      "tests/evidence/phpstan_report_after_fixes2.txt",
+      "tests/evidence/phpstan_report_after_fixes3.txt"
+    ],
+    "phpunit_outputs": [
+      "tests/evidence/phpunit_output.txt",
+      "tests/evidence/phpunit_output_after_phpcbf.txt",
+      "tests/evidence/phpunit_output_after_phpcbf2.txt",
+      "tests/evidence/phpunit_output_after_phpcbf3.txt",
+      "tests/evidence/phpunit_output_after_final.txt",
+      "tests/evidence/phpunit_output_after_final5.txt"
+    ],
+    "git_metadata": [
+      "tests/evidence/git_commit.txt",
+      "tests/evidence/git_commit_after.txt",
+      "tests/evidence/git_commit_after_final.txt",
+      "tests/evidence/git_commit_after_loop.txt",
+      "tests/evidence/git_commit_after_phpcbf_final6.txt",
+      "tests/evidence/git_branch.txt",
+      "tests/evidence/git_branch_after.txt",
+      "tests/evidence/git_branch_after_final.txt",
+      "tests/evidence/git_branch_after_loop.txt",
+      "tests/evidence/git_status.txt",
+      "tests/evidence/git_status_after.txt",
+      "tests/evidence/git_status_after_phpcbf_final6.txt"
+    ],
+    "manifest": "tests/evidence/manifest.json",
+    "readme": "tests/evidence/EVIDENCE_README.md"
   },
   "commands_run": [
     "git checkout -b evidence/auto-fix-2025-12-11",
-    "php vendor/bin/phpcbf.phar --standard=phpcs.xml --extensions=php includes StockTrackProLite WarehouseProLite",
-    "php vendor/bin/phpcs.phar --standard=phpcs.xml --extensions=php --report=full --report-file=tests/evidence/phpcs_full_after_phpcbf.txt includes StockTrackProLite WarehouseProLite",
-    "php vendor/bin/phpstan.phar analyse --configuration=phpstan.neon.dist includes StockTrackProLite WarehouseProLite > tests/evidence/phpstan_report_after_phpcbf.txt 2>&1",
-    "php vendor/bin/phpunit.phar --configuration phpunit.xml > tests/evidence/phpunit_output_after_phpcbf.txt 2>&1",
-    "git add -A; git commit -m 'Apply PHPCBF fixes and update evidence'"
-  ]
+    "C:\\xampp\\php\\php.exe vendor\\bin\\phpcbf.phar --standard=phpcs.xml --extensions=php includes StockTrackProLite WarehouseProLite",
+    "C:\\xampp\\php\\php.exe vendor\\bin\\phpcs.phar --standard=phpcs.xml --extensions=php includes StockTrackProLite WarehouseProLite --report=full --report-file=tests/evidence/phpcs_full_after_phpcbf_YYYYMMDDHHMMSS.txt",
+    "C:\\xampp\\php\\php.exe vendor\\bin\\phpstan.phar analyse --configuration=phpstan.neon.dist includes StockTrackProLite WarehouseProLite > tests/evidence/phpstan_report_after_YYYYMMDDHHMMSS.txt 2>&1",
+    "C:\\xampp\\php\\php.exe vendor\\bin\\phpunit.phar --configuration phpunit.xml > tests/evidence/phpunit_output_after_YYYYMMDDHHMMSS.txt 2>&1",
+    "powershell tests\\scripts\\phpcbf_loop.ps1 -- runs an iterative PHPCBF loop and saves reports",
+    "git add -A; git commit -m 'Apply PHPCBF fixes and update evidence'; git push"
+  ],
+  "recommendation": "Run manual PHPCS fixes for the high-error files (see EVIDENCE_README.md), then re-run PHPStan and PHPUnit and save final reports to this folder."
 }
