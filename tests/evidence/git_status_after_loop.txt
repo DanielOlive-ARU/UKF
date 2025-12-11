@@ -1,0 +1,17 @@
+ M .phpunit.result.cache
+?? tests/evidence/git_branch_after_loop.txt
+?? tests/evidence/git_branch_after_phpcbf_final.txt
+?? tests/evidence/git_branch_after_phpcbf_final3.txt
+?? tests/evidence/git_branch_after_phpcbf_final4.txt
+?? tests/evidence/git_branch_after_phpcbf_final5.txt
+?? tests/evidence/git_commit_after_loop.txt
+?? tests/evidence/git_commit_after_phpcbf_final.txt
+?? tests/evidence/git_commit_after_phpcbf_final3.txt
+?? tests/evidence/git_commit_after_phpcbf_final4.txt
+?? tests/evidence/git_commit_after_phpcbf_final5.txt
+?? tests/evidence/git_status_after_loop.txt
+?? tests/evidence/git_status_after_phpcbf_final.txt
+?? tests/evidence/git_status_after_phpcbf_final3.txt
+?? tests/evidence/git_status_after_phpcbf_final4.txt
+?? tests/evidence/git_status_after_phpcbf_final5.txt
+?? tests/scripts/
