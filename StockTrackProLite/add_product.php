@@ -13,7 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sku               = trim($_POST['sku']);
     $name              = trim($_POST['name']);
     $cat               = ($_POST['category_id'] === '' ? null : (int)$_POST['category_id']);
-    $price             = (float)$_POST['price'];
+    $price_raw         = trim($_POST['price']);
+    $price             = (float)$price_raw;
     $stock             = (int)$_POST['stock'];
     $country_iso       = strtoupper(trim($_POST['country_iso']));
     $class             = $_POST['class'];
@@ -23,9 +24,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                              : null;
     $best_before_days  = (int)$_POST['best_before_days'];
 
-    // Server-side validation: pack weight required when UOM is grams
+    // Server-side validation
+    $errors = array();
+
+    // Check SKU uniqueness
+    $existing = Database::fetchOne(
+        "SELECT id FROM products WHERE sku = :sku",
+        array(':sku' => $sku)
+    );
+    if ($existing) {
+        $errors[] = 'SKU already exists. Please use a unique SKU.';
+    }
+
+    // Validate price format (X.XX or XX.XX)
+    if (!preg_match('/^\d{1,2}\.\d{2}$/', $price_raw)) {
+        $errors[] = 'Price must be in format X.XX or XX.XX (e.g. 1.30, 0.20, 10.10).';
+    }
+
+    // Pack weight required when UOM is grams
     if ($pack_uom === 'g' && $default_pack_weight_g === null) {
-        echo "<p class='notice'>Pack weight is required when unit of measure is grams.</p>";
+        $errors[] = 'Pack weight is required when unit of measure is grams.';
+    }
+
+    if (!empty($errors)) {
+        foreach ($errors as $err) {
+            echo "<p class='notice'>" . htmlspecialchars($err) . "</p>";
+        }
     } else {
         Database::query(
             "INSERT INTO products (sku, name, category_id, price, stock, country_iso, class, pack_uom, default_pack_weight_g, best_before_days)
@@ -78,7 +102,9 @@ $cats = Database::query("SELECT id, name FROM categories ORDER BY name")->fetchA
     </label>
 
     <label>Price (£)
-        <input type="number" step="0.01" name="price" required>
+        <input type="text" name="price" required
+               pattern="\d{1,2}\.\d{2}"
+               title="Price must be in format X.XX or XX.XX (e.g. 1.30, 0.20, 10.10)">
     </label>
 
     <label>Stock
