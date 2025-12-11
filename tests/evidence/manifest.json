@@ -1,8 +1,11 @@
 {
   "generated_on": "2025-12-11T00:00:00Z",
   "branch_created": "evidence/auto-fix-2025-12-11",
-  "phpcbf_executed": false,
-  "notes": "phpcbf PHAR not found (vendor\\bin\\phpcbf.phar); PHPCBF auto-fix was not applied. PHPCS, PHPStan, and PHPUnit were run and outputs saved. Commit created with current artifacts.",
+  "phpcbf_attempted": true,
+  "phpcbf_success": false,
+  "phpcbf_error": "phpcs.phar reported 'The file \"phpcbf\" does not exist'",
+  "pushed_branch": true,
+  "notes": "Attempted to run PHPCBF via `phpcs.phar phpcbf` but the bundled phar did not expose the command. Outputs from PHPCS, PHPStan, and PHPUnit were saved; branch was pushed to origin.",
   "files": {
     "phpcs_full_before": "tests/evidence/phpcs_full.txt",
     "phpcs_full_after": "tests/evidence/phpcs_full_after_phpcbf.txt",
