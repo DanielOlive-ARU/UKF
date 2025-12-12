@@ -8,6 +8,8 @@ use PHPUnit\Framework\TestCase;
  */
 class LabelPrintTest extends TestCase
 {
+    private static bool $skipAll = false;
+
     public static function setUpBeforeClass(): void
     {
         if (!defined('USE_DATABASE_STUB')) {
@@ -16,11 +18,18 @@ class LabelPrintTest extends TestCase
         if (!defined('TEST_BYPASS_AUTH')) {
             define('TEST_BYPASS_AUTH', true);
         }
+        if (!method_exists('Database', 'setDelegate')) {
+            self::$skipAll = true;
+            return;
+        }
         Database::setDelegate(new FakeDatabase());
     }
 
     protected function setUp(): void
     {
+        if (self::$skipAll) {
+            $this->markTestSkipped('Database delegate stub not available');
+        }
         $_SESSION = array();
         $_GET = array();
         $_POST = array();

@@ -19,6 +19,8 @@
     <source>
         <include>
             <directory>includes</directory>
+            <directory>WarehouseProLite</directory>
+            <directory>StockTrackProLite</directory>
         </include>
     </source>
 </phpunit>
