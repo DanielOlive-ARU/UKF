@@ -2,7 +2,8 @@
 Team project UK Fruit
 
 ## Database configuration
-- Copy `config/database.php` to `config/database.local.php` if you need to override credentials locally. Use Environment variables in production. You would setup the least privlege user with this SQL. Not performed as would lock assesors out.
+Not performed as would lock assesors out.
+- Copy `config/database.php` to `config/database.local.php` if you need to override credentials locally. Use Environment variables in production. You would setup the least privlege user with this SQL.
 
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
 CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
